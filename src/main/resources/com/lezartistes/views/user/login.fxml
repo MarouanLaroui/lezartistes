@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lezartistes.controllers.user.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <ImageView fitHeight="214.0" fitWidth="216.0" layoutX="93.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../asset/logo.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="94.0" layoutY="186.0" text="Welcome back !">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="26.0" />
+            </font>
+        </Label>
+        <TextField fx:id="username" layoutX="132.0" layoutY="286.0" prefHeight="26.0" prefWidth="149.0" />
+        <Label layoutX="129.0" layoutY="263.0" text="Username">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="131.0" layoutY="330.0" text="Password">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="14.0" />
+            </font>
+        </Label>
+        <Button layoutX="176.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Login" textAlignment="CENTER">
+            <font>
+                <Font name="Lucida Calligraphy Italic" size="14.0" />
+            </font>
+        </Button>
+        <PasswordField fx:id="password" layoutX="131.0" layoutY="353.0" prefHeight="26.0" prefWidth="150.0" />
+    </children>
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+
+
+</AnchorPane>
+
