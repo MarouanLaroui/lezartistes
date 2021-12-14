@@ -3,6 +3,7 @@ package com.lezartistes.facades;
 import com.lezartistes.dao.AbstractFactory;
 import com.lezartistes.dao.ReportDAO;
 import com.lezartistes.database.PostgresFactory;
+import com.lezartistes.exceptions.ReportNotFoundException;
 import com.lezartistes.models.Report;
 
 public class ReportFacade {
@@ -25,7 +26,7 @@ public class ReportFacade {
         return reportFacade;
     }
 
-    public Report getReportById(int id){
+    public Report getReportById(int id) throws ReportNotFoundException {
         return this.reportDao.getReportById(id);
     }
 

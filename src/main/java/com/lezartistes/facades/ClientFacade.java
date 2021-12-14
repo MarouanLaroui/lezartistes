@@ -3,7 +3,10 @@ package com.lezartistes.facades;
 import com.lezartistes.dao.AbstractFactory;
 import com.lezartistes.dao.ClientDAO;
 import com.lezartistes.database.PostgresFactory;
+import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.models.Client;
+
+import java.util.List;
 
 public class ClientFacade {
 
@@ -24,11 +27,11 @@ public class ClientFacade {
         }
         return clientFacade;
     }
-    public Client[] getAllClients(){
+    public List<Client> getAllClients(){
         return this.clientDao.getAllClients();
     }
 
-    public Client getClientById(int id){
+    public Client getClientById(int id) throws ClientNotFoundException {
         return this.clientDao.getClientById(id);
     }
 

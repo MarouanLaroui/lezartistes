@@ -13,8 +13,6 @@ public class Report {
     private String necessary_means;
     private String meteo;
     private double ambient_temperature;
-    /*Pas trop sûr de ça ???*/
-    private File file;
 
     public Report(String title,
                   String general_description,
