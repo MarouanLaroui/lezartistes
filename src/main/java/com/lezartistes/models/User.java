@@ -1,6 +1,7 @@
 package com.lezartistes.models;
 
 public class User {
+
     /*attributes*/
     private String mail;
     private String password;
