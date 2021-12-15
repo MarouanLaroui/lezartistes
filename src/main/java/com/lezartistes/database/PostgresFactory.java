@@ -3,7 +3,6 @@ package com.lezartistes.database;
 import com.lezartistes.dao.*;
 import com.lezartistes.dao.feedback.FeedbackDAO;
 import com.lezartistes.dao.feedback.FeedbackDAOPostgres;
-
 import java.sql.Connection;
 
 public class PostgresFactory implements AbstractFactory {
@@ -25,11 +24,16 @@ public class PostgresFactory implements AbstractFactory {
         }
         return postgresFactory;
     }
+
     public UserDAO createUserDAO() {
         return UserDAOPostgres.getInstance(connection);
     }
     public FeedbackDAO createFeedbackDAO() {
         return FeedbackDAOPostgres.getInstance(connection);
     }
+
+    public ClientDAO createClientDAO(){ return ClientDAOPostgres.getInstance(connection);}
+
+    public ReportDAO createReportDAO(){return ReportDAOPostgres.getInstance(connection);}
 
 }

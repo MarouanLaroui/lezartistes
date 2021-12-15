@@ -14,6 +14,9 @@ module com.lezartistes {
     opens com.lezartistes.controllers.user to javafx.fxml;
     exports com.lezartistes.controllers.user;
 
+    opens com.lezartistes.controllers.client to javafx.fxml;
+    exports com.lezartistes.controllers.client;
+
     opens com.lezartistes.database to javafx.fxml;
     exports com.lezartistes.database;
 

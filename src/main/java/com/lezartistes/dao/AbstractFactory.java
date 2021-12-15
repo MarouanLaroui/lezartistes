@@ -15,4 +15,8 @@ public interface AbstractFactory {
      * @return a FeedbackDAO
      */
     FeedbackDAO createFeedbackDAO();
+    ClientDAO createClientDAO();
+
+     ReportDAO createReportDAO();
+
 }
