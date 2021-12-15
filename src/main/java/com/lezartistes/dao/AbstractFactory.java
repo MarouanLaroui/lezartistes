@@ -7,4 +7,10 @@ public interface AbstractFactory {
      * @return a UserDAO
      */
     UserDAO createUserDAO();
+
+    /**
+     * Create and return a FeedbackDAO
+     * @return a FeedbackDAO
+     */
+    FeedbackDAO createFeedbackDAO();
 }
