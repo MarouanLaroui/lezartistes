@@ -1,5 +1,6 @@
 package com.lezartistes.controllers.client;
 
+import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.models.Client;
 import javafx.collections.FXCollections;
@@ -25,12 +26,17 @@ public class ClientListController implements Initializable {
         this.clientFacade = ClientFacade.getInstance();
     }
 
-
+    //TODO : gérer affichage UserNotFoundException
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Client> clients = clientFacade.getAllClients();
-        System.out.println(clients.get(0).getMail());
-        this.clientsList.setItems(new FilteredList<>(FXCollections.observableList(clients)));
+        try{
+            List<Client> clients = clientFacade.getAllClients();
+            this.clientsList.setItems(new FilteredList<>(FXCollections.observableList(clients)));
+        }
+        catch (ClientNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
     /*If someone click on a client*/
     public void showClientDetail(javafx.scene.input.MouseEvent mouseEvent){

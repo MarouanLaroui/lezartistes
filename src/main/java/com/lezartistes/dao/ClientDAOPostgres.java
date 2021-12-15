@@ -42,7 +42,7 @@ public class ClientDAOPostgres extends ClientDAO{
     }
 
     @Override
-    public List<Client> getAllClients() {
+    public List<Client> getAllClients() throws ClientNotFoundException{
 
        String sqlSelect = "SELECT * FROM clients";
        List<Client> clients = new ArrayList<>();
@@ -53,13 +53,15 @@ public class ClientDAOPostgres extends ClientDAO{
 
            /*Transforme toutes les lignes en clients*/
            while(rs.next()){
-               System.out.println("ici");
                Client client = this.resultSetToClient(rs);
                clients.add(client);
            }
        }
        catch (SQLException throwables) {
            throwables.printStackTrace();
+       }
+       if(clients.isEmpty()){
+           throw new ClientNotFoundException();
        }
        return clients;
     }
