@@ -8,5 +8,13 @@ public interface AbstractFactory {
      */
     UserDAO createUserDAO();
 
+<<<<<<< HEAD
     QuotationDAO createQuotationDAO();
 }
+=======
+    ClientDAO createClientDAO();
+
+     ReportDAO createReportDAO();
+
+}
+>>>>>>> master

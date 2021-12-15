@@ -15,7 +15,7 @@ public class UserDAOPostgres extends UserDAO {
     /**
      * coToDB is the connection to the database
      */
-    Connection coToDB;
+    private Connection coToDB;
 
     /*constructor*/
     private UserDAOPostgres(Connection connection) {
