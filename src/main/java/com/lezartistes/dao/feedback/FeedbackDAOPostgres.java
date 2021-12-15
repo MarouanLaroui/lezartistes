@@ -1,8 +1,6 @@
 package com.lezartistes.dao.feedback;
 
-import com.lezartistes.models.Client;
 import com.lezartistes.models.Feedback;
-import com.lezartistes.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
