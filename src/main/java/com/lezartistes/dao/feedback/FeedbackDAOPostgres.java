@@ -1,4 +1,4 @@
-package com.lezartistes.dao;
+package com.lezartistes.dao.feedback;
 
 import com.lezartistes.models.Feedback;
 

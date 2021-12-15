@@ -1,5 +1,7 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.feedback.FeedbackDAO;
+
 public interface AbstractFactory {
 
     /**

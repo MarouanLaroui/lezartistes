@@ -1,6 +1,8 @@
 package com.lezartistes.database;
 
 import com.lezartistes.dao.*;
+import com.lezartistes.dao.feedback.FeedbackDAO;
+import com.lezartistes.dao.feedback.FeedbackDAOPostgres;
 
 import java.sql.Connection;
 
