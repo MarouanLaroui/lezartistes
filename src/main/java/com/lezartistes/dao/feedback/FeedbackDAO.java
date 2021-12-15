@@ -10,7 +10,7 @@ public abstract class FeedbackDAO implements Serializable {
         super();
     }
 
-    public abstract Feedback getFeedbackByCompany(String companyName);
+    public abstract List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating);
     public abstract List<Feedback> getAllFeedbackByCompany(String companyName);
     public abstract Feedback addFeedback(String companyName, String client, String comment, int rate);
     public abstract Feedback modifyFeedback(int idFeedback, String client, String comment, int rate);

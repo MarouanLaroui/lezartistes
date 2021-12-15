@@ -1,5 +1,6 @@
 package com.lezartistes.dao.feedback;
 
+import com.lezartistes.models.Client;
 import com.lezartistes.models.Feedback;
 import com.lezartistes.models.User;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FeedbackDAOPostgres extends FeedbackDAO{
@@ -38,33 +40,33 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     }
 
     @Override
-    public Feedback getFeedbackByCompany(String companyName) {
-        try {
-            PreparedStatement pstatement = this.connection.prepareStatement(
-                    "SELECT * FROM feedback WHERE company = ?"
-            );
-            pstatement.setString(1,companyName);
-            ResultSet resultSet = pstatement.executeQuery();
-
-            //Return info the info back
-            if(resultSet.next()) {
-                return null;
-                //return new Feedback();
-                //return new User(resultSet.getString(2),resultSet.getString(3));
-            }
-            else {
-                return null;
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
+    public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating) {
         return null;
     }
 
     @Override
     public List<Feedback> getAllFeedbackByCompany(String companyName) {
-        return null;
+        /**todo: requête SQL qui récupère l'id de la company qui correspond au name passé en paramètre
+         * todo: requête SQL qui récupère le feedback associé
+         */
+        String sqlSelect = "SELECT * FROM feedbacks";
+        List<Feedback> feedbacks = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                // todo: créer feedbkck et add feedback à la liste
+                //Feedback feedback = new Feedback(resultSet.getInt(2), resultSet.getString(3),resultSet.getInt(4) );
+                //feedbacks.add(feedback);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return feedbacks;
     }
 
     @Override
