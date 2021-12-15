@@ -10,18 +10,26 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class signInController {
+public class SignInController {
 
     /**
      * The UserFacade used to communicate and treat data.
      */
     private final UserFacade userfacade = new UserFacade();
 
-    @FXML protected void clientSide(ActionEvent event) {
+    // Client side
+    @FXML
+    private TextField password;
 
+    @FXML protected void clientSide(ActionEvent event) throws Exception {
+        App.setRoot("views/user/signInClient");
     }
 
-    @FXML protected void expertSide(ActionEvent event) {
+    @FXML protected void expertSide(ActionEvent event) throws Exception {
+        App.setRoot("views/user/signInExpert");
+    }
+
+    @FXML protected void validateClientCreation(ActionEvent e) {
 
     }
 }
