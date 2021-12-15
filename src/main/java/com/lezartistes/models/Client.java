@@ -29,6 +29,9 @@ public class Client extends User {
         this.phone_number = phone_number;
     }
 
+    public String toString(){
+        return this.getName() +" " + this.getSurname() +" " + getStreet();
+    }
     /**
      * Getters and setters
      */

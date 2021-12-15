@@ -59,7 +59,9 @@ public class CreateDBTable {
             Statement stmt = connection.createStatement();
 
             String sql = "CREATE TABLE clients " +
-                    "(id SERIAL PRIMARY KEY," +
+                    "(ID  SERIAL PRIMARY KEY," +
+                    " mail VARCHAR(50)," +
+                    " password VARCHAR(50)," +
                     " name VARCHAR(50)," +
                     " surname VARCHAR(50)," +
                     " street VARCHAR(50)," +
@@ -76,17 +78,19 @@ public class CreateDBTable {
     }
 
     public void insertIntoClientTable(){
+        /*
         try{
+
             Statement stmt = this.connection.createStatement();
 
-            String sqlInsert = "INSERT INTO clients VALUES ('marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            String sqlInsert = "INSERT INTO clients VALUES (2,'marouanlaroui2000@gmail.com','mdp','caca','coco','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
             int affectRows = stmt.executeUpdate(sqlInsert);
-            /*
+
             while(rs.next()){
                 System.out.println(rs.getString(2));
                 System.out.println(rs.getString(3));
             }
-             */
+
             System.out.println("finish");
             System.out.println(affectRows);
 
@@ -95,6 +99,7 @@ public class CreateDBTable {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+             */
     }
 
 

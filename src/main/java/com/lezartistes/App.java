@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.lezartistes.App;
 
 import java.io.IOException;
 
@@ -18,12 +19,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("views/user/login"), 640, 480);
-        scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
+        //scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
+        scene = new Scene(loadFXML("views/client/ClientList"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

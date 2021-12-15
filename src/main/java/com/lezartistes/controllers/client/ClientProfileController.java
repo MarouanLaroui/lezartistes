@@ -1,14 +1,19 @@
 package com.lezartistes.controllers.client;
 
-import com.lezartistes.dao.AbstractFactory;
-import com.lezartistes.database.PostgresFactory;
-import com.lezartistes.exceptions.ClientNotFoundException;
+
 import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.models.Client;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-public class ClientProfileController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ClientProfileController implements Initializable {
+
+    private Client client;
 
     /**
      * Linked to the TextField who's fx:id is his name
@@ -35,44 +40,29 @@ public class ClientProfileController {
     private Label phone_number;
 
     private final ClientFacade clientFacade;
+    private Stage stage;
 
-    public ClientProfileController(){
-
+    public ClientProfileController(Client client, Stage stage){
+        this.client = client;
         this.clientFacade = ClientFacade.getInstance();
+        this.stage = stage;
     }
 
-    @FXML protected void displayClientInformation(int id){
-
-        /*Request to get information of the Client*/
-        AbstractFactory factory = PostgresFactory.getInstance();
-        try{
-            Client client = factory.createClientDAO().getClientById(id);
-
-            /*Displaying the retrieved informations*/
-            name.setText(client.getName());
-            surname.setText(client.getSurname());
-            street.setText(client.getStreet());
-            complement.setText(client.getComplement());
-            city.setText(client.getCity());
-            postal_code.setText(String.valueOf(client.getPostal_code()));
-            phone_number.setText(String.valueOf(client.getPhone_number()));
-        }
-        catch (ClientNotFoundException e){
-            e.printStackTrace();
-        }
-    }
-
-    @FXML protected void displayClientInformation(Client client){
+    //TODO : Mettre les affichages dans le bon field dans le fxml
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
         /*Displaying the retrieved informations*/
-        name.setText(client.getName());
-        surname.setText(client.getSurname());
-        street.setText(client.getStreet());
-        complement.setText(client.getComplement());
-        city.setText(client.getCity());
-        postal_code.setText(String.valueOf(client.getPostal_code()));
-        phone_number.setText(String.valueOf(client.getPhone_number()));
+
+        name.setText(this.client.getName());
+        surname.setText(this.client.getSurname());
+        street.setText(this.client.getStreet());
+        complement.setText(this.client.getComplement());
+        city.setText(this.client.getCity());
+        postal_code.setText(String.valueOf(this.client.getPostal_code()));
+        phone_number.setText(String.valueOf(this.client.getPhone_number()));
+
+
 
     }
-
 }

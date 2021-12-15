@@ -37,7 +37,7 @@ public class ClientDAOPostgres extends ClientDAO{
                 rs.getString("complement"),
                 rs.getString("city"),
                 rs.getInt("postal_code"),
-                rs.getInt("phone_numer"));
+                rs.getInt("phone_number"));
         return c;
     }
 
@@ -53,6 +53,7 @@ public class ClientDAOPostgres extends ClientDAO{
 
            /*Transforme toutes les lignes en clients*/
            while(rs.next()){
+               System.out.println("ici");
                Client client = this.resultSetToClient(rs);
                clients.add(client);
            }
