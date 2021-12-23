@@ -7,7 +7,10 @@ import com.lezartistes.exceptions.UserNotFoundException;
 import com.lezartistes.models.User;
 
 public class UserFacade {
-    /*attribute
+    /*attribute*/
+
+    ClientFacade clientFacade = ClientFacade.getInstance();
+    ServiceProviderFacade spFacade = ServiceProviderFacade.getInstance();
 
     /*constructor*/
     /*methods*/
@@ -22,8 +25,14 @@ public class UserFacade {
     public User login (String mail, String password) throws UserNotFoundException{
 
         AbstractFactory factory = PostgresFactory.getInstance();
-        UserDAO dao = factory.createUserDAO();
-        User u = dao.getUserByMail(mail);
+        //UserDAO dao = factory.createUserDAO();
+        //User u = dao.getUserByMail(mail);
+
+        User u = clientFacade.getClientByEmail(mail);
+        if (u == null) { //On le chercher parmis les clients
+            System.out.println("On ne le trouve pas parmis les clients");
+            u = spFacade.getServiceProviderByEmail(mail); //Sinon parmis les SP
+        }
 
         /*Check if the user credentials are the same as in the db, returns Exceptions if not found, or not matching*/
         if( (u != null) && compareCredentials(mail, password, u)) {
@@ -43,6 +52,6 @@ public class UserFacade {
      * @return true if the informations matches, false otherwise
      */
     public boolean compareCredentials (String mail, String password, User user) {
-        return (user.getMail().equals(mail)) && (user.getPassword().equals(password));
+        return (user.getMail().equals(mail)) && (user.getPassword().equals(user.encrypt(password)));
     }
 }

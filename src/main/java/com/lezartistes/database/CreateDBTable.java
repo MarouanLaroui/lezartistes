@@ -98,8 +98,12 @@ public class CreateDBTable {
         try{
             Statement stmt = this.connection.createStatement();
 
-            String sqlInsert = "INSERT INTO clients(name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            String sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
             int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'Surement pas marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'Julien','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            stmt.executeUpdate(sqlInsert);
             /*
             while(rs.next()){
                 System.out.println(rs.getString(2));
@@ -122,8 +126,8 @@ public class CreateDBTable {
         CreateDBTable cTable = new CreateDBTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
+        //cTable.createServiceProvider();
         //cTable.insertIntoClientTable();
-        cTable.createServiceProvider();
 
     }
 }
