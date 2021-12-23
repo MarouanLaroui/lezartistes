@@ -51,7 +51,7 @@ public class UserDAOPostgres extends UserDAO {
 
             //Return info the info back
             if(resultSet.next()) {
-                return new User(resultSet.getString(2),resultSet.getString(3));
+                return new User(resultSet.getString(2),resultSet.getString(3), false);
             }
             else {
                 return null;
