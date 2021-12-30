@@ -38,11 +38,12 @@ public class LoginController {
         User ourUser;
         try {
             ourUser = userfacade.login(username.getText(), password.getText());
+            UserInformation.setUser(ourUser);
+
             System.out.println("Vous avez réussi à vous connecter");
             App.setRoot("views/accueilClient");
             App.setRoot("views/accueilExpert");
         } catch (UserNotFoundException e) {
-            ourUser = null;
             System.out.println("L'utilisateur n'existe pas");
         } catch (IOException e) {
             e.printStackTrace();
