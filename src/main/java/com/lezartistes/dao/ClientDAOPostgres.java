@@ -29,7 +29,7 @@ public class ClientDAOPostgres extends ClientDAO{
 
     private Client resultSetToClient(ResultSet rs) throws SQLException {
         Client c = new Client(
-                rs.getString("mail"),
+                rs.getString("username"),
                 rs.getString("password"),
                 rs.getString("name"),
                 rs.getString("surname"),

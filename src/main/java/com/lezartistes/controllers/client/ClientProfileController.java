@@ -6,8 +6,11 @@ import com.lezartistes.models.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import com.lezartistes.App;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,6 +42,7 @@ public class ClientProfileController implements Initializable {
     @FXML
     private Label phone_number;
 
+
     private final ClientFacade clientFacade;
     private Stage stage;
 
@@ -64,5 +68,14 @@ public class ClientProfileController implements Initializable {
 
 
 
+    }
+
+    public void redirectToClientList(MouseEvent mouseEvent) {
+        try {
+            App.setRoot("ClientList");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

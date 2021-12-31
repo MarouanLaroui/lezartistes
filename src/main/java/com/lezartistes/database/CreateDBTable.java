@@ -42,10 +42,17 @@ public class CreateDBTable {
                     "(id SERIAL PRIMARY KEY," +
                     " title VARCHAR(50)," +
                     " general_description VARCHAR(150)," +
-                    " mail VARCHAR(50)," +
-                    " necessary_means VARCHAR(150)," +
-                    " meteo VARCHAR(50)," +
-                    " ambient_temperature VARCHAR(50))";
+                    "is_posted BOOLEAN,"+
+                    "visit_date DATE,"+
+                    "inspection_team VARCHAR(150),"+
+                    "necessary_means VARCHAR(150)," +
+                    "meteo VARCHAR(50)," +
+                    "ambient_temperature DOUBLE PRECISION," +
+                    "location VARCHAR(50)," +
+                    "observation VARCHAR(150)," +
+                    "file1 bytea,"+
+                    "file2 bytea,"+
+                    "file3 bytea)";
             stmt.execute(sql);
             System.out.println("Created table in given database...");
         }
@@ -78,18 +85,13 @@ public class CreateDBTable {
     }
 
     public void insertIntoClientTable(){
-        /*
+
         try{
 
             Statement stmt = this.connection.createStatement();
 
-            String sqlInsert = "INSERT INTO clients VALUES (2,'marouanlaroui2000@gmail.com','mdp','caca','coco','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            String sqlInsert = "INSERT INTO clients VALUES (5,'marouanlaroui2000@gmail.com','mdp','caca','coco','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
             int affectRows = stmt.executeUpdate(sqlInsert);
-
-            while(rs.next()){
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getString(3));
-            }
 
             System.out.println("finish");
             System.out.println(affectRows);
@@ -99,13 +101,14 @@ public class CreateDBTable {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-             */
+
     }
 
 
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
+        //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
         cTable.insertIntoClientTable();
