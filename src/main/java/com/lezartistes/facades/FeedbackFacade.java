@@ -31,6 +31,7 @@ public class FeedbackFacade {
     public Feedback getFeedbakById(int id) throws FeedbackNotFoundException {
         return this.feedbackDAO.getFeedbackById(id);
     }
+
     public List<Feedback> getAllFeedbacks() throws FeedbackNotFoundException {
         return this.feedbackDAO.getAllFeedbacks();
     }
@@ -42,12 +43,15 @@ public class FeedbackFacade {
     public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating) throws CompanyNotFoundException {
         return this.feedbackDAO.getFeedbackByCompanyByRating(companyName, rating);
     }
+
     public int addFeedback(Feedback fb){
         return this.feedbackDAO.addFeedback(fb);
     }
+
     public int modifyFeedback(int idFeedback, Feedback fb){
         return this.feedbackDAO.modifyFeedback(idFeedback, fb);
     }
+
     public int deleteFeedback(int idFeedback){
         return this.feedbackDAO.deleteFeedback(idFeedback);
     }
