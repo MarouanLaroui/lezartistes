@@ -1,13 +1,9 @@
 package com.lezartistes.database;
 
 import com.lezartistes.dao.*;
-<<<<<<< HEAD
 import com.lezartistes.dao.feedback.FeedbackDAO;
 import com.lezartistes.dao.feedback.FeedbackDAOPostgres;
-=======
 import com.lezartistes.dao.serviceProvider.*;
-
->>>>>>> master
 import java.sql.Connection;
 
 public class PostgresFactory implements AbstractFactory {
