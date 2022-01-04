@@ -56,14 +56,15 @@ public class SpReportListController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             /*Initialization depends on if it's a SP looking for his reports or a client looking for reports on a call for proposal*/
-
             if(this.callForProposal != null){
                 this.reports = reportFacade.getAllReports();
                 //this.reports = reportFacade.getReportsForProposal(callForProposal.getId());
             }
             else{
-                //this.reports = reportFacade.getReportsByAuthor(2);
-                this.reports = reportFacade.getAllReports();
+                if(this.serviceProviderId != -1){
+                    //this.reports = reportFacade.getReportsByAuthor(2);
+                    this.reports = reportFacade.getAllReports();
+                }
             }
             this.reports = reportFacade.getAllReports();
             this.reportsList.setItems(new FilteredList<>(FXCollections.observableList(this.reports)));
