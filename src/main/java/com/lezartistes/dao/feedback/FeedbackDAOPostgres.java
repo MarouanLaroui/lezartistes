@@ -1,8 +1,8 @@
 package com.lezartistes.dao.feedback;
 
+import com.lezartistes.dao.company.CompanyDAOPostgres;
 import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.exceptions.FeedbackNotFoundException;
-import com.lezartistes.exceptions.UserNotFoundException;
 import com.lezartistes.models.Feedback;
 
 import java.sql.*;
@@ -15,6 +15,7 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
      * feedbackDaoPostgres for the Singleton Pattern
      */
     private static FeedbackDAOPostgres feedbackDaoPostgres;
+    private final CompanyDAOPostgres companyDAOPostgres;
 
     /**
      * Connection to the database
@@ -22,14 +23,20 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     Connection connection;
 
     /**
-     * Create a FeedbackDAOPostgres
+     * Constructor : create a FeedbackDAOPostgres
      * @param connection connection to the DB
      */
     public FeedbackDAOPostgres(Connection connection){
         super();
         this.connection = connection;
+        this.companyDAOPostgres = new CompanyDAOPostgres(connection);
     }
 
+    /**
+     * Method for the singleton pattern
+     * @param connection connection to the DB
+     * @return an only instance of FeedbackDAOPostgres
+     */
     public static FeedbackDAO getInstance(Connection connection) {
         if(feedbackDaoPostgres == null){
             feedbackDaoPostgres = new FeedbackDAOPostgres(connection);
@@ -46,24 +53,27 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
         );
     }
 
-    public int getCompanyIdByName(String companyName){
-        String sqlCompany = "SELECT idcompany FROM companies WHERE companyname=?";
-        int idCompany = -1;
+    @Override
+    public Feedback getFeedbackById(int id) throws FeedbackNotFoundException {
+        String sqlSelect = "SELECT * FROM feedbacks WHERE idfeedback=?";
 
-        try{
-            PreparedStatement pstatement = this.connection.prepareStatement(sqlCompany);
-            pstatement.setString(1, companyName);
+        PreparedStatement pstatement = null;
+        try {
+            pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setInt(1,id);
             ResultSet resultSet = pstatement.executeQuery();
 
-            if(resultSet.next())
-                idCompany = resultSet.getInt("idcompany");
-            else
-                throw new CompanyNotFoundException(companyName);
-        }
-        catch (SQLException | CompanyNotFoundException throwables) {
+            if(resultSet.next()){
+                return this.resultSetToFeedback(resultSet);
+            }
+            else{
+                throw new FeedbackNotFoundException(id);
+            }
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return idCompany;
+
+        return null;
     }
 
     @Override
@@ -91,11 +101,11 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     }
 
     @Override
-    public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating) {
+    public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating) throws CompanyNotFoundException {
         /**
          * Récupération idCompany
          */
-        int idCompany = getCompanyIdByName(companyName);
+        int idCompany = this.companyDAOPostgres.getCompanyIdByName(companyName);
 
         String sqlSelect = "SELECT * FROM feedbacks WHERE companyfeedback=? AND rating=?";
         List<Feedback> feedbacks = new ArrayList<>();
@@ -120,11 +130,11 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     }
 
     @Override
-    public List<Feedback> getAllFeedbackByCompany(String companyName) throws FeedbackNotFoundException {
+    public List<Feedback> getAllFeedbackByCompany(String companyName) throws FeedbackNotFoundException, CompanyNotFoundException {
         /**
          * On récupère la bonne company associé au nom passé en paramètre
          */
-        int idCompany = getCompanyIdByName(companyName);
+        int idCompany = this.companyDAOPostgres.getCompanyIdByName(companyName);
 
 
         /**
@@ -175,12 +185,16 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     @Override
     public int modifyFeedback(int idFeedback, Feedback fb) {
         int affectRows = 0;
-        String sqlUpdate = "UPDATE feedbacks SET rating = fb.getRating(), " +
-                "comment = fb.getComment(), " +
-                "companyFeedback = fb.getCompany() " +
+        String sqlUpdate = "UPDATE feedbacks SET " +
+                "rating = ?, " +
+                "comment = ? , " +
+                "companyFeedback = ? " +
                 "WHERE idfeedback = ?";
         try{
             PreparedStatement pstmt = this.connection.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, fb.getRating());
+            pstmt.setString(2, fb.getComment());
+            pstmt.setInt(3, fb.getCompany());
             pstmt.setInt(1, idFeedback);
 
             affectRows = pstmt.executeUpdate();
