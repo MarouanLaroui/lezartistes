@@ -38,5 +38,6 @@ module com.lezartistes {
     opens com.lezartistes.models to javafx.fxml;
     exports com.lezartistes.models;
 
-
+    exports com.lezartistes.dao.feedback;
+    opens com.lezartistes.dao.feedback to javafx.fxml;
 }

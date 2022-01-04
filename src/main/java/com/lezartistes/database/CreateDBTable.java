@@ -101,6 +101,45 @@ public class CreateDBTable {
         }
     }
 
+    public void createFeedbackTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "CREATE TABLE feedbacks " +
+                    "(idFeedback SERIAL PRIMARY KEY," +
+                    " rating INT"+
+                    " comment VARCHAR(50)," +
+                    " companyFeedback INT"+
+                    " FOREIGN KEY (companyFeedback) REFERENCES companies(idCompany))";
+            stmt.execute(sql);
+            System.out.println("Created table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createCompanyTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "CREATE TABLE companies " +
+                    "(idCompany SERIAL PRIMARY KEY," +
+                    " companyName VARCHAR(50)"+
+                    " companyDepartement VARCHAR(50)," +
+                    " companyCity VARCHAR(30)"+
+                    " companyStreet VARCHAR(30)"+
+                    " companyComplement VARCHAR(30)"+
+                    " companyPostalCode INT)";
+            stmt.execute(sql);
+            System.out.println("Created table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
     public void insertIntoClientTable(){
 
         try{
