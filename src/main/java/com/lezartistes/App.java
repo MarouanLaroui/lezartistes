@@ -20,6 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
         //scene = new Scene(loadFXML("views/user/login"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientList"), 640, 480);
@@ -28,7 +29,7 @@ public class App extends Application {
         //stage.setScene(scene);
         //stage.show();
 
-
+        /*
         stage.setHeight(480);
         stage.setWidth(640);
         FXMLLoader loader = new FXMLLoader(App.class.getResource("views/report/ReportList.fxml"));
@@ -42,6 +43,7 @@ public class App extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
+         */
         stage.show();
     }
 

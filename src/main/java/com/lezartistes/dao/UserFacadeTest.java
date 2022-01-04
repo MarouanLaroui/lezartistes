@@ -20,7 +20,7 @@ public class UserFacadeTest {
     @Test
     void compareCredentials_test_admin_admin() {
         UserFacade userfacade = new UserFacade();
-        User u = new User("admin", "admin");
+        User u = new User("admin", "admin", true);
         String username = "admin";
         String password = "admin";
 
