@@ -21,7 +21,7 @@
                <children>
                   <ToolBar layoutX="32.0" layoutY="24.0">
                     <items>
-                      <Button mnemonicParsing="false" text="Home">
+                      <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                            <font>
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font></Button>
