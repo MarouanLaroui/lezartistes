@@ -3,6 +3,7 @@ package com.lezartistes.database;
 import com.lezartistes.dao.*;
 import com.lezartistes.dao.quotation.QuotationDAO;
 import com.lezartistes.dao.quotation.QuotationDAOPostgres;
+import com.lezartistes.dao.serviceProvider.*;
 
 import java.sql.Connection;
 
@@ -35,4 +36,10 @@ public class PostgresFactory implements AbstractFactory {
     public ReportDAO createReportDAO(){return ReportDAOPostgres.getInstance(connection);}
 
     public QuotationDAO createQuotationDAO(){return QuotationDAOPostgres.getInstance(connection);}
+
+    @Override
+    public ServiceProviderDAO createSPDAO() {
+        return ServiceProviderDAOPostgres.getInstance(connection);
+    }
+
 }

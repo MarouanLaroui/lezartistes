@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
+   <children>
+      <Label layoutX="23.0" layoutY="66.0" prefHeight="42.0" prefWidth="553.0" text="Which account do you want to create ? " textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="26.0" />
+         </font></Label>
+      <Button layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#clientSide" prefHeight="42.0" prefWidth="106.0" text="Client">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font></Button>
+      <Button layoutX="321.0" layoutY="219.0" mnemonicParsing="false" onAction="#expertSide" prefHeight="42.0" prefWidth="106.0" text="Expert">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

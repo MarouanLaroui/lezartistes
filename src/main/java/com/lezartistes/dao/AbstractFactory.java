@@ -1,6 +1,7 @@
 package com.lezartistes.dao;
 
 import com.lezartistes.dao.quotation.QuotationDAO;
+import com.lezartistes.dao.serviceProvider.ServiceProviderDAO;
 
 public interface AbstractFactory {
 
@@ -12,8 +13,9 @@ public interface AbstractFactory {
 
     ClientDAO createClientDAO();
 
-     ReportDAO createReportDAO();
+    ReportDAO createReportDAO();
 
      QuotationDAO createQuotationDAO();
 
+    ServiceProviderDAO createSPDAO();
 }

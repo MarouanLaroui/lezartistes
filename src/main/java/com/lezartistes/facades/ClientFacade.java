@@ -12,12 +12,12 @@ public class ClientFacade {
 
     /*attributes*/
     private static ClientFacade clientFacade;
-    private ClientDAO clientDao;
+    private final ClientDAO clientDao;
 
     /*constructor*/
     private ClientFacade(){
         AbstractFactory factory = PostgresFactory.getInstance();
-        this.clientDao =  factory.createClientDAO();
+        this.clientDao = factory.createClientDAO();
     };
 
     /*methods*/
@@ -35,6 +35,13 @@ public class ClientFacade {
         return this.clientDao.getClientById(id);
     }
 
+    public Client getClientByEmail(String email) {
+        return this.clientDao.getClientByEmail(email);
+    }
 
+
+    public int createClient(Client c) {
+        return this.clientDao.createClient(c);
+    }
 }
 

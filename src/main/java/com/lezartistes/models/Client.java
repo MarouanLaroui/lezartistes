@@ -13,18 +13,18 @@ public class Client extends User {
     /**
      * Constructors
      * */
-    public Client(String mail, String password){
-        super(mail, password);
+    public Client(String mail, String password, boolean needEncrypt){
+        super(mail, password, needEncrypt);
     }
 
     public Client(String mail, String password, String name, String surname, String street,
-                  String complement, String city, int postal_code, int phone_number){
-        this(mail, password);
+                  String complement, String city, int postal_code, int phone_number, boolean needEncrypt){
+        this(mail, password, needEncrypt);
         this.name = name;
         this.surname = surname;
         this.street = street;
         this.complement = complement;
-        this.city= city;
+        this.city = city;
         this.postal_code = postal_code;
         this.phone_number = phone_number;
     }

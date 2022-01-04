@@ -100,8 +100,11 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE clients " +
-                    "(id SERIAL PRIMARY KEY," +
+            String sql = "DROP TABLE IF EXISTS clients;" +
+                    "CREATE TABLE clients " +
+                    "(id_clients SERIAL PRIMARY KEY," +
+                    " username VARCHAR(50), " +
+                    " password VARCHAR(300), " +
                     " name VARCHAR(50)," +
                     " surname VARCHAR(50)," +
                     " street VARCHAR(50)," +
@@ -111,8 +114,24 @@ public class CreateDBTable {
                     " phone_number INT)";
             stmt.execute(sql);
             System.out.println("Created table in given database...");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        catch (SQLException throwables) {
+    }
+
+    public void createServiceProvider() {
+        try {
+            Statement stmt = connection.createStatement();
+
+            String sql = "DROP TABLE IF EXISTS serviceProviders;" +
+                    "CREATE TABLE serviceProviders" +
+                    "(id_sp SERIAL PRIMARY KEY, " +
+                    " username VARCHAR(50), " +
+                    " password VARCHAR(300) " +
+                    " )";
+
+            stmt.execute(sql);
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
@@ -121,8 +140,12 @@ public class CreateDBTable {
         try{
             Statement stmt = this.connection.createStatement();
 
-            String sqlInsert = "INSERT INTO clients VALUES ('marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            String sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
             int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'Surement pas marouan','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'Julien','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
+            stmt.executeUpdate(sqlInsert);
             /*
             while(rs.next()){
                 System.out.println(rs.getString(2));
@@ -148,6 +171,7 @@ public class CreateDBTable {
         cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
+        //cTable.createServiceProvider();
 
     }
 }
