@@ -3,6 +3,7 @@ package com.lezartistes.facades;
 import com.lezartistes.dao.AbstractFactory;
 import com.lezartistes.dao.feedback.FeedbackDAO;
 import com.lezartistes.database.PostgresFactory;
+import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.Feedback;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class FeedbackFacade {
         return feedbackFacade;
     }
 
-    public List<Feedback> getAllFeedbacks() {
+    public List<Feedback> getAllFeedbacks() throws FeedbackNotFoundException {
         return this.feedbackDAO.getAllFeedbacks();
     }
 

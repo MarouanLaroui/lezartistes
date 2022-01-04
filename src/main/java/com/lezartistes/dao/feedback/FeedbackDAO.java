@@ -1,5 +1,6 @@
 package com.lezartistes.dao.feedback;
 
+import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.Feedback;
 
 import java.io.Serializable;
@@ -10,10 +11,10 @@ public abstract class FeedbackDAO implements Serializable {
         super();
     }
 
-    public abstract List<Feedback> getAllFeedbacks();
+    public abstract List<Feedback> getAllFeedbacks() throws FeedbackNotFoundException;
     public abstract List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating);
-    public abstract List<Feedback> getAllFeedbackByCompany(String companyName);
-    public abstract Feedback addFeedback(String companyName, String client, String comment, int rate);
-    public abstract Feedback modifyFeedback(int idFeedback, String client, String comment, int rate);
-    public abstract void deleteFeedback(int idFeedback);
+    public abstract List<Feedback> getAllFeedbackByCompany(String companyName) throws FeedbackNotFoundException;
+    public abstract int addFeedback(Feedback fb);
+    public abstract int modifyFeedback(int idFeedback, Feedback fb);
+    public abstract int deleteFeedback(int idFeedback);
 }
