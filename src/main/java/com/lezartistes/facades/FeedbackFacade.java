@@ -1,13 +1,50 @@
 package com.lezartistes.facades;
 
+import com.lezartistes.dao.AbstractFactory;
+import com.lezartistes.dao.feedback.FeedbackDAO;
+import com.lezartistes.database.PostgresFactory;
+import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.Feedback;
 
 import java.util.List;
 
 public class FeedbackFacade {
+    /*attributes*/
+    private static FeedbackFacade feedbackFacade;
+    private final FeedbackDAO feedbackDAO;
 
-    public List<Feedback> getAllFeedbackByCompany(String companyName){
+    /*constructeur*/
+    private FeedbackFacade(){
+        AbstractFactory factory = PostgresFactory.getInstance();
+        this.feedbackDAO = factory.createFeedbackDAO();
+    }
 
-        return null;
+    /*methods*/
+    public static FeedbackFacade getInstance(){
+        if(feedbackFacade == null){
+            feedbackFacade = new FeedbackFacade();
+        }
+        return feedbackFacade;
+    }
+
+    public List<Feedback> getAllFeedbacks() throws FeedbackNotFoundException {
+        return this.feedbackDAO.getAllFeedbacks();
+    }
+
+    public List<Feedback> getAllFeedbackByCompany(String companyName) throws FeedbackNotFoundException {
+        return this.feedbackDAO.getAllFeedbackByCompany(companyName);
+    }
+
+    public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating){
+        return this.feedbackDAO.getFeedbackByCompanyByRating(companyName, rating);
+    }
+    public int addFeedback(Feedback fb){
+        return this.feedbackDAO.addFeedback(fb);
+    }
+    public int modifyFeedback(int idFeedback, Feedback fb){
+        return this.feedbackDAO.modifyFeedback(idFeedback, fb);
+    }
+    public int deleteFeedback(int idFeedback){
+        return this.deleteFeedback(idFeedback);
     }
 }
