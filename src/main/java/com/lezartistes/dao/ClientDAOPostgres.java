@@ -42,6 +42,7 @@ public class ClientDAOPostgres extends ClientDAO{
                 rs.getInt("phone_number"),
                 false
         );
+
         //TODO : On part du principe qu'on appel cette fonction que si on récupère depuis la base de données donc pas d'encryptage de mot de passe
     }
 

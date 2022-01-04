@@ -16,7 +16,7 @@
       <TextField fx:id="street_client" layoutX="127.0" layoutY="224.0" />
       <TextField fx:id="complement_client" layoutX="337.0" layoutY="224.0" />
       <TextField fx:id="city_client" layoutX="127.0" layoutY="276.0" />
-      <TextField fx:id="postal_code_client" layoutX="337.0" layoutY="276.0" onAction="#integerFilter" />
+      <TextField fx:id="postal_code_client" layoutX="337.0" layoutY="276.0" />
       <TextField fx:id="phone_number_client" layoutX="127.0" layoutY="334.0" />
       <Button layoutX="336.0" layoutY="333.0" mnemonicParsing="false" onAction="#validateClientCreation" prefHeight="26.0" prefWidth="149.0" text="Validate">
          <font>
