@@ -71,7 +71,7 @@ public class ClientDAOPostgres extends ClientDAO{
     @Override
     public Client getClientById(int id) throws ClientNotFoundException{
 
-        String sqlSelect = "SELECT * FROM clients WHERE id=?";
+        String sqlSelect = "SELECT * FROM clients WHERE id_clients=?";
         try {
             /*Requête select sur la base de donnée*/
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);

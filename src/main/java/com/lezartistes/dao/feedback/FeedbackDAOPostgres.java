@@ -37,9 +37,17 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
         return feedbackDaoPostgres;
     }
 
+    /*methods*/
+    public Feedback resultSetToFeedback(ResultSet rs) throws SQLException{
+        return new Feedback(
+                rs.getInt("rating"),
+                rs.getString("comment"),
+                rs.getInt("companyfeedback")
+        );
+    }
+
     @Override
     public List<Feedback> getAllFeedbacks() {
-
         String sqlSelect = "SELECT * FROM feedbacks";
         List<Feedback> feedbacks = new ArrayList<>();
 
@@ -49,13 +57,15 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
 
             /*Transforme toutes les lignes en feedback*/
             while(resultSet.next()){
-                // todo: créer feedbkck et add feedback à la liste
-                //Feedback feedback = new Feedback(resultSet.getInt(2), resultSet.getString(3),resultSet.getInt(4) );
-                //feedbacks.add(feedback);
+                Feedback fb = resultSetToFeedback(resultSet);
+                feedbacks.add(fb);
             }
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+        if(feedbacks.isEmpty()){
+            //throw new FeedbackNotFoundException();
         }
         return feedbacks;
     }
@@ -79,13 +89,15 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
 
             /*Transforme toutes les lignes en feedback*/
             while(resultSet.next()){
-                // todo: créer feedbkck et add feedback à la liste
-                //Feedback feedback = new Feedback(resultSet.getInt(2), resultSet.getString(3),resultSet.getInt(4) );
-                //feedbacks.add(feedback);
+                Feedback fb = resultSetToFeedback(resultSet);
+                feedbacks.add(fb);
             }
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+        if(feedbacks.isEmpty()){
+            //throw new FeedbackNotFoundException();
         }
         return feedbacks;
     }
