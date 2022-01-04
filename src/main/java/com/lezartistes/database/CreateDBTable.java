@@ -54,6 +54,48 @@ public class CreateDBTable {
         }
     }
 
+    public void createBuildingTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "CREATE TABLE buildings " +
+                    "(id_building SERIAL PRIMARY KEY," +
+                    " name VARCHAR(50)," +
+                    " region VARCHAR(50)," +
+                    " budget double," +
+                    " construction_date DATE ," +
+                    " master_building VARCHAR(50)," +
+                    " construction_company VARCHAR(50),"+
+                    " design_office VARCHAR(50)) ";
+            stmt.execute(sql);
+            System.out.println("Table Building created ");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createQuotationTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "CREATE TABLE quotations "+
+                    "(id_quotation serial primary key, "+
+                    "id_company int, "+
+                    "capital float,"+
+                    "siret_number varchar(50),"+
+                    "number_business_register varchar(50), "+
+                    "NAF varchar(50),"+
+                    "total_price_ttc float, "+
+                    "constraint id_company foreign key(id_company) references company(id_company))";
+            stmt.execute(sql);
+            System.out.println("Table Quotation created");
+        }
+        catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+    }
+
     public void createClientTable(){
         try{
             Statement stmt = connection.createStatement();
@@ -104,6 +146,8 @@ public class CreateDBTable {
         //cTable.createUserTable();
         //cTable.createClientTable();
         cTable.insertIntoClientTable();
+        //cTable.createQuotationTable();
+        //cTable.createBuildingTable();
 
     }
 }

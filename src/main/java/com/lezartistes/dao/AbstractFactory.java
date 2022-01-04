@@ -1,5 +1,7 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.quotation.QuotationDAO;
+
 public interface AbstractFactory {
 
     /**
@@ -11,5 +13,7 @@ public interface AbstractFactory {
     ClientDAO createClientDAO();
 
      ReportDAO createReportDAO();
+
+     QuotationDAO createQuotationDAO();
 
 }
