@@ -1,6 +1,7 @@
 package com.lezartistes.dao;
 
 import com.lezartistes.exceptions.ClientNotFoundException;
+import com.lezartistes.exceptions.UserNotFoundException;
 import com.lezartistes.models.Client;
 
 import javax.xml.transform.Result;
@@ -12,7 +13,7 @@ public class ClientDAOPostgres extends ClientDAO{
 
     /*attributes*/
     private static ClientDAOPostgres clientDAOPostgres;
-    private Connection coToDB;
+    private final Connection coToDB;
 
     /*constructor*/
     private ClientDAOPostgres(Connection connection){
@@ -20,7 +21,7 @@ public class ClientDAOPostgres extends ClientDAO{
     }
 
     /*methods*/
-    public static ClientDAOPostgres getInstance(Connection connection){
+    public static ClientDAOPostgres getIngistance(Connection connection){
         if(clientDAOPostgres == null){
             clientDAOPostgres = new ClientDAOPostgres(connection);
         }
@@ -28,8 +29,9 @@ public class ClientDAOPostgres extends ClientDAO{
     }
 
     private Client resultSetToClient(ResultSet rs) throws SQLException {
-        Client c = new Client(
-                rs.getString("mail"),
+
+        return new Client(
+                rs.getString("username"),
                 rs.getString("password"),
                 rs.getString("name"),
                 rs.getString("surname"),
@@ -37,12 +39,13 @@ public class ClientDAOPostgres extends ClientDAO{
                 rs.getString("complement"),
                 rs.getString("city"),
                 rs.getInt("postal_code"),
-                rs.getInt("phone_numer"));
+                rs.getInt("phone_number"));
         return c;
+        //TODO : On part du principe qu'on appel cette fonction que si on récupère depuis la base de données donc pas d'encryptage de mot de passe
     }
 
     @Override
-    public List<Client> getAllClients() {
+    public List<Client> getAllClients() throws ClientNotFoundException{
 
        String sqlSelect = "SELECT * FROM clients";
        List<Client> clients = new ArrayList<>();
@@ -56,9 +59,11 @@ public class ClientDAOPostgres extends ClientDAO{
                Client client = this.resultSetToClient(rs);
                clients.add(client);
            }
-       }
-       catch (SQLException throwables) {
+       } catch (SQLException throwables) {
            throwables.printStackTrace();
+       }
+       if(clients.isEmpty()){
+           throw new ClientNotFoundException();
        }
        return clients;
     }
@@ -67,11 +72,11 @@ public class ClientDAOPostgres extends ClientDAO{
     public Client getClientById(int id) throws ClientNotFoundException{
 
         String sqlSelect = "SELECT * FROM clients WHERE id=?";
-        try{
+        try {
             /*Requête select sur la base de donnée*/
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
-            pstatement.setInt(1,id);
-            ResultSet rs = pstatement.executeQuery(sqlSelect);
+            pstatement.setInt(1, id);
+            ResultSet rs = pstatement.executeQuery();
 
             /*Renvoie le client si trouvé, exception sinon*/
             if(rs.next()){
@@ -80,31 +85,58 @@ public class ClientDAOPostgres extends ClientDAO{
             else{
                 throw new ClientNotFoundException(id);
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
-        //TODO : Mieux gérer ça
+        //TODO : Mieux gérer ça (si on a le temps sinon ballec)
         return null;
     }
-    //TODO : Remplacer par des autoincrémentales keys, et enlever le paramètre id
-    public Client createClient(Client c) throws SQLException {
 
-        String sqlInsert = "INSERT INTO clients VALUES (?,?,?,?,?,?,?)";
-        try{
-            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1,c.getName());
-            pstmt.setString(2,c.getSurname());
-            pstmt.setString(3,c.getStreet());
-            pstmt.setString(4,c.getComplement());
-            pstmt.setString(5, c.getCity());
-            pstmt.setInt(6, c.getPostal_code());
-            pstmt.setInt(7, c.getPhone_number());
+    @Override
+    public Client getClientByEmail(String email) {
+        System.out.println("Mail reçu en entrée : " + email);
+        String sqlSelect = "SELECT * FROM clients WHERE username=?";
+        Client c;
+        try {
+            /*Requête select sur la base de donnée*/
 
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1, email);
+
+            ResultSet rs = pstatement.executeQuery();
+
+            /*Renvoie le client si trouvé, exception sinon*/
+            if(rs.next())
+                c = this.resultSetToClient(rs);
+            else
+                throw new UserNotFoundException(email);
+        } catch (SQLException | UserNotFoundException e){
+            e.printStackTrace();
+            c = null;
         }
-        catch (Exception e){
+        return c;
+    }
+
+    //TODO : Remplacer par des autoincrémentales keys, et enlever le paramètre id
+    public int createClient(Client c) {
+        int affectRows = 0;
+        String sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, c.getMail());
+            pstmt.setString(2, c.getPassword());
+            pstmt.setString(3,c.getName());
+            pstmt.setString(4,c.getSurname());
+            pstmt.setString(5,c.getStreet());
+            pstmt.setString(6,c.getComplement());
+            pstmt.setString(7, c.getCity());
+            pstmt.setInt(8, c.getPostal_code());
+            pstmt.setInt(9, c.getPhone_number());
+
+            affectRows = pstmt.executeUpdate();
+        } catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return affectRows;
     }
 }
