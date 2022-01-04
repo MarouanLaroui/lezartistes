@@ -1,5 +1,7 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.serviceProvider.ServiceProviderDAO;
+
 public interface AbstractFactory {
 
     /**
@@ -7,4 +9,10 @@ public interface AbstractFactory {
      * @return a UserDAO
      */
     UserDAO createUserDAO();
+
+    ClientDAO createClientDAO();
+
+    ReportDAO createReportDAO();
+
+    ServiceProviderDAO createSPDAO();
 }

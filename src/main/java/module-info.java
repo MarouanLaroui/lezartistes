@@ -11,8 +11,17 @@ module com.lezartistes {
     opens com.lezartistes.dao to javafx.fxml;
     exports com.lezartistes.dao;
 
+    opens com.lezartistes.dao.serviceProvider to javafx.fxml;
+    exports com.lezartistes.dao.serviceProvider;
+
     opens com.lezartistes.controllers.user to javafx.fxml;
     exports com.lezartistes.controllers.user;
+
+    opens com.lezartistes.controllers.client to javafx.fxml;
+    exports com.lezartistes.controllers.client;
+
+    opens com.lezartistes.controllers to javafx.fxml;
+    exports com.lezartistes.controllers;
 
     opens com.lezartistes.database to javafx.fxml;
     exports com.lezartistes.database;
