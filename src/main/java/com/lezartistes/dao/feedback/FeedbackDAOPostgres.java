@@ -38,6 +38,29 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     }
 
     @Override
+    public List<Feedback> getAllFeedbacks() {
+
+        String sqlSelect = "SELECT * FROM feedbacks";
+        List<Feedback> feedbacks = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                // todo: créer feedbkck et add feedback à la liste
+                //Feedback feedback = new Feedback(resultSet.getInt(2), resultSet.getString(3),resultSet.getInt(4) );
+                //feedbacks.add(feedback);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return feedbacks;
+    }
+
+    @Override
     public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating) {
         return null;
     }
