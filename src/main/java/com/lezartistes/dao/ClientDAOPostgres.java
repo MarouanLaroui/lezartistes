@@ -21,7 +21,7 @@ public class ClientDAOPostgres extends ClientDAO{
     }
 
     /*methods*/
-    public static ClientDAOPostgres getInstance(Connection connection){
+    public static ClientDAOPostgres getIngistance(Connection connection){
         if(clientDAOPostgres == null){
             clientDAOPostgres = new ClientDAOPostgres(connection);
         }
@@ -29,6 +29,7 @@ public class ClientDAOPostgres extends ClientDAO{
     }
 
     private Client resultSetToClient(ResultSet rs) throws SQLException {
+
         return new Client(
                 rs.getString("username"),
                 rs.getString("password"),
@@ -38,13 +39,13 @@ public class ClientDAOPostgres extends ClientDAO{
                 rs.getString("complement"),
                 rs.getString("city"),
                 rs.getInt("postal_code"),
-                rs.getInt("phone_number"),
-                false);
+                rs.getInt("phone_number"));
+        return c;
         //TODO : On part du principe qu'on appel cette fonction que si on récupère depuis la base de données donc pas d'encryptage de mot de passe
     }
 
     @Override
-    public List<Client> getAllClients() {
+    public List<Client> getAllClients() throws ClientNotFoundException{
 
        String sqlSelect = "SELECT * FROM clients";
        List<Client> clients = new ArrayList<>();
@@ -60,6 +61,9 @@ public class ClientDAOPostgres extends ClientDAO{
            }
        } catch (SQLException throwables) {
            throwables.printStackTrace();
+       }
+       if(clients.isEmpty()){
+           throw new ClientNotFoundException();
        }
        return clients;
     }
