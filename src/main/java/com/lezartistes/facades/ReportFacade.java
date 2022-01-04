@@ -6,6 +6,9 @@ import com.lezartistes.database.PostgresFactory;
 import com.lezartistes.exceptions.ReportNotFoundException;
 import com.lezartistes.models.Report;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+
 public class ReportFacade {
 
     /*attributes*/
@@ -30,7 +33,25 @@ public class ReportFacade {
         return this.reportDao.getReportById(id);
     }
 
-    public Report deleteReport(int id){
-        return this.deleteReport(id);
+    public List<Report> getAllReports() throws ReportNotFoundException{
+        return this.reportDao.getAllReports();
+    }
+
+    public List<Report> getReportsByAuthor(int id) throws ReportNotFoundException{
+        //TODO : CREATE THE REAL FUNCTION
+        return this.reportDao.getAllReports();
+    }
+
+    public List<Report> getReportsForProposal(int callForProposalId) throws ReportNotFoundException{
+        //TODO : CREATE THE REAL FUNCTION
+        return this.reportDao.getAllReports();
+    }
+
+    public Report createReport(Report report) throws FileNotFoundException {
+        return this.reportDao.createReport(report);
+    }
+
+    public Report deleteReport(int id) throws ReportNotFoundException {
+        return this.reportDao.deleteReport(id);
     }
 }

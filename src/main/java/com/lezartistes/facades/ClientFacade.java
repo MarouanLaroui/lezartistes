@@ -27,7 +27,7 @@ public class ClientFacade {
         }
         return clientFacade;
     }
-    public List<Client> getAllClients(){
+    public List<Client> getAllClients() throws ClientNotFoundException{
         return this.clientDao.getAllClients();
     }
 

@@ -2,13 +2,12 @@ package com.lezartistes.facades;
 
 import com.lezartistes.models.Feedback;
 
+import java.util.List;
+
 public class FeedbackFacade {
 
-    public Feedback getFeedbackByExpert(String conpanyName){
-        return null;
-    }
+    public List<Feedback> getAllFeedbackByCompany(String companyName){
 
-    public Feedback getAllFeedbackByExpert(String conpanyName){
         return null;
     }
 }
