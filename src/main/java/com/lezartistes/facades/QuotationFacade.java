@@ -10,7 +10,7 @@ public class QuotationFacade {
     private QuotationFacade quotationFacade;
     private QuotationDAO quotationDAO;
 
-    public QuotationFacade(){
+    private QuotationFacade(){
         AbstractFactory factory = PostgresFactory.getInstance();
         this.quotationDAO = factory.createQuotationDAO();
     }
