@@ -1,5 +1,6 @@
 package com.lezartistes.dao.feedback;
 
+import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.Feedback;
 

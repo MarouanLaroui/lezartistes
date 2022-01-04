@@ -31,9 +31,20 @@ public class FeedbackFacade {
         return this.feedbackDAO.getAllFeedbacks();
     }
 
-    public List<Feedback> getAllFeedbackByCompany(String companyName){
-        //trouver le company id à partir du name
-        //trouver tous les feedbacks associés à cette company
-        return null;
+    public List<Feedback> getAllFeedbackByCompany(String companyName) throws FeedbackNotFoundException {
+        return this.feedbackDAO.getAllFeedbackByCompany(companyName);
+    }
+
+    public List<Feedback> getFeedbackByCompanyByRating(String companyName, String rating){
+        return this.feedbackDAO.getFeedbackByCompanyByRating(companyName, rating);
+    }
+    public int addFeedback(Feedback fb){
+        return this.feedbackDAO.addFeedback(fb);
+    }
+    public int modifyFeedback(int idFeedback, Feedback fb){
+        return this.feedbackDAO.modifyFeedback(idFeedback, fb);
+    }
+    public int deleteFeedback(int idFeedback){
+        return this.deleteFeedback(idFeedback);
     }
 }
