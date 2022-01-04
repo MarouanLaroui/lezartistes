@@ -67,8 +67,8 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS building;" +
-                    "CREATE TABLE building " +
+            String sql = "DROP TABLE IF EXISTS buildings;" +
+                    "CREATE TABLE buildings " +
                     "(id_building SERIAL PRIMARY KEY," +
                     " name VARCHAR(50)," +
                     " region VARCHAR(50)," +
@@ -187,6 +187,25 @@ public class CreateDBTable {
         }
     }
 
+    public void creteHistoryTable() {
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "DROP TABLE IF EXISTS histories;" +
+                    "CREATE TABLE histories " +
+                    "(idHistory SERIAL PRIMARY KEY," +
+                    "date DATE, " +
+                    "description VARCHAR(1000)," +
+                    "relatedBuilding INT," +
+                    "FOREIGN KEY (relatedBuilding) REFERENCES buildings(id_building));";
+            stmt.execute(sql);
+            System.out.println("Created table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
     public void insertIntoClientTable(){
 
@@ -220,8 +239,8 @@ public class CreateDBTable {
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
-        cTable.createCompanyTable();
-        cTable.createFeedbackTable();
+        //cTable.createCompanyTable();
+        //cTable.createFeedbackTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
@@ -231,6 +250,7 @@ public class CreateDBTable {
         //cTable.createBuildingTable();
       
         //cTable.createServiceProvider();
+        //cTable.creteHistoryTable();
 
 
     }

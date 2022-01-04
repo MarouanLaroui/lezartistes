@@ -2,6 +2,8 @@ package com.lezartistes.database;
 
 import com.lezartistes.dao.*;
 
+import com.lezartistes.dao.history.HistoryDAO;
+import com.lezartistes.dao.history.HistoryDAOPostgres;
 import com.lezartistes.dao.quotation.QuotationDAO;
 import com.lezartistes.dao.quotation.QuotationDAOPostgres;
 
@@ -48,5 +50,10 @@ public class PostgresFactory implements AbstractFactory {
     @Override
     public ServiceProviderDAO createSPDAO() {
         return ServiceProviderDAOPostgres.getInstance(connection);
+    }
+
+    @Override
+    public HistoryDAO createHistoryDAO() {
+        return HistoryDAOPostgres.getInstance(connection);
     }
 }
