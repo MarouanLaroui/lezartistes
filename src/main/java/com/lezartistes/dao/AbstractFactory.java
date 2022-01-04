@@ -1,6 +1,10 @@
 package com.lezartistes.dao;
 
+<<<<<<< HEAD
 import com.lezartistes.dao.feedback.FeedbackDAO;
+=======
+import com.lezartistes.dao.serviceProvider.ServiceProviderDAO;
+>>>>>>> master
 
 public interface AbstractFactory {
 
@@ -17,6 +21,7 @@ public interface AbstractFactory {
     FeedbackDAO createFeedbackDAO();
     ClientDAO createClientDAO();
 
-     ReportDAO createReportDAO();
+    ReportDAO createReportDAO();
 
+    ServiceProviderDAO createSPDAO();
 }
