@@ -1,8 +1,9 @@
 package com.lezartistes.database;
 
 import com.lezartistes.dao.*;
+import com.lezartistes.dao.feedback.FeedbackDAO;
+import com.lezartistes.dao.feedback.FeedbackDAOPostgres;
 import com.lezartistes.dao.serviceProvider.*;
-
 import java.sql.Connection;
 
 public class PostgresFactory implements AbstractFactory {
@@ -27,6 +28,9 @@ public class PostgresFactory implements AbstractFactory {
 
     public UserDAO createUserDAO() {
         return UserDAOPostgres.getInstance(connection);
+    }
+    public FeedbackDAO createFeedbackDAO() {
+        return FeedbackDAOPostgres.getInstance(connection);
     }
 
     public ClientDAO createClientDAO(){ return ClientDAOPostgres.getInstance(connection);}

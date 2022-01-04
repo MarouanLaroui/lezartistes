@@ -84,7 +84,7 @@ public class ClientDAOPostgres extends ClientDAO{
         } catch (SQLException e){
             e.printStackTrace();
         }
-        //TODO : Mieux gérer ça
+        //TODO : Mieux gérer ça (si on a le temps sinon ballec)
         return null;
     }
 
