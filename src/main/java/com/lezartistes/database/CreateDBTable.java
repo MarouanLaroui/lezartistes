@@ -98,6 +98,7 @@ public class CreateDBTable {
                     "number_business_register varchar(50), "+
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
+                    "callforproposal int,"+
                     "constraint idCompany foreign key(idCompany) references company(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");

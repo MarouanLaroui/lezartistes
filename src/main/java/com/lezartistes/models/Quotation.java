@@ -2,16 +2,17 @@ package com.lezartistes.models;
 
 public class Quotation {
     private int id;
-    private Company company;
+    private int company;
     private String title;
-    private Expert expert;
+    private int expert;
     private double capital;
     private int siret_number;
     private int number_business_register;
     private int NAF;
     private double total_price_TTC;
+    private int callforproposal;
 
-    public Quotation(Company company, String title, Expert expert, double capital, int siret_number, int number_business_register, int NAF, double total_price_TTC) {
+    public Quotation(int company, String title, int expert, double capital, int siret_number, int number_business_register, int NAF, double total_price_TTC, int callforproposal) {
         this.company = company;
         this.title = title;
         this.expert = expert;
@@ -20,14 +21,23 @@ public class Quotation {
         this.number_business_register = number_business_register;
         this.NAF = NAF;
         this.total_price_TTC = total_price_TTC;
+        this.callforproposal=callforproposal;
     }
 
-    public Company getCompany() {
+    public int getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
+    public void setCompany(int company) {
         this.company = company;
+    }
+
+    public int getcallforproposal() {
+        return callforproposal;
+    }
+
+    public void setcallforproposal(int cap) {
+        this.callforproposal = cap;
     }
 
     public String getTitle() {
@@ -38,11 +48,11 @@ public class Quotation {
         this.title = title;
     }
 
-    public Expert getExpert() {
+    public int getExpert() {
         return expert;
     }
 
-    public void setExpert(Expert expert) {
+    public void setExpert(int expert) {
         this.expert = expert;
     }
 
