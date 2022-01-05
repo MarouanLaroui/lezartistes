@@ -26,6 +26,12 @@ public class Company {
         this.postal_code = postal_code;
     }
 
+    /*toString*/
+    public String toString(){
+        return this.getName() + " " + this.getDepartement() +" - " + this.getStreet() + ", "
+                + this.getPostal_code() + " " + this.getCity();
+    }
+
     /**
      * Getter and setter
      */
