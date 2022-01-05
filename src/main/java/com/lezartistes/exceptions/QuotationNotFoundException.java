@@ -4,4 +4,8 @@ public class QuotationNotFoundException extends Exception{
     public QuotationNotFoundException (int id_quotation){
         super("No quotation found for the id :"+id_quotation);
     }
+
+    public QuotationNotFoundException(){
+        super("No quotations found");
+    }
 }

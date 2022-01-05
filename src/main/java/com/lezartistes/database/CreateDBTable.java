@@ -89,16 +89,16 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS quotation;" +
-                    "CREATE TABLE quotation " +
-                    "(id_quotation serial primary key, "+
-                    "id_company int, "+
+
+            String sql = "CREATE TABLE quotations "+
+                    "(idQuotation serial primary key, "+
+                    "idCompany int, "+
                     "capital float,"+
                     "siret_number varchar(50),"+
                     "number_business_register varchar(50), "+
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
-                    "constraint id_company foreign key(id_company) references companies(idCompany))";
+                    "constraint idCompany foreign key(idCompany) references company(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");
         }
@@ -253,7 +253,7 @@ public class CreateDBTable {
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
-      
+
         //cTable.createServiceProvider();
 
 
