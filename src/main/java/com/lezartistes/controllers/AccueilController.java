@@ -11,12 +11,6 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 
 
-public class AccueilController {
-
-    @FXML protected void redirectToHome(ActionEvent event) throws IOException {
-        User user = UserInformation.getUser();
-        System.out.println(user == null);
-        App.setRoot("views/");
-    }
+public class AccueilController extends GeneralController {
 
 }

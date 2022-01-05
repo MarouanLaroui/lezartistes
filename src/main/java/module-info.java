@@ -48,4 +48,10 @@ module com.lezartistes {
 
     exports com.lezartistes.dao.feedback;
     opens com.lezartistes.dao.feedback to javafx.fxml;
+
+    exports com.lezartistes.dao.history;
+    opens com.lezartistes.dao.history to javafx.fxml;
+
+    exports com.lezartistes.controllers.history;
+    opens com.lezartistes.controllers.history to javafx.fxml;
 }
