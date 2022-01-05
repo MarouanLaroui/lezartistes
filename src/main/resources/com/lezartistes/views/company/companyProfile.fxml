@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <Label contentDisplay="CENTER" layoutX="181.0" layoutY="81.0" text="Company profile ">
+            <font>
+                <Font name="System" size="38.0" />
+            </font>
+        </Label>
+
+        <ImageView fitHeight="43.0" fitWidth="47.0" layoutX="128.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../asset/company.png" />
+            </image>
+        </ImageView>
+
+        <Pane layoutX="150.0" layoutY="121.0" prefHeight="250.0" prefWidth="300.0">
+            <children>
+                <Label layoutX="54.0" layoutY="62.0" text="Departement :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="95.0" layoutY="38.0" text="Name :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="94.0" layoutY="89.0" text="Street :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" layoutX="55.0" layoutY="173.0" prefHeight="17.0" prefWidth="81.0" text="Complement :">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="106.0" layoutY="118.0" text="City :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER_RIGHT" layoutX="55.0" layoutY="146.0" prefHeight="17.0" prefWidth="81.0" text="Postal code :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Button layoutX="148.0" layoutY="211.0" mnemonicParsing="false" text="See related feedbacks" />
+                <Label id="name" fx:id="name" layoutX="150.0" layoutY="38.0" prefHeight="17.0" prefWidth="57.0" />
+                <Label id="departement" fx:id="departement" layoutX="143.0" layoutY="62.0" prefHeight="17.0" prefWidth="71.0" />
+                <Label id="street" fx:id="street" layoutX="145.0" layoutY="89.0" prefHeight="17.0" prefWidth="67.0" />
+                <Label id="city" fx:id="city" layoutX="145.0" layoutY="118.0" prefHeight="17.0" prefWidth="67.0" />
+                <Label id="postalCode" fx:id="postalCode" layoutX="145.0" layoutY="146.0" prefHeight="17.0" prefWidth="67.0" />
+                <Label id="complement" fx:id="complement" layoutX="143.0" layoutY="173.0" prefHeight="17.0" prefWidth="71.0" />
+                <Button layoutX="55.0" layoutY="211.0" onMouseClicked="#redirectToCompanyList" mnemonicParsing="false" text="Back">
+                   <font>
+                      <Font name="System Italic" size="12.0" />
+                   </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+
+</AnchorPane>
