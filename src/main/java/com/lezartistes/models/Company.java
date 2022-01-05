@@ -28,8 +28,8 @@ public class Company {
 
     /*toString*/
     public String toString(){
-        return this.getName() + " " + this.getDepartement() +" - " + this.getStreet() + ", "
-                + this.getPostal_code() + " " + this.getCity();
+        return this.getName() + " " + this.getDepartement() +" - " + this.getCity() + ", "
+                + this.getPostal_code() + " " + this.getStreet();
     }
 
     /**
