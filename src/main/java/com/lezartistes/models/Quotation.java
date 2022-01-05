@@ -1,6 +1,7 @@
 package com.lezartistes.models;
 
 public class Quotation {
+    private int id;
     private Company company;
     private String title;
     private Expert expert;
@@ -83,5 +84,12 @@ public class Quotation {
 
     public void setTotal_price_TTC(double total_price_TTC) {
         this.total_price_TTC = total_price_TTC;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 }

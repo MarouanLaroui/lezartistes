@@ -87,14 +87,14 @@ public class CreateDBTable {
             Statement stmt = connection.createStatement();
 
             String sql = "CREATE TABLE quotations "+
-                    "(id_quotation serial primary key, "+
-                    "id_company int, "+
+                    "(idQuotation serial primary key, "+
+                    "idCompany int, "+
                     "capital float,"+
                     "siret_number varchar(50),"+
                     "number_business_register varchar(50), "+
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
-                    "constraint id_company foreign key(id_company) references company(id_company))";
+                    "constraint idCompany foreign key(idCompany) references company(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");
         }
@@ -221,7 +221,7 @@ public class CreateDBTable {
         cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
-      
+
         //cTable.createServiceProvider();
 
 
