@@ -10,5 +10,7 @@ public abstract class HistoryDAO implements Serializable {
         super();
     }
 
-    public abstract List<History> getAllQuotationByBuildingId(int idBuilding);
+    public abstract List<History> getAllHistoryByBuildingId(int idBuilding);
+    public abstract List<History> getAllHistory();
+    public abstract int createHistory(History h);
 }

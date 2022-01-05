@@ -23,13 +23,21 @@ public class HistoryFacade {
         return facade;
     }
 
-    public List<History> getAllQuotationByBuildingId (int idBuilding) {
-        return this.dao.getAllQuotationByBuildingId(idBuilding);
+    public List<History> getAllHistoryByBuildingId (int idBuilding) {
+        return this.dao.getAllHistoryByBuildingId(idBuilding);
+    }
+
+    public List<History> getAllHistory () {
+        return this.dao.getAllHistory();
+    }
+
+    public int createHistory (History h) {
+        return this.dao.createHistory(h);
     }
 
     public static void main(String[] args) {
         System.out.println("coucou");
         HistoryFacade fa = HistoryFacade.getInstance();
-        fa.getAllQuotationByBuildingId(1);
+        //fa.getAllHistoryByBuildingId(1);
     }
 }

@@ -1,11 +1,9 @@
 package com.lezartistes.dao.history;
 
+import com.lezartistes.facades.HistoryFacade;
 import com.lezartistes.models.History;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class HistoryDAOPostgres extends HistoryDAO {
         return historyDAOPostgres;
     }
 
-    public List<History> getAllQuotationByBuildingId(int idBuilding) {
+    public List<History> getAllHistoryByBuildingId(int idBuilding) {
         System.out.println("id de notre building : " + idBuilding);
         String sqlSelect = "SELECT * FROM histories WHERE relatedBuilding = ?";
         List<History> histories = new ArrayList<>();
@@ -37,13 +35,54 @@ public class HistoryDAOPostgres extends HistoryDAO {
 
             /*Transforme toutes les lignes en feedback*/
             while (resultSet.next()) {
-                histories.add(new History(resultSet.getInt(4), resultSet.getDate(2), resultSet.getString(3)));
-
+                histories.add(this.resultSetToHistory(resultSet));
             }
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return histories;
+    }
+
+    @Override
+    public List<History> getAllHistory() {
+        String sqlSelect = "SELECT * FROM histories";
+        List<History> histories = new ArrayList<>();
+
+        try {
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while (resultSet.next()) {
+                histories.add(this.resultSetToHistory(resultSet));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return histories;
+    }
+
+    @Override
+    public int createHistory(History h) {
+        int affectRows = 0;
+        try {
+            String sqlInsert = "INSERT INTO histories(date, description, relatedBuilding) VALUES (?, ?, ?)";
+
+            PreparedStatement stmtprep = this.connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            stmtprep.setDate(1, h.getDate());
+            stmtprep.setString(2, h.getDescription());
+            stmtprep.setInt(3, h.getIdBuilding());
+
+            affectRows = stmtprep.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return affectRows;
+    }
+
+    private History resultSetToHistory (ResultSet rs) throws SQLException {
+        return new History(rs.getInt(4), rs.getDate(2), rs.getString(3));
     }
 }
