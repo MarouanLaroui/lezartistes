@@ -216,10 +216,34 @@ public class CreateDBTable {
 
     }
 
+    public void insertIntoCompanyTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Polytech', 'IG', 'Montpellier','Rue du Truel','Ingéniérie',34000)";
+            stmt.executeUpdate(sqlInsert);
+            /*sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            stmt.executeUpdate(sqlInsert);*/
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
+        cTable.insertIntoCompanyTable();
         cTable.createCompanyTable();
         cTable.createFeedbackTable();
         //cTable.createReportTable();
