@@ -4,6 +4,8 @@ import com.lezartistes.dao.*;
 
 import com.lezartistes.dao.history.HistoryDAO;
 import com.lezartistes.dao.history.HistoryDAOPostgres;
+import com.lezartistes.dao.company.CompanyDAO;
+import com.lezartistes.dao.company.CompanyDAOPostgres;
 import com.lezartistes.dao.quotation.QuotationDAO;
 import com.lezartistes.dao.quotation.QuotationDAOPostgres;
 
@@ -39,6 +41,11 @@ public class PostgresFactory implements AbstractFactory {
     }
     public FeedbackDAO createFeedbackDAO() {
         return FeedbackDAOPostgres.getInstance(connection);
+    }
+
+    @Override
+    public CompanyDAO createCompanyDAO() {
+        return CompanyDAOPostgres.getInstance(connection);
     }
 
     public ClientDAO createClientDAO(){ return ClientDAOPostgres.getInstance(connection);}

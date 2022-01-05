@@ -26,6 +26,11 @@ public class AccueilExpertController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    public void redirectToClientList() throws IOException {
+        App.setRoot("views/client/ClientList");
+    }
+
 }
 
 

@@ -26,7 +26,10 @@ public class App extends Application {
         //scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientList"), 640, 480);
         //scene = new Scene(loadFXML("views/report/ViewReport"), 640, 480);
-        scene = new Scene(loadFXML("views/history/HistoryList"), 640, 480);
+        //scene = new Scene(loadFXML("views/report/ReportForm"), 640, 480);
+        scene = new Scene(loadFXML("views/company/companyList"), 640, 480);
+        //scene = new Scene(loadFXML("views/company/companyProfile"), 640, 480);
+
         stage.setScene(scene);
         //stage.show();
 

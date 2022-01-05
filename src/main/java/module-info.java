@@ -23,6 +23,14 @@ module com.lezartistes {
     opens com.lezartistes.controllers.report to javafx.fxml;
     exports com.lezartistes.controllers.report;
 
+    opens com.lezartistes.controllers.company to javafx.fxml;
+    exports com.lezartistes.controllers.company;
+
+    opens com.lezartistes.controllers.feedback to javafx.fxml;
+    exports com.lezartistes.controllers.feedback;
+
+
+
     opens com.lezartistes.controllers to javafx.fxml;
     exports com.lezartistes.controllers;
 

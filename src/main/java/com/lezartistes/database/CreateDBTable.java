@@ -89,16 +89,17 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS quotation;" +
-                    "CREATE TABLE quotation " +
-                    "(id_quotation serial primary key, "+
-                    "id_company int, "+
+
+            String sql = "CREATE TABLE quotations "+
+                    "(idQuotation serial primary key, "+
+                    "idCompany int, "+
                     "capital float,"+
                     "siret_number varchar(50),"+
                     "number_business_register varchar(50), "+
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
-                    "constraint id_company foreign key(id_company) references companies(idCompany))";
+                    "callforproposal int,"+
+                    "constraint idCompany foreign key(idCompany) references company(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");
         }
@@ -235,12 +236,38 @@ public class CreateDBTable {
 
     }
 
+    public void insertIntoCompanyTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Polytech', 'IG', 'Montpellier','Rue du Truel','Ingéniérie',34000)";
+            stmt.executeUpdate(sqlInsert);
+            /*sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            stmt.executeUpdate(sqlInsert);*/
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
         //cTable.createCompanyTable();
         //cTable.createFeedbackTable();
+        cTable.insertIntoCompanyTable();
+        cTable.createCompanyTable();
+        cTable.createFeedbackTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
@@ -248,7 +275,7 @@ public class CreateDBTable {
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
-      
+
         //cTable.createServiceProvider();
         //cTable.creteHistoryTable();
 

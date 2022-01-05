@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilController">
+    <top>
+        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <items>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/logo.png" />
+                            </image></ImageView>
+                    </children>
+                </Pane>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ToolBar layoutX="32.0" layoutY="24.0">
+                            <items>
+                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font></Button>
+                                <Button mnemonicParsing="false" text="Account">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="MessageBox">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Help ?">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                            </items>
+                        </ToolBar>
+                    </children></Pane>
+            </items>
+        </SplitPane>
+    </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="354.0" layoutY="67.0" />
+            <TextField layoutX="78.0" layoutY="179.0" />
+            <TextField layoutX="78.0" layoutY="67.0" />
+            <TextField layoutX="78.0" layoutY="235.0" />
+            <TextField layoutX="354.0" layoutY="179.0" />
+            <TextField layoutX="354.0" layoutY="122.0" />
+            <TextField layoutX="354.0" layoutY="235.0" />
+            <TextField layoutX="78.0" layoutY="122.0" />
+             <Label layoutX="78.0" layoutY="52.0" text="Title :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="354.0" layoutY="52.0" text="Company :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="354.0" layoutY="107.0" text="Expert :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="354.0" layoutY="164.0" text="Siret number :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="354.0" layoutY="220.0" text="NAF :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="78.0" layoutY="220.0" text="Capital :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Label layoutX="78.0" layoutY="164.0" text="Business number :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font>
+             </Label>
+             <Label layoutX="78.0" layoutY="107.0" text="Total Price :">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Label>
+             <Button layoutX="306.0" layoutY="276.0" mnemonicParsing="false" text="validate" textAlignment="CENTER" />
+            <Button layoutX="233.0" layoutY="276.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="67.0" text="back" textAlignment="CENTER" />
+            <Text layoutX="141.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quotation Modification" textAlignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
