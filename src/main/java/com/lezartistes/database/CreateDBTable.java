@@ -21,7 +21,8 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE users " +
+            String sql = "DROP TABLE IF EXISTS users;"+
+                    "CREATE TABLE users " +
                     "(id SERIAL PRIMARY KEY," +
                     " mail VARCHAR(50)," +
                     " password VARCHAR(50))";
@@ -38,7 +39,8 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE reports " +
+            String sql = "DROP TABLE IF EXISTS reports;" +
+                    "CREATE TABLE reports " +
                     "(id SERIAL PRIMARY KEY," +
                     " title VARCHAR(50)," +
                     " general_description VARCHAR(150)," +
@@ -65,11 +67,12 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE buildings " +
+            String sql = "DROP TABLE IF EXISTS building;" +
+                    "CREATE TABLE building " +
                     "(id_building SERIAL PRIMARY KEY," +
                     " name VARCHAR(50)," +
                     " region VARCHAR(50)," +
-                    " budget double," +
+                    " budget double precision," +
                     " construction_date DATE ," +
                     " master_building VARCHAR(50)," +
                     " construction_company VARCHAR(50),"+
@@ -85,6 +88,7 @@ public class CreateDBTable {
     public void createQuotationTable(){
         try{
             Statement stmt = connection.createStatement();
+
 
             String sql = "CREATE TABLE quotations "+
                     "(idQuotation serial primary key, "+
@@ -147,12 +151,13 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE feedbacks " +
+            String sql = "DROP TABLE IF EXISTS feedbacks;"+
+                    "CREATE TABLE feedbacks " +
                     "(idFeedback SERIAL PRIMARY KEY," +
-                    " rating INT"+
+                    " rating INT,"+
                     " comment VARCHAR(50)," +
-                    " companyFeedback INT"+
-                    " FOREIGN KEY (companyFeedback) REFERENCES companies(idCompany))";
+                    " companyFeedback INT,"+
+                    " constraint id_company foreign key(companyFeedback) references companies(idCompany));";
             stmt.execute(sql);
             System.out.println("Created table in given database...");
         }
@@ -165,13 +170,14 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "CREATE TABLE companies " +
+            String sql = "DROP TABLE IF EXISTS companies;"+
+                    "CREATE TABLE companies " +
                     "(idCompany SERIAL PRIMARY KEY," +
-                    " companyName VARCHAR(50)"+
+                    " companyName VARCHAR(50),"+
                     " companyDepartement VARCHAR(50)," +
-                    " companyCity VARCHAR(30)"+
-                    " companyStreet VARCHAR(30)"+
-                    " companyComplement VARCHAR(30)"+
+                    " companyCity VARCHAR(30),"+
+                    " companyStreet VARCHAR(30),"+
+                    " companyComplement VARCHAR(30),"+
                     " companyPostalCode INT)";
             stmt.execute(sql);
             System.out.println("Created table in given database...");
@@ -210,15 +216,41 @@ public class CreateDBTable {
 
     }
 
+    public void insertIntoCompanyTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Polytech', 'IG', 'Montpellier','Rue du Truel','Ingéniérie',34000)";
+            stmt.executeUpdate(sqlInsert);
+            /*sqlInsert = "INSERT INTO companies(companyname, companydepartement, companycity, companystreet, companycomplement, companypostalcode) " +
+                    "VALUES ('Alpes Contrôle', 'Ouvrages d`art', 'Perpignan','Rue de la Palissade','pouet',34000)";
+            stmt.executeUpdate(sqlInsert);*/
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
+        cTable.insertIntoCompanyTable();
+        cTable.createCompanyTable();
+        cTable.createFeedbackTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
 
-        cTable.insertIntoClientTable();
+        //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
 

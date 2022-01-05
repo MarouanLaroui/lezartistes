@@ -40,9 +40,7 @@ public class ClientDAOPostgres extends ClientDAO{
                 rs.getString("city"),
                 rs.getInt("postal_code"),
                 rs.getInt("phone_number"),
-                false
-        );
-
+                false);
         //TODO : On part du principe qu'on appel cette fonction que si on récupère depuis la base de données donc pas d'encryptage de mot de passe
     }
 
@@ -73,7 +71,7 @@ public class ClientDAOPostgres extends ClientDAO{
     @Override
     public Client getClientById(int id) throws ClientNotFoundException{
 
-        String sqlSelect = "SELECT * FROM clients WHERE id=?";
+        String sqlSelect = "SELECT * FROM clients WHERE id_clients=?";
         try {
             /*Requête select sur la base de donnée*/
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);

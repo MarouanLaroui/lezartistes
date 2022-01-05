@@ -5,17 +5,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.feedback.FeedbackController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lezartistes.controllers.feedback.FeedbackController">
    <children>
-      <Label layoutX="172.0" layoutY="77.0" text="companyName">
+      <Label layoutX="171.0" layoutY="48.0" text="companyName">
          <font>
             <Font size="38.0" />
          </font></Label>
       <ImageView fitHeight="81.0" fitWidth="80.0" layoutX="506.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../asset/logo.png" />
-         </image></ImageView>
-      <ListView layoutX="116.0" layoutY="159.0" prefHeight="209.0" prefWidth="366.0" />
-      <Label layoutX="180.0" layoutY="132.0" text="check out some feedbacks for this company !" />
+         </image>
+      </ImageView>
+      <ListView layoutX="115.0" layoutY="130.0" prefHeight="209.0" prefWidth="366.0" />
+      <Label layoutX="179.0" layoutY="103.0" text="check out some feedbacks for this company !" />
    </children>
 </AnchorPane>
