@@ -99,7 +99,7 @@ public class CreateDBTable {
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
                     "callforproposal int,"+
-                    "constraint idCompany foreign key(idCompany) references company(idCompany))";
+                    "constraint idCompany foreign key(idCompany) references companies(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");
         }
@@ -260,14 +260,36 @@ public class CreateDBTable {
         }
     }
 
+    public void insertIntoFeedbackTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO feedbacks(rating, comment, companyfeedback) " +
+                    "VALUES (5, 'Très bien accueilli, très professionnel', 1)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+            sqlInsert = "INSERT INTO feedbacks(rating, comment, companyfeedback) " +
+                    "VALUES (4, 'Bien, ravi du travail réalisé', 1)";
+            stmt.executeUpdate(sqlInsert);
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
+        cTable.insertIntoFeedbackTable();
         //cTable.createCompanyTable();
         //cTable.createFeedbackTable();
-        cTable.insertIntoCompanyTable();
-        cTable.createCompanyTable();
-        cTable.createFeedbackTable();
+        //cTable.insertIntoCompanyTable();
+        //cTable.createCompanyTable();
+        //cTable.createFeedbackTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();

@@ -41,7 +41,7 @@ public class CompanyListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            this.companies = companyFacade.getAllCompanies();
+            this.companies = this.companyFacade.getAllCompanies();
             this.companiesList.setItems(new FilteredList<>(FXCollections.observableList(this.companies)));
         } catch (CompanyNotFoundException e) {
             e.printStackTrace();

@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
         <Label contentDisplay="CENTER" layoutX="181.0" layoutY="81.0" text="Company profile ">
@@ -54,18 +52,13 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <Button layoutX="148.0" layoutY="211.0" mnemonicParsing="false" text="See related feedbacks" />
-                <Label id="name" fx:id="name" layoutX="150.0" layoutY="38.0" prefHeight="17.0" prefWidth="57.0" />
-                <Label id="departement" fx:id="departement" layoutX="143.0" layoutY="62.0" prefHeight="17.0" prefWidth="71.0" />
-                <Label id="street" fx:id="street" layoutX="145.0" layoutY="89.0" prefHeight="17.0" prefWidth="67.0" />
-                <Label id="city" fx:id="city" layoutX="145.0" layoutY="118.0" prefHeight="17.0" prefWidth="67.0" />
-                <Label id="postalCode" fx:id="postalCode" layoutX="145.0" layoutY="146.0" prefHeight="17.0" prefWidth="67.0" />
-                <Label id="complement" fx:id="complement" layoutX="143.0" layoutY="173.0" prefHeight="17.0" prefWidth="71.0" />
-                <Button layoutX="55.0" layoutY="211.0" onMouseClicked="#redirectToCompanyList" mnemonicParsing="false" text="Back">
-                   <font>
-                      <Font name="System Italic" size="12.0" />
-                   </font>
-                </Button>
+                <Button onMouseClicked="#displayFeedback" layoutX="84.0" layoutY="211.0" mnemonicParsing="false" text="See related feedbacks" />
+                <Label id="name" fx:id="name" layoutX="143.0" layoutY="38.0" prefHeight="17.0" prefWidth="80.0" />
+                <Label id="departement" fx:id="departement" layoutX="143.0" layoutY="62.0" prefHeight="17.0" prefWidth="80.0" />
+                <Label id="street" fx:id="street" layoutX="145.0" layoutY="89.0" prefHeight="17.0" prefWidth="80.0" />
+                <Label id="city" fx:id="city" layoutX="145.0" layoutY="118.0" prefHeight="17.0" prefWidth="80.0" />
+                <Label id="postalCode" fx:id="postalCode" layoutX="145.0" layoutY="146.0" prefHeight="17.0" prefWidth="80.0" />
+                <Label id="complement" fx:id="complement" layoutX="143.0" layoutY="173.0" prefHeight="17.0" prefWidth="80.0" />
             </children>
         </Pane>
     </children>

@@ -22,7 +22,7 @@ public interface AbstractFactory {
 
     /**
      * Create and return a CompanyDAO
-     * @return
+     * @return a CompanyDAO
      */
     CompanyDAO createCompanyDAO();
 
