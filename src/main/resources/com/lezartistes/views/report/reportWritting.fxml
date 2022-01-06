@@ -16,7 +16,7 @@
       </Label>
       <Label layoutX="100.0" layoutY="122.0" text="Descritption :" />
       <Label layoutX="91.0" layoutY="90.0" text="General description :" />
-      <Button layoutX="273.0" layoutY="361.0" mnemonicParsing="false" text="Submit" />
+      <Button layoutX="273.0" layoutY="361.0" mnemonicParsing="false" text="Submit" onAction="#onSubmit" />
       <Label layoutX="113.0" layoutY="155.0" text="Meteo :" />
       <TextField fx:id="general_description" layoutX="188.0" layoutY="86.0" minWidth="280.0" promptText="General remark" />
       <TextField fx:id="description" layoutX="188.0" layoutY="118.0" minWidth="280.0" promptText="Description" />

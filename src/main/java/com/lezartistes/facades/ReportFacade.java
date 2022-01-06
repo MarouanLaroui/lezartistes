@@ -51,6 +51,10 @@ public class ReportFacade {
         return this.reportDao.createReport(report);
     }
 
+    public Report updateReport(Report report) throws ReportNotFoundException {
+        return this.reportDao.updateReport(report);
+    }
+
     public Report deleteReport(int id) throws ReportNotFoundException {
         return this.reportDao.deleteReport(id);
     }

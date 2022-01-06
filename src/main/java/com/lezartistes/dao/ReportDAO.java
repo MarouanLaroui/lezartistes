@@ -15,6 +15,8 @@ public abstract class ReportDAO implements Serializable {
 
     public abstract Report getReportById(int id) throws ReportNotFoundException;
 
+    public abstract Report updateReport(Report report) throws ReportNotFoundException;
+
     public abstract Report createReport(Report report) throws FileNotFoundException;
 
     public abstract Report deleteReport(int id) throws ReportNotFoundException;

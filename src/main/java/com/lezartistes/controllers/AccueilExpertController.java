@@ -18,7 +18,10 @@ public class AccueilExpertController implements Initializable {
     @FXML
     protected void redirectToHome(ActionEvent event) throws IOException {
         User user = UserInformation.getUser();
-        System.out.println(user == null);
+
+        if(UserInformation.isServiceProvider()){
+
+        }
         App.setRoot("views/");
     }
 

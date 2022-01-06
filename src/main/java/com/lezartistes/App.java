@@ -1,7 +1,9 @@
 package com.lezartistes;
 
 import com.lezartistes.controllers.client.ClientProfileController;
+import com.lezartistes.controllers.report.ReadReportController;
 import com.lezartistes.controllers.report.SpReportListController;
+import com.lezartistes.controllers.report.WriteReportController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,13 +24,46 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
 
-        scene = new Scene(loadFXML("views/user/login"), 640, 480);
+        //scene = new Scene(loadFXML("views/user/login"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientList"), 640, 480);
         //scene = new Scene(loadFXML("views/report/ViewReport"), 640, 480);
         //scene = new Scene(loadFXML("views/report/ReportForm"), 640, 480);
-        stage.setScene(scene);
+        //stage.setScene(scene);
         //stage.show();
+        //Create new stage to show client information
+        //Stage stage = new Stage();
+        stage.setHeight(280);
+        stage.setWidth(610);
+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("views/report/ReportForm.fxml"));
+
+        try{
+            WriteReportController cpc = new WriteReportController(15);
+            loader.setController(cpc);
+            Scene scene = new Scene(loader.load(), stage.getWidth(),stage.getHeight());
+            stage.setScene(scene);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stage.show();
+        /*
+        stage.setHeight(480);
+        stage.setWidth(640);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("views/report/ReportForm.xml"));
+
+        try{
+            WriteReportController rpc = new WriteReportController();
+            loader.setController(rpc);
+            Scene scene = new Scene(loader.load(), stage.getWidth(),stage.getHeight());
+            stage.setScene(scene);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+         */
 
         /*
         stage.setHeight(480);
@@ -45,6 +80,7 @@ public class App extends Application {
             e.printStackTrace();
         }
          */
+
         stage.show();
     }
 

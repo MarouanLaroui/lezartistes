@@ -139,7 +139,7 @@ public class ReportDAOPostgres extends ReportDAO{
             PreparedStatement ps = null;
             try {
                 ps = this.coToDB.prepareStatement("INSERT INTO reports VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                ps.setInt(1,15);
+                ps.setInt(1,report.getId());
                 ps.setString(2,report.getTitle());
                 ps.setString(3,report.getGeneral_description());
                 ps.setBoolean(4,report.isPosted());
@@ -163,6 +163,35 @@ public class ReportDAOPostgres extends ReportDAO{
             }
         return report;
 
+    }
+
+    public Report updateReport(Report report) throws ReportNotFoundException{
+        ArrayList<byte[]> files = new ArrayList<>();
+        PreparedStatement ps = null;
+        try {
+            ps = this.coToDB.prepareStatement("UPDATE reports SET title=?, general_description=?, visit_date=?, inspection_team=?, necessary_means=?, meteo=?, ambient_temperature=?, location=?, observation=? WHERE id =?");
+
+            ps.setString(1,report.getTitle());
+            ps.setString(2,report.getGeneral_description());
+            ps.setDate(3,new java.sql.Date(report.getVisit_date().getTime()));
+            ps.setString(4,report.getInspection_team());
+            ps.setString(5,report.getNecessary_means());
+            ps.setString(6,report.getMeteo());
+            ps.setDouble(7,report.getAmbient_temperature());
+            ps.setString(8,report.getLocation());
+            ps.setString(9,report.getObservation());
+
+            ps.setInt(10,report.getId());
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            System.out.println(rows);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return report;
     }
 
     public List<Report> getAllReports() throws ReportNotFoundException{
@@ -190,57 +219,6 @@ public class ReportDAOPostgres extends ReportDAO{
 
     }
 
-
-    //TODO : Finir
-    public Report updateReport(int id,Report report) throws ReportNotFoundException{
-
-        String sqlSelect = "UPDATE reports " +
-                "SET title=?," +
-                "general_description=?," +
-                "is_posted=?," +
-                "visit_date=?," +
-                "inspection_team=?," +
-                "necessary_means=?," +
-                "meteo=?," +
-                "ambient_temperature=?," +
-                "location=?," +
-                "observation=?," +
-                "file1=?," +
-                "file2=?" +
-                "file3=?" +
-                "WHERE id=?";
-
-        PreparedStatement pstatement = null;
-        try {
-            pstatement = this.coToDB.prepareStatement(sqlSelect);
-            pstatement.setString(1,report.getTitle());
-            pstatement.setString(2,report.getGeneral_description());
-            pstatement.setBoolean(3,report.isPosted());
-            pstatement.setDate(4,new java.sql.Date(report.getVisit_date().getTime()));
-            pstatement.setString(5,report.getInspection_team());
-            pstatement.setString(6,report.getNecessary_means());
-            pstatement.setString(7,report.getMeteo());
-            pstatement.setDouble(8,report.getAmbient_temperature());
-            pstatement.setString(9,report.getLocation());
-            pstatement.setString(10,report.getObservation());
-            pstatement.setBytes(11,report.getImg1());
-            pstatement.setBytes(12,report.getImg2());
-            pstatement.setBytes(13,report.getImg3());
-            pstatement.setInt(14,id);
-
-            int affectedRows = pstatement.executeUpdate(sqlSelect);
-            if(affectedRows == 0){
-                throw new ReportNotFoundException(id);
-            }
-            return null;
-
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return null;
-    }
 
     //TODO : Finir
     public Report deleteReport(int id) throws ReportNotFoundException{
