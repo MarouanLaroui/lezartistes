@@ -2,6 +2,8 @@ package com.lezartistes.database;
 
 import com.lezartistes.dao.*;
 
+import com.lezartistes.dao.building.BuildingDAO;
+import com.lezartistes.dao.building.BuildingDAOPostgres;
 import com.lezartistes.dao.history.HistoryDAO;
 import com.lezartistes.dao.history.HistoryDAOPostgres;
 import com.lezartistes.dao.company.CompanyDAO;
@@ -53,7 +55,7 @@ public class PostgresFactory implements AbstractFactory {
     public ReportDAO createReportDAO(){return ReportDAOPostgres.getInstance(connection);}
 
     public QuotationDAO createQuotationDAO(){return QuotationDAOPostgres.getInstance(connection);}
-  
+
     @Override
     public ServiceProviderDAO createSPDAO() {
         return ServiceProviderDAOPostgres.getInstance(connection);
@@ -63,4 +65,7 @@ public class PostgresFactory implements AbstractFactory {
     public HistoryDAO createHistoryDAO() {
         return HistoryDAOPostgres.getInstance(connection);
     }
+
+    public BuildingDAO createBuildingDAO(){ return BuildingDAOPostgres.getInstance(connection);}
+
 }

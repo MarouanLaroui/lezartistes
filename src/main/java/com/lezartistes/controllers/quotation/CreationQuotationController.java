@@ -44,7 +44,7 @@ public class CreationQuotationController {
     }
 
     public void createQuotation(ActionEvent actionEvent) {
-
+            /*
             Quotation newQuotation = null;
             try {
                 newQuotation = new Quotation(
@@ -61,12 +61,12 @@ public class CreationQuotationController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try {
+            /*try {
                 this.quotationFacade(newQuotation);
             }
             catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }
+            }*/
 
     }
 
