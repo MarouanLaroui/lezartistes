@@ -65,7 +65,6 @@ public class CompanyProfileController implements Initializable {
     @FXML
     protected void displayFeedback(MouseEvent mouseEvent) throws IOException {
         if(this.company != null){
-            //System.out.println("dans displayFeedback");
             //Create new stage to show company information
             Stage stage = new Stage();
             stage.setHeight(480);
