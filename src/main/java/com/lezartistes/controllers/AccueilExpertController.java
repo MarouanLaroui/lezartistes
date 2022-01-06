@@ -33,6 +33,7 @@ public class AccueilExpertController implements Initializable {
     public void redirectToClientList() throws IOException {
         App.setRoot("views/client/ClientList");
     }
+
 }
 
 

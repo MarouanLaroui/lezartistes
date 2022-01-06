@@ -1,5 +1,8 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.building.BuildingDAO;
+import com.lezartistes.dao.history.HistoryDAO;
+import com.lezartistes.dao.company.CompanyDAO;
 import com.lezartistes.dao.quotation.QuotationDAO;
 import com.lezartistes.dao.feedback.FeedbackDAO;
 import com.lezartistes.dao.serviceProvider.ServiceProviderDAO;
@@ -17,6 +20,13 @@ public interface AbstractFactory {
      * @return a FeedbackDAO
      */
     FeedbackDAO createFeedbackDAO();
+
+    /**
+     * Create and return a CompanyDAO
+     * @return
+     */
+    CompanyDAO createCompanyDAO();
+
     ClientDAO createClientDAO();
 
     ReportDAO createReportDAO();
@@ -24,5 +34,9 @@ public interface AbstractFactory {
     QuotationDAO createQuotationDAO();
 
     ServiceProviderDAO createSPDAO();
+
+    HistoryDAO createHistoryDAO();
+
+    BuildingDAO createBuildingDAO();
 }
 
