@@ -28,7 +28,7 @@ public class FeedbackFacade {
         return feedbackFacade;
     }
 
-    public Feedback getFeedbakById(int id) throws FeedbackNotFoundException {
+    public Feedback getFeedbackById(int id) throws FeedbackNotFoundException {
         return this.feedbackDAO.getFeedbackById(id);
     }
 

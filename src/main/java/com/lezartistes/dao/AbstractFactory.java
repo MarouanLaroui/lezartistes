@@ -1,5 +1,6 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.callForProposal.CallForProposalDAO;
 import com.lezartistes.dao.history.HistoryDAO;
 import com.lezartistes.dao.company.CompanyDAO;
 import com.lezartistes.dao.quotation.QuotationDAO;
@@ -25,6 +26,12 @@ public interface AbstractFactory {
      * @return a CompanyDAO
      */
     CompanyDAO createCompanyDAO();
+
+    /**
+     * Create and return a CallForProposalDAO
+     * @return a CallForProposalDAO
+     */
+    CallForProposalDAO createCallForProposalDAO();
 
     ClientDAO createClientDAO();
 
