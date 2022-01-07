@@ -14,6 +14,9 @@ public class CreateDBTable {
     public CreateDBTable(){
         this.connection = ConnectPostgresSQL.getInstance();
     }
+
+    /* --------------- CREATE TABLE INTO DATABASE METHODS --------------- */
+
     //TODO mettre des autoincremental key partout
     public void createUserTable(){
         Connection connection = ConnectPostgresSQL.getInstance();
@@ -160,7 +163,7 @@ public class CreateDBTable {
                     " companyFeedback INT,"+
                     " constraint id_company foreign key(companyFeedback) references companies(idCompany));";
             stmt.execute(sql);
-            System.out.println("Created table in given database...");
+            System.out.println("Created feedbacks table in given database...");
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -181,7 +184,32 @@ public class CreateDBTable {
                     " companyComplement VARCHAR(30),"+
                     " companyPostalCode INT)";
             stmt.execute(sql);
-            System.out.println("Created table in given database...");
+            System.out.println("Created companies table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createCallForProposalTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "DROP TABLE IF EXISTS callForProposals;"+
+                    "CREATE TABLE callForProposals " +
+                    "(idCFP SERIAL PRIMARY KEY," +
+                    " title VARCHAR(100),"+
+                    " general_description VARCHAR(300)," +
+                    " imgSignature bytea," +
+                    " report INT," +
+                    " author INT, " +
+                    " status VARCHAR(30)," +
+                    " building INT," +
+                    " FOREIGN KEY (report) REFERENCES reports(id)," +
+                    " FOREIGN KEY (author) REFERENCES clients(id_clients)," +
+                    " FOREIGN KEY (building) REFERENCES buildings(id_building))";
+            stmt.execute(sql);
+            System.out.println("Created callForProposals table in given database...");
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -208,6 +236,7 @@ public class CreateDBTable {
     }
 
 
+    /* --------------- INSERTION INTO DATABASE METHODS --------------- */
     public void insertIntoClientTable(){
 
         try{
@@ -284,15 +313,14 @@ public class CreateDBTable {
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
-        cTable.insertIntoFeedbackTable();
+        //cTable.insertIntoFeedbackTable();
         //cTable.createCompanyTable();
-        //cTable.createFeedbackTable();
         //cTable.insertIntoCompanyTable();
-        //cTable.createCompanyTable();
         //cTable.createFeedbackTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
+        cTable.createCallForProposalTable();
 
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
