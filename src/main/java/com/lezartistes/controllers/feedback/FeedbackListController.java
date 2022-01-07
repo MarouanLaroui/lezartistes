@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.feedback;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.exceptions.FeedbackNotFoundException;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FeedbackListController implements Initializable {
+public class FeedbackListController extends GeneralController implements Initializable  {
 
     /*attributes*/
 

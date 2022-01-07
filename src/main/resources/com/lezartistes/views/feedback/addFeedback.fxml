@@ -30,7 +30,7 @@
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" text="MessageBox">
+                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
@@ -50,13 +50,13 @@
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 
             <children>
-            <Label contentDisplay="CENTER" layoutX="150.0" layoutY="29.0" text="Add a new feedback">
+            <Label contentDisplay="CENTER" layoutX="135.0" layoutY="20.0" text="Add a new feedback">
                 <font>
                     <Font name="System" size="38.0" />
                 </font>
             </Label>
 
-            <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="109.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="100.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../asset/pen.png" />
                 </image>

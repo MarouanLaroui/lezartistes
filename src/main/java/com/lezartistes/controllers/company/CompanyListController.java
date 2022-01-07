@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.company;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.facades.CompanyFacade;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CompanyListController implements Initializable {
+public class CompanyListController extends GeneralController implements Initializable {
     /*attributes*/
     CompanyFacade companyFacade;
     List<Company> companies;

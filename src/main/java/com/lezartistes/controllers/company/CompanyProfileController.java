@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.company;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.feedback.FeedbackListController;
 import com.lezartistes.facades.CompanyFacade;
 import com.lezartistes.models.Company;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CompanyProfileController implements Initializable {
+public class CompanyProfileController extends GeneralController implements Initializable {
 
     /**
      * Linked to the TextField who's fx:id is his name
