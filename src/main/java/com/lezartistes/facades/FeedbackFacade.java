@@ -55,4 +55,8 @@ public class FeedbackFacade {
     public int deleteFeedback(int idFeedback){
         return this.feedbackDAO.deleteFeedback(idFeedback);
     }
+    public int deleteFeedback(Feedback feedback){
+        return this.feedbackDAO.deleteFeedback(feedback);
+    }
+
 }

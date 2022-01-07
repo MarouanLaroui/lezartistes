@@ -21,4 +21,5 @@ public abstract class FeedbackDAO implements Serializable {
     public abstract int addFeedback(Feedback fb);
     public abstract int modifyFeedback(int idFeedback, Feedback fb);
     public abstract int deleteFeedback(int idFeedback);
+    public abstract int deleteFeedback(Feedback feedback);
 }
