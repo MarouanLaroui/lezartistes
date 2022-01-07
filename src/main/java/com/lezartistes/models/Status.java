@@ -6,5 +6,6 @@ public enum Status {
     /*Call for proposal Status*/
     DRAFT,
     POSTED,
-    OVER;
+    OVER,
+    ARCHIVED;
 }

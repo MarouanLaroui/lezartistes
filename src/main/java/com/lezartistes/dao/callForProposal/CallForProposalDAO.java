@@ -1,5 +1,7 @@
 package com.lezartistes.dao.callForProposal;
 
+import com.lezartistes.exceptions.CFPIllegalChangeOfStateException;
+import com.lezartistes.exceptions.CallForProposalDeleteImpossibleException;
 import com.lezartistes.exceptions.CallForProposalNotFoundException;
 import com.lezartistes.models.CallForProposal;
 
@@ -13,11 +15,12 @@ public abstract class CallForProposalDAO {
     public abstract CallForProposal getCallForProposalById(int id);
     public abstract List<CallForProposal> getAllCallForProposal() throws CallForProposalNotFoundException;
     public abstract List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException;
-    public abstract List<CallForProposal> getCallForProposalByAuthor(int id);
+    public abstract List<CallForProposal> getCallForProposalByAuthor(int authorId) throws CallForProposalNotFoundException;
 
-    public abstract CallForProposal createCallForProposal(CallForProposal cfp);
-    public abstract CallForProposal deleteCallForProposal(CallForProposal cfp);
-    public abstract CallForProposal modifyCallForProposal(CallForProposal cfp);
+    public abstract int updateStatusOfCallForProposal(CallForProposal cfp, String newStatus) throws CFPIllegalChangeOfStateException;
+    public abstract int createCallForProposal(CallForProposal cfp);
+    public abstract int updateCallForProposal(int idCFP, CallForProposal cfp) throws CFPIllegalChangeOfStateException;
+    public abstract int deleteCallForProposal(CallForProposal cfp) throws CallForProposalDeleteImpossibleException;
 
 
 }

@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class CallForProposal {
-    //todo: retirer l'id et faire une méthode qui récupère le CFP avec le titre
     private int idCFP;
     private String title;
     private String general_description;
     private byte[] signature;
+
+    //l'idReport vaut -1 s'il n'y a pas encore de rapport associé
     private int idReport;
     private int idClientAuthor;
     private Status status;
@@ -30,7 +31,7 @@ public class CallForProposal {
         this.general_description = general_description;
         this.signature = imgSignature;
         this.status = Status.DRAFT;
-        this.idReport = idReport;
+        this.idReport = -1;
         this.idClientAuthor = idClient;
         this.building = building;
     }

@@ -1,18 +1,13 @@
 package com.lezartistes.dao.callForProposal;
 
 import com.lezartistes.dao.ClientDAOPostgres;
-import com.lezartistes.dao.feedback.FeedbackDAOPostgres;
+import com.lezartistes.exceptions.CFPIllegalChangeOfStateException;
+import com.lezartistes.exceptions.CallForProposalDeleteImpossibleException;
 import com.lezartistes.exceptions.CallForProposalNotFoundException;
-import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.CallForProposal;
-import com.lezartistes.models.Client;
-import com.lezartistes.models.Feedback;
 import com.lezartistes.models.Status;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,26 +112,195 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
 
     @Override
     public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException {
-        return null;
+        String sqlSelect = "SELECT * FROM callforproposals WHERE status=?";
+        List<CallForProposal> calls = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            //todo: tester si ça fonctionne en upper case ou passer en lower case
+            pstatement.setString(1,Status.POSTED.name());
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                CallForProposal cfp = resultSetToCallForProposal(resultSet);
+                calls.add(cfp);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(calls.isEmpty()){
+            throw new CallForProposalNotFoundException();
+        }
+        return calls;
     }
 
     @Override
-    public List<CallForProposal> getCallForProposalByAuthor(int id) {
-        return null;
+    public List<CallForProposal> getCallForProposalByAuthor(int authorId) throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals WHERE author=?";
+        List<CallForProposal> calls = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setInt(1, authorId);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                CallForProposal cfp = resultSetToCallForProposal(resultSet);
+                calls.add(cfp);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(calls.isEmpty()){
+            throw new CallForProposalNotFoundException(authorId);
+        }
+        return calls;
     }
 
     @Override
-    public CallForProposal createCallForProposal(CallForProposal cfp) {
-        return null;
+    public int updateStatusOfCallForProposal(CallForProposal cfp, String newStatus) throws CFPIllegalChangeOfStateException {
+        String status = newStatus.toUpperCase().trim();
+        String actualStatus = cfp.getStatus();
+        int affectedRows = 0;
+
+        switch(status){
+            //si l'utilisateur veut changer le statut en DRAFT ou OVER
+            case "DRAFT":
+            case "OVER":
+                //le cfp doit être dans l'état POSTED, sinon erreur
+                if (actualStatus.equals("POSTED")){
+                    affectedRows = updateStatus(cfp.getId(), status);
+                }
+                else{
+                    throw new CFPIllegalChangeOfStateException(actualStatus, status);
+                }
+                break;
+
+            //si l'utilisateur veut changer le statut en POSTED
+            case "POSTED":
+                //le cfp doit être en état DRAFT, sinon erreur
+                if (actualStatus.equals("DRAFT")){
+                    affectedRows = updateStatus(cfp.getId(), status);
+                }
+                else{
+                    throw new CFPIllegalChangeOfStateException(actualStatus, status);
+                }
+                break;
+
+            //si l'utilisateur veut changer le statut en ARCHIVED
+            case "ARCHIVED":
+                //le cfp doit être en état OVER, sinon erreur
+                if (actualStatus.equals("OVER")){
+                    affectedRows = updateStatus(cfp.getId(), status);
+                }
+                else{
+                    throw new CFPIllegalChangeOfStateException(actualStatus, status);
+                }
+                break;
+        }
+
+        return affectedRows;
+    }
+
+    public int updateStatus(int idCFP, String newStatus){
+        int affectRows = 0;
+        String sqlInsert = "UPDATE callforproposals " +
+                "SET status=? " +
+                "WHERE idcfp=?";
+        try{
+            PreparedStatement pstmt = this.connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,newStatus);
+            pstmt.setInt(2,idCFP);
+
+            affectRows = pstmt.executeUpdate();
+            pstmt.close();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
     }
 
     @Override
-    public CallForProposal deleteCallForProposal(CallForProposal cfp) {
-        return null;
+    public int createCallForProposal(CallForProposal cfp) {
+        //TODO: Remplacer par des autoincrémentales keys
+        int affectRows = 0;
+        String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
+                "VALUES (?,?,?,?,?,?,?)";
+        try{
+            PreparedStatement pstmt = this.connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,cfp.getTitle());
+            pstmt.setString(2,cfp.getGeneral_description());
+            pstmt.setBytes(3,cfp.getSignature());
+            pstmt.setInt(4,cfp.getIdReport());
+            pstmt.setInt(5,cfp.getIdClientAuthor());
+            pstmt.setString(6,cfp.getStatus());
+            pstmt.setInt(7,cfp.getBuilding());
+
+            affectRows = pstmt.executeUpdate();
+            pstmt.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
     }
 
     @Override
-    public CallForProposal modifyCallForProposal(CallForProposal cfp) {
-        return null;
+    public int updateCallForProposal(int idCFP, CallForProposal cfp) throws CFPIllegalChangeOfStateException {
+        int affectRows = 0;
+        String sqlUpdate = "UPDATE callforproposals SET " +
+                "title = ?, " +
+                "general_description = ? , " +
+                "imgsignature = ?, " +
+                "report = ?, " +
+                "author = ?, " +
+                "status = ?, " +
+                "building = ? " +
+                "WHERE idcfp = ?";
+        try{
+            PreparedStatement pstmt = this.connection.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,cfp.getTitle());
+            pstmt.setString(2,cfp.getGeneral_description());
+            pstmt.setBytes(3,cfp.getSignature());
+            pstmt.setInt(4,cfp.getIdReport());
+            pstmt.setInt(5,cfp.getIdClientAuthor());
+            pstmt.setString(6,cfp.getStatus());
+            pstmt.setInt(7,cfp.getBuilding());
+            pstmt.setInt(8,idCFP);
+
+            affectRows = pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
+    }
+
+    @Override
+    public int deleteCallForProposal(CallForProposal cfp) throws CallForProposalDeleteImpossibleException {
+        int affectRows = 0;
+
+        //S'il y a des rapports associés à des call for proposal, la suppression est impossible
+        if (cfp.getIdReport() != -1)
+            throw new CallForProposalDeleteImpossibleException(cfp.getId());
+        else {
+            String sqlDelete = "DELETE FROM callforproposals WHERE idcfp=?";
+            try{
+                PreparedStatement pstmt = this.connection.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+                pstmt.setInt(1, cfp.getId());
+
+                affectRows = pstmt.executeUpdate();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return affectRows;
     }
 }

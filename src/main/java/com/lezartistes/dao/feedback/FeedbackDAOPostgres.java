@@ -195,7 +195,7 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
             pstmt.setInt(1, fb.getRating());
             pstmt.setString(2, fb.getComment());
             pstmt.setInt(3, fb.getCompany());
-            pstmt.setInt(1, idFeedback);
+            pstmt.setInt(4, idFeedback);
 
             affectRows = pstmt.executeUpdate();
         }
