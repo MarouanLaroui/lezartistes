@@ -28,7 +28,7 @@ public class FeedbackFacade {
         return feedbackFacade;
     }
 
-    public Feedback getFeedbakById(int id) throws FeedbackNotFoundException {
+    public Feedback getFeedbackById(int id) throws FeedbackNotFoundException {
         return this.feedbackDAO.getFeedbackById(id);
     }
 
@@ -55,4 +55,8 @@ public class FeedbackFacade {
     public int deleteFeedback(int idFeedback){
         return this.feedbackDAO.deleteFeedback(idFeedback);
     }
+    public int deleteFeedback(Feedback feedback){
+        return this.feedbackDAO.deleteFeedback(feedback);
+    }
+
 }

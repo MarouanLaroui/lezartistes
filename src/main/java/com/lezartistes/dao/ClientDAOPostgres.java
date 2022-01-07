@@ -16,7 +16,7 @@ public class ClientDAOPostgres extends ClientDAO{
     private final Connection coToDB;
 
     /*constructor*/
-    private ClientDAOPostgres(Connection connection){
+    public ClientDAOPostgres(Connection connection){
         this.coToDB = connection;
     }
 

@@ -195,7 +195,7 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
             pstmt.setInt(1, fb.getRating());
             pstmt.setString(2, fb.getComment());
             pstmt.setInt(3, fb.getCompany());
-            pstmt.setInt(1, idFeedback);
+            pstmt.setInt(4, idFeedback);
 
             affectRows = pstmt.executeUpdate();
         }
@@ -208,10 +208,26 @@ public class FeedbackDAOPostgres extends FeedbackDAO{
     @Override
     public int deleteFeedback(int idFeedback) {
         int affectRows = 0;
-        String sqlDelete = "DELETE FROM feedback WHERE idfeedback=?";
+        String sqlDelete = "DELETE FROM feedbacks WHERE idfeedback=?";
         try{
             PreparedStatement pstmt = this.connection.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, idFeedback);
+
+            affectRows = pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
+    }
+
+    @Override
+    public int deleteFeedback(Feedback feedback) {
+        int affectRows = 0;
+        String sqlDelete = "DELETE FROM feedbacks WHERE comment=?";
+        try{
+            PreparedStatement pstmt = this.connection.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, feedback.getComment());
 
             affectRows = pstmt.executeUpdate();
         }
