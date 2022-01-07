@@ -83,17 +83,17 @@ public class ExpertListController implements Initializable {
         alert.showAndWait();
     }
 
-    /*If someone click on a client*/
+    /*If someone click on a expert*/
     public void showExpertDetail(javafx.scene.input.MouseEvent mouseEvent){
 
         Expert selectedExpert = expertsList.getSelectionModel().getSelectedItem();
 
         if(selectedExpert!=null){
-            //Create new stage to show client information
+            //Create new stage to show expert information
             Stage stage = new Stage();
             stage.setHeight(480);
             stage.setWidth(640);
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/client/ClientProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/expert/ExpertProfile.fxml"));
 
             try{
                 ExpertProfileController cpc = new ExpertProfileController(selectedExpert, stage);

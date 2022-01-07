@@ -1,9 +1,7 @@
 package com.lezartistes.controllers.expert;
 
 import com.lezartistes.App;
-import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.facades.ExpertFacade;
-import com.lezartistes.models.Client;
 import com.lezartistes.models.Expert;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,9 +46,9 @@ public class ExpertProfileController implements Initializable {
 
     }
 
-    public void redirectToClientList(MouseEvent mouseEvent) {
+    public void redirectToExpertList(MouseEvent mouseEvent) {
         try {
-            App.setRoot("ClientList");
+            App.setRoot("ExpertList");
         }
         catch (IOException e) {
             e.printStackTrace();

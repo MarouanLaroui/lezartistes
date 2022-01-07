@@ -1,9 +1,8 @@
 package com.lezartistes.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.lezartistes.models.Expert;
+
+import java.sql.*;
 
 public class CreateDBTable {
     /**
@@ -132,6 +131,24 @@ public class CreateDBTable {
         }
     }
 
+    public void createExpertTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "DROP TABLE IF EXISTS experts;" +
+                    "CREATE TABLE experts" +
+                    "(id_clients SERIAL PRIMARY KEY, " +
+                    " mail VARCHAR(50), " +
+                    " password VARCHAR(300)"+
+                    " )";
+            stmt.execute(sql);
+            System.out.println("Created table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void createServiceProvider() {
         try {
             Statement stmt = connection.createStatement();
@@ -237,6 +254,20 @@ public class CreateDBTable {
 
     }
 
+    public int createExpert(Expert expert) {
+        int affectRow = 0;
+        try{
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO experts(mail,password) VALUES ('marouanLaouri@gmail.com', '123456')";
+            stmt.executeUpdate(sqlInsert);
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return affectRow;
+    }
+
     public void insertIntoCompanyTable(){
         try{
 
@@ -266,11 +297,13 @@ public class CreateDBTable {
         CreateDBTable cTable = new CreateDBTable();
         //cTable.createCompanyTable();
         //cTable.createFeedbackTable();
-        cTable.insertIntoCompanyTable();
-        cTable.createCompanyTable();
-        cTable.createFeedbackTable();
+        //cTable.insertIntoCompanyTable();
+        //cTable.createCompanyTable();
+        //cTable.createFeedbackTable();
+        cTable.createExpertTable();
         //cTable.createReportTable();
-        //cTable.createUserTable();
+        cTable.createUserTable();
+        cTable.createExpert(new Expert("marouan@gmail","cool",null,false));
         //cTable.createClientTable();
 
         //cTable.insertIntoClientTable();
