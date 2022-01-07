@@ -6,12 +6,14 @@ import com.lezartistes.exceptions.CallForProposalNotFoundException;
 import com.lezartistes.exceptions.FeedbackNotFoundException;
 import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
+import com.lezartistes.models.Feedback;
 import com.lezartistes.models.Status;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CallForProposalDAOPostgres extends CallForProposalDAO{
@@ -90,7 +92,31 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     }
 
     @Override
-    public List<CallForProposal> getAllCallForProposal() {
+    public List<CallForProposal> getAllCallForProposal() throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals";
+        List<CallForProposal> calls = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                CallForProposal cfp = resultSetToCallForProposal(resultSet);
+                calls.add(cfp);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(calls.isEmpty()){
+            throw new CallForProposalNotFoundException();
+        }
+        return calls;
+    }
+
+    @Override
+    public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException {
         return null;
     }
 
