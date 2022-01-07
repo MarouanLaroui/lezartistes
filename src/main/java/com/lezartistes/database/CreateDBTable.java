@@ -72,14 +72,15 @@ public class CreateDBTable {
 
             String sql = "DROP TABLE IF EXISTS buildings;" +
                     "CREATE TABLE buildings " +
-                    "(id_building SERIAL PRIMARY KEY," +
+                    "(idBuilding SERIAL PRIMARY KEY," +
                     " name VARCHAR(50)," +
                     " region VARCHAR(50)," +
                     " budget double precision," +
                     " construction_date DATE ," +
                     " master_building VARCHAR(50)," +
                     " construction_company VARCHAR(50),"+
-                    " design_office VARCHAR(50)) ";
+                    " design_office VARCHAR(50), "+
+                    " client int)";
             stmt.execute(sql);
             System.out.println("Table Building created ");
         }
