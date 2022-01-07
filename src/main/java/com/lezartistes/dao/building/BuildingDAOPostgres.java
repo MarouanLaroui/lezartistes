@@ -141,7 +141,9 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 "region = ? , " +
                 "budget = ? " +
                 "WHERE idfeedback = ?";
+        /*
         try{
+
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, fb.getRating());
             pstmt.setString(2, fb.getComment());
@@ -154,6 +156,9 @@ public class BuildingDAOPostgres extends BuildingDAO {
             e.printStackTrace();
         }
         return affectRows;
+
+             */
+            return -1;
     }
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{
