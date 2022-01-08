@@ -135,6 +135,30 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return idBuilding;
     }
 
+    @Override
+    public List<Building> getBuildingByMailClient(String mail) {
+        List<Building> building = new ArrayList<>();
+        String sqlSelect = "SELECT * " +
+                "FROM buildings B " +
+                "JOIN clients C ON B.client = C.id_clients " +
+                "WHERE C.username = ?";
+
+        try {
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1, mail);
+            ResultSet rs = pstatement.executeQuery();
+
+            /*Renvoie le rapport si trouvé, exception sinon*/
+            if (rs.next()) {
+                building.add(this.resultSetToBuilding(rs));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return building;
+    }
+
     public Building createBuilding(Building b){
         PreparedStatement ps = null;
         try {

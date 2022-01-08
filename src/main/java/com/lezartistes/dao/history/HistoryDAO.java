@@ -12,7 +12,7 @@ public abstract class HistoryDAO implements Serializable {
 
     public abstract List<History> getAllHistoryByBuildingId(int idBuilding);
     public abstract List<History> getHistoryByClientId(String mailClient);
-    public abstract List<History> getHistoryBySPId (int idSP);
+    public abstract List<History> getHistoryBySPId (String mailSP);
     public abstract List<History> getAllHistory();
     public abstract int createHistory(History h);
 }
