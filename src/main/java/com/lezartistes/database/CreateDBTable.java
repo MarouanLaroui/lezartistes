@@ -223,17 +223,15 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS callForProposals;"+
+            String sql = "DROP TABLE IF EXISTS callForProposals CASCADE ;"+
                     "CREATE TABLE callForProposals " +
                     "(idCFP SERIAL PRIMARY KEY," +
                     " title VARCHAR(100),"+
                     " general_description VARCHAR(300)," +
                     " imgSignature bytea," +
-                    " report INT," +
                     " author INT, " +
                     " status VARCHAR(30)," +
                     " building INT," +
-                    " FOREIGN KEY (report) REFERENCES reports(id)," +
                     " FOREIGN KEY (author) REFERENCES clients(id_clients)," +
                     " FOREIGN KEY (building) REFERENCES buildings(id_building))";
             stmt.execute(sql);
@@ -352,13 +350,13 @@ public class CreateDBTable {
         try{
 
             Statement stmt = this.connection.createStatement();
-            String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
-                    "VALUES ('Inspection de la maison de papa Michel', 'Il faut vraiment le regarder le boug, à la recherche de soucis techniques.', '../../resources/com.lezartistes/asset/signature.jpg',15, 1,'DRAFT',1)";
-            //int affectRows = stmt.executeUpdate(sqlInsert);
-
-            sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
-                    "VALUES ('Inspection du Viaduc de Millau', '0 soucis à mona vis, le constructeur était un bon.', '../../resources/com.lezartistes/asset/signature.jpg',null, 1,'POSTED',1)";
+            String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, author, status, building) " +
+                    "VALUES ('Inspection de la maison de papa Michel', 'Il faut vraiment le regarder le boug, à la recherche de soucis techniques.', '../../resources/com.lezartistes/asset/signature.jpg',4,'DRAFT',1)";
             int affectRows = stmt.executeUpdate(sqlInsert);
+
+            sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, author, status, building) " +
+                    "VALUES ('Inspection du Viaduc de Millau', '0 soucis à mon avis, le constructeur était un bon.', '../../resources/com.lezartistes/asset/signature.jpg',4,'POSTED',1)";
+            affectRows += stmt.executeUpdate(sqlInsert);
 
             System.out.println("finish");
             System.out.println(affectRows);
@@ -405,8 +403,8 @@ public class CreateDBTable {
         //cTable.createUserTable();
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
-        //cTable.insertIntoCallForProposalTable();
-        cTable.alterTableCallForProposal();
+        cTable.insertIntoCallForProposalTable();
+        //cTable.alterTableCallForProposal();
 
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();

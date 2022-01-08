@@ -6,6 +6,7 @@ import com.lezartistes.controllers.feedback.AddFeedbackController;
 import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.dao.ClientDAOPostgres;
 import com.lezartistes.dao.UserDAOPostgres;
+import com.lezartistes.exceptions.CallForProposalDeleteImpossibleException;
 import com.lezartistes.exceptions.CallForProposalNotFoundException;
 import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.facades.CallForProposalFacade;
@@ -13,6 +14,7 @@ import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.facades.ServiceProviderFacade;
 import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
+import com.lezartistes.models.Report;
 import com.lezartistes.models.User;
 
 import javafx.fxml.FXML;
@@ -36,7 +38,7 @@ public class CallForProposalListController extends GeneralController implements 
     @FXML
     private Label info;
     @FXML
-    private Button deleteButton;
+    private Button addButton;
 
     @FXML private TableView<CallForProposal> cfpTable;
     @FXML private TableColumn<CallForProposal, String> title;
@@ -121,7 +123,7 @@ public class CallForProposalListController extends GeneralController implements 
     }
 
     @FXML
-    private void addCallForProposal(){
+    public void addCallForProposal(){
         //todo: tester si ça marche avec la connexion
         //Si c'est un client, il peut ajouter un CFP
         if (!this.isServiceProvider){
@@ -131,7 +133,7 @@ public class CallForProposalListController extends GeneralController implements 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("views/callForProposal/addCallForProposal.fxml"));
 
             try{
-                AddCallForProposalController afc = new AddCallForProposalController(this.callForProposal, stage);
+                AddCallForProposalController afc = new AddCallForProposalController(stage);
                 loader.setController(afc);
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
@@ -172,9 +174,19 @@ public class CallForProposalListController extends GeneralController implements 
         }
     }
 
+    @FXML
+    public void archiveCallForProposal(MouseEvent event){
+        CallForProposal selectedCFP = cfpTable.getSelectionModel().getSelectedItem();
+        //s'il n'y a pas de rapport associé, on peut supprimer le CFP
+        try {
+            callForProposalFacade.deleteCallForProposal(selectedCFP);
+        } catch (CallForProposalDeleteImpossibleException e) {
+            this.error.setText("You cannot delete a call for proposal related to an existant report.");
+        }
 
-    //addCFP -> createCallForProposal
+    }
+
+
     //updateCFP -> updateCallForProposal
-    //deleteCFP -> deleteCallForProposal
     //archiveCFP, postCFP, draftCFP, endCFP -> setStatusTo....
 }

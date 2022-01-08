@@ -59,7 +59,7 @@
                     </font>
                 </Label>
 
-                <ImageView fitHeight="94.0" fitWidth="85.0" layoutX="65.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="94.0" fitWidth="85.0" layoutX="45.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../asset/cfp.png" />
                     </image>
@@ -67,14 +67,8 @@
 
                 <Pane layoutX="142.0" layoutY="46.0" prefHeight="250.0" prefWidth="442.0">
                     <children>
-                        <Label id="general_description" fx:id="general_description" layoutX="16.0" layoutY="67.0" prefHeight="90.0" prefWidth="394.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <effect>
-                        <DropShadow />
-                     </effect></Label>
-                        <Label id="title" fx:id="title" contentDisplay="CENTER" layoutX="-79.0" layoutY="32.0" prefHeight="17.0" prefWidth="428.0">
+                        <Label id="general_description" fx:id="general_description" layoutX="15.0" layoutY="80.0" prefHeight="90.0" prefWidth="394.0"/>
+                        <Label wrapText="true" id="title" fx:id="title" contentDisplay="CENTER" layoutX="-72.0" layoutY="26.0" prefHeight="57.0" prefWidth="428.0">
                          <font>
                             <Font name="System Bold Italic" size="18.0" />
                          </font></Label>

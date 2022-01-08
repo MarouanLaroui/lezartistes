@@ -35,6 +35,10 @@ public class ClientFacade {
         return this.clientDao.getClientById(id);
     }
 
+    public int getClientIdByMail(String mailUsername) throws ClientNotFoundException {
+        return this.clientDao.getClientIdByMail(mailUsername);
+    }
+
     public Client getClientByEmail(String email) {
         return this.clientDao.getClientByEmail(email);
     }
