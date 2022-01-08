@@ -85,8 +85,8 @@
                      </font></Label>
                   <Label fx:id="author" layoutX="266.0" layoutY="142.0" prefHeight="17.0" prefWidth="125.0" />
                   <Button layoutX="79.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#closeStage" text="Back" />
-                  <ChoiceBox fx:id="newStatus" layoutX="-42.0" layoutY="155.0" onMouseClicked="#showSaveButton" prefWidth="150.0" />
-                  <Label layoutX="-41.0" layoutY="139.0" text="Change status to ...">
+                  <ChoiceBox fx:id="newStatus" visible="false" layoutX="-42.0" layoutY="155.0" onMouseClicked="#showSaveButton" prefWidth="150.0" />
+                  <Label fx:id="labelNewStatus" visible="false" layoutX="-41.0" layoutY="139.0" text="Change status to ...">
                      <font>
                         <Font name="System Bold" size="11.0" />
                      </font>

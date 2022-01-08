@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.callForProposal;
 
 import com.lezartistes.controllers.GeneralController;
+import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.CFPIllegalChangeOfStateException;
 import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.facades.CallForProposalFacade;
@@ -42,6 +43,9 @@ public class ShowCallForProposalController extends GeneralController implements 
     @FXML
     private Label error;
 
+    @FXML
+    private Label labelNewStatus;
+
     private CallForProposal callForProposal;
     private CallForProposalFacade callForProposalFacade;
     private Stage stage;
@@ -70,6 +74,11 @@ public class ShowCallForProposalController extends GeneralController implements 
             this.newStatus.getItems().add("POSTED");
             this.newStatus.getItems().add("OVER");
             this.newStatus.getItems().add("ARCHIVED");
+            //si c'est un client
+            if (!UserInformation.getIsSP()){
+                this.labelNewStatus.setVisible(true);
+                this.newStatus.setVisible(true);
+            }
         } catch (ClientNotFoundException e) {
             e.printStackTrace();
         }
