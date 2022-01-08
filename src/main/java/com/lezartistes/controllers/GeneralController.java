@@ -17,6 +17,10 @@ public abstract class GeneralController {
             App.setRoot("views/accueilClient");
     }
 
+    @FXML protected void redirectToCompanyList() throws IOException{
+        App.setRoot("views/company/companyList");
+    }
+
 
     @FXML protected void redirectToClientList() throws IOException {
         App.setRoot("views/client/ClientList");

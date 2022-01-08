@@ -17,6 +17,10 @@ public class Feedback {
         this.company = company;
     }
 
+    /*toString*/
+    public String toString(){
+        return "Rating : "+ this.getRating() + "/5 -" + " \" " + this.getComment() + " \" ";
+    }
     /**
      * Getter and setter
      */

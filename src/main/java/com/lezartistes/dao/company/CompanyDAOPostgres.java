@@ -16,7 +16,7 @@ public class CompanyDAOPostgres extends CompanyDAO {
     /**
      * Connection to the database
      */
-    Connection connection;
+    private final Connection connection;
 
     /**
      * Constructor : create a CompanyDAOPostgres
