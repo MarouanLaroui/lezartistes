@@ -6,8 +6,6 @@ import com.lezartistes.models.Building;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-//TODO modify, delete et voir pour ajouter history
 public class BuildingDAOPostgres extends BuildingDAO {
 
     private static BuildingDAOPostgres buildingDAOPostgres;
@@ -134,19 +132,27 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return b;
     }
 
-    public int modifyBuilding(int id) throws BuildingNotFoundException{
+    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
         int affectRows = 0;
         String sqlUpdate = "UPDATE buildings SET " +
                 "name = ?, " +
                 "region = ? , " +
-                "budget = ? " +
-                "WHERE idfeedback = ?";
+                "budget = ? ," +
+                "construction_date = ? ,"+
+                "master_builder = ? ,"+
+                "design_office = ? , "+
+                "client = ? "+
+                "WHERE idBuilding = ?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, fb.getRating());
-            pstmt.setString(2, fb.getComment());
-            pstmt.setInt(3, fb.getCompany());
-            pstmt.setInt(1, idFeedback);
+            pstmt.setString(1, b.getName());
+            pstmt.setString(2, b.getRegion());
+            pstmt.setDouble(3, b.getBudget());
+            pstmt.setDate(4, new java.sql.Date(b.getConstruction_date().getTime()));
+            pstmt.setString(5, b.getMaster_builder());
+            pstmt.setString(6, b.getDesign_office());
+            pstmt.setInt(7, b.getClient());
+            pstmt.setInt(2, id);
 
             affectRows = pstmt.executeUpdate();
         }
