@@ -27,11 +27,12 @@ public class ServiceProviderDAOPostgres extends ServiceProviderDAO {
     public int createServiceProvider(Expert e) {
         int affectRows = 0;
         try {
-            String sqlInsert = "INSERT INTO serviceProviders(username, password) VALUES (?, ?)";
+            String sqlInsert = "INSERT INTO serviceProviders(username, password, id_company) VALUES (?, ?, ?)";
 
             PreparedStatement stmtprep = this.coToDB.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
             stmtprep.setString(1, e.getMail());
             stmtprep.setString(2, e.getPassword());
+            stmtprep.setInt(3, e.getCompanyId());
 
             affectRows = stmtprep.executeUpdate();
         } catch (SQLException throwables) {

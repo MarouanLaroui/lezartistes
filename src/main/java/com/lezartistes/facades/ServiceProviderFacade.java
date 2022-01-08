@@ -3,6 +3,7 @@ package com.lezartistes.facades;
 import com.lezartistes.dao.AbstractFactory;
 import com.lezartistes.dao.serviceProvider.ServiceProviderDAO;
 import com.lezartistes.database.PostgresFactory;
+import com.lezartistes.models.Company;
 import com.lezartistes.models.Expert;
 import com.lezartistes.models.User;
 
@@ -27,9 +28,9 @@ public class ServiceProviderFacade {
         return spFacade;
     }
 
-    public int createServiceProvider(String username, String passwd) {
+    public int createServiceProvider(String username, String passwd, Company c) {
         //TODO : La Company dans les experts
-        return this.spDAO.createServiceProvider(new Expert(username, passwd, null, true));
+        return this.spDAO.createServiceProvider(new Expert(username, passwd, c, true));
     }
 
     public Expert getServiceProviderByEmail(String mail) {

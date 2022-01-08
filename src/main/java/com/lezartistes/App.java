@@ -22,12 +22,12 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
 
-        scene = new Scene(loadFXML("views/user/login"), 640, 480);
+        //scene = new Scene(loadFXML("views/user/login"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientProfile"), 640, 480);
         //scene = new Scene(loadFXML("views/client/ClientList"), 640, 480);
         //scene = new Scene(loadFXML("views/report/ViewReport"), 640, 480);
         //scene = new Scene(loadFXML("views/report/ReportForm"), 640, 480);
-        //scene = new Scene(loadFXML("views/company/companyList"), 640, 480);
+        scene = new Scene(loadFXML("views/company/companyList"), 640, 480);
         //scene = new Scene(loadFXML("views/company/companyProfile"), 640, 480);
         //scene = new Scene(loadFXML("views/callForProposal/callForProposalList"), 640, 480);
         //scene = new Scene(loadFXML("views/building/listBuilding"), 640, 480);
