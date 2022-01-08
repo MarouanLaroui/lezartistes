@@ -137,13 +137,15 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     }
 
     @Override
-    public List<CallForProposal> getCallForProposalByAuthor(int authorId) throws CallForProposalNotFoundException {
-        String sqlSelect = "SELECT * FROM callforproposals WHERE author=?";
+    public List<CallForProposal> getCallForProposalByAuthor(String authorMail) throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals " +
+                "JOIN clients ON callforproposals.author = clients.id_clients " +
+                "WHERE clients.username=?";
         List<CallForProposal> calls = new ArrayList<>();
 
         try{
             PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
-            pstatement.setInt(1, authorId);
+            pstatement.setString(1, authorMail.trim());
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/
@@ -156,7 +158,7 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
             throwables.printStackTrace();
         }
         if(calls.isEmpty()){
-            throw new CallForProposalNotFoundException(authorId);
+            throw new CallForProposalNotFoundException(authorMail);
         }
         return calls;
     }

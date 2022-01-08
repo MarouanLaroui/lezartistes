@@ -39,7 +39,7 @@ public class CallForProposal {
     /*toString*/
     //todo: voir si on a besoin de rajouter des choses dans le toString
     public String toString(){
-        return this.title;
+        return this.title + " (" + this.status + ") ";
     }
 
     public static byte[] fileToBytes(File file) throws IOException {

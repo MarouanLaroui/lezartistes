@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AccueilExpertController implements Initializable {
+public class AccueilExpertController extends GeneralController implements Initializable {
 
 
 

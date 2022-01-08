@@ -41,8 +41,8 @@ public class BuildingFacade {
         return this.buildingDAO.createBuilding(b);
     }
 
-    public int modifyBuilding(int id) throws BuildingNotFoundException{
-        return this.buildingDAO.modifyBuilding(id);
+    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
+        return this.buildingDAO.modifyBuilding(id, b);
     }
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{

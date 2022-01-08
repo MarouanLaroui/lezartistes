@@ -41,8 +41,8 @@ public class CallForProposalFacade {
         return this.callForProposalDAO.getAllPostedCallForProposal();
     }
 
-    public List<CallForProposal> getCallForProposalByAuthor(int authorId) throws CallForProposalNotFoundException{
-        return this.callForProposalDAO.getCallForProposalByAuthor(authorId);
+    public List<CallForProposal> getCallForProposalByAuthor(String authorMail) throws CallForProposalNotFoundException{
+        return this.callForProposalDAO.getCallForProposalByAuthor(authorMail);
     }
 
     //public int updateStatusOfCallForProposal(CallForProposal cfp, String newStatus) throws CFPIllegalChangeOfStateException;
