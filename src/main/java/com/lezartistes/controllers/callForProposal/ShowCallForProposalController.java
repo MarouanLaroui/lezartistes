@@ -7,7 +7,10 @@ import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +30,12 @@ public class ShowCallForProposalController extends GeneralController implements 
 
     @FXML
     private Label author;
+
+    @FXML
+    private ChoiceBox<String> newStatus;
+
+    @FXML
+    private Button save;
 
     private CallForProposal callForProposal;
     private Stage stage;
@@ -50,9 +59,23 @@ public class ShowCallForProposalController extends GeneralController implements 
             Client client = clientFacade.getClientById(this.callForProposal.getIdClientAuthor());
             this.author.setText(client.getName() +" "+client.getSurname());
             this.status.setText(this.callForProposal.getStatus());
+
+            this.newStatus.getItems().add("DRAFT");
+            this.newStatus.getItems().add("POSTED");
+            this.newStatus.getItems().add("OVER");
+            this.newStatus.getItems().add("ARCHIVED");
         } catch (ClientNotFoundException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @FXML
+    public void showSaveButton(MouseEvent event){
+        this.save.setVisible(true);
+
+
+
 
     }
 
