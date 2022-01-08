@@ -2,10 +2,7 @@ package com.lezartistes.controllers.callForProposal;
 
 import com.lezartistes.App;
 import com.lezartistes.controllers.GeneralController;
-import com.lezartistes.controllers.feedback.AddFeedbackController;
 import com.lezartistes.controllers.user.UserInformation;
-import com.lezartistes.dao.ClientDAOPostgres;
-import com.lezartistes.dao.UserDAOPostgres;
 import com.lezartistes.exceptions.CallForProposalDeleteImpossibleException;
 import com.lezartistes.exceptions.CallForProposalNotFoundException;
 import com.lezartistes.exceptions.ClientNotFoundException;
@@ -14,7 +11,6 @@ import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.facades.ServiceProviderFacade;
 import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
-import com.lezartistes.models.Report;
 import com.lezartistes.models.User;
 
 import javafx.fxml.FXML;
@@ -58,10 +54,6 @@ public class CallForProposalListController extends GeneralController implements 
         this.callForProposalFacade = CallForProposalFacade.getInstance();
         this.serviceProviderFacade = ServiceProviderFacade.getInstance();
         this.clientFacade = ClientFacade.getInstance();
-        //test service provider
-        //this.connectedUser = serviceProviderFacade.getServiceProviderByEmail("ophelie");
-        //test client
-        //this.connectedUser = clientFacade.getClientById(1);
         this.connectedUser = UserInformation.getUser();
         this.isServiceProvider = UserInformation.isServiceProvider();
     }
@@ -83,14 +75,12 @@ public class CallForProposalListController extends GeneralController implements 
 
     private void displayListForServiceProvider() {
         try{
-            this.callForProposals = callForProposalFacade.getAllPostedCallForProposal();
+            this.callForProposals = callForProposalFacade.getAllPostedAndOverCallForProposal();
             //s'il y a des cfp à afficher
             if (!this.callForProposals.isEmpty()){
                 title.setCellValueFactory(new PropertyValueFactory<CallForProposal, String>("title"));
                 status.setCellValueFactory(new PropertyValueFactory<CallForProposal, String>("status"));
                 cfpTable.getItems().setAll(this.callForProposals);
-
-                this.cfpTable.setOnMouseClicked(event -> System.out.println("clicked on " + cfpTable.getSelectionModel().getSelectedItem()));
             }
         }
         catch (CallForProposalNotFoundException c){
@@ -111,14 +101,10 @@ public class CallForProposalListController extends GeneralController implements 
                 title.setCellValueFactory(new PropertyValueFactory<CallForProposal, String>("title"));
                 status.setCellValueFactory(new PropertyValueFactory<CallForProposal, String>("status"));
                 cfpTable.getItems().setAll(this.callForProposalsByAuthor);
-
-                this.cfpTable.setOnMouseClicked(event -> System.out.println("clicked on " + cfpTable.getSelectionModel().getSelectedItem()));
             }
         }
         catch (CallForProposalNotFoundException c){
             System.out.println("No call for proposal posted by "+ this.connectedUser.getMail());
-            //this.info.setText("You haven't written any call for proposal yet!");
-            //c.printStackTrace();
         }
     }
 
@@ -185,8 +171,4 @@ public class CallForProposalListController extends GeneralController implements 
         }
 
     }
-
-
-    //updateCFP -> updateCallForProposal
-    //archiveCFP, postCFP, draftCFP, endCFP -> setStatusTo....
 }
