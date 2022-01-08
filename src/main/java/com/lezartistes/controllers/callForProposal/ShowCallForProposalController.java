@@ -58,7 +58,6 @@ public class ShowCallForProposalController extends GeneralController implements 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //todo: ajouter un bouton qui redirige vers le rapport associé
-        //todo: afficher la signature ?
 
         try {
             this.title.setText(this.callForProposal.getTitle());
