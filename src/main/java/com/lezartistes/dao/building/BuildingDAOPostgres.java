@@ -1,6 +1,7 @@
 package com.lezartistes.dao.building;
 
 import com.lezartistes.exceptions.BuildingNotFoundException;
+import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.models.Building;
 
 import java.sql.*;
@@ -30,11 +31,12 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 rs.getString("region"),
                 rs.getDouble("budget"),
                 rs.getDate("construction_date"),
-                rs.getString("master_builder"),
+                rs.getString("master_building"),
                 rs.getString("design_office"),
                 rs.getInt("client")
         );
-        b.setId(rs.getInt("id"));
+        b.setId(rs.getInt("id_building"));
+
         return b;
     }
 
@@ -88,7 +90,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public Building getBuildingByClient(int idc) throws BuildingNotFoundException{
         Building building = null;
-        String sqlSelect = "SELECT * FROM buildings WHERE clients=?";
+        String sqlSelect = "SELECT * FROM buildings WHERE client=?";
 
         try {
 
@@ -110,6 +112,30 @@ public class BuildingDAOPostgres extends BuildingDAO {
             throw new BuildingNotFoundException(idc);
         }
         return building;
+    }
+
+    @Override
+    public int getBuildingIdByName(String nameBuilding) throws BuildingNotFoundException {
+        int idBuilding = -1;
+        String sqlSelect = "SELECT id_building FROM buildings WHERE name=?";
+
+        try {
+
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1,nameBuilding.trim());
+            ResultSet rs = pstatement.executeQuery();
+            while(rs.next()){
+                idBuilding = rs.getInt("id_building");
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        if(idBuilding == -1){
+            throw new BuildingNotFoundException(nameBuilding);
+        }
+        return idBuilding;
     }
 
     public Building createBuilding(Building b){
