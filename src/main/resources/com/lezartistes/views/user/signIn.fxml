@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
    <children>
-      <Label layoutX="23.0" layoutY="66.0" prefHeight="42.0" prefWidth="553.0" text="Which account do you want to create ? " textAlignment="CENTER">
+      <Label layoutX="83.0" layoutY="73.0" prefHeight="100.0" prefWidth="434.0" text="What kind of account do you want to create ? " textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Calligraphy Italic" size="26.0" />
          </font></Label>
-      <Button layoutX="122.0" layoutY="219.0" mnemonicParsing="false" onAction="#clientSide" prefHeight="42.0" prefWidth="106.0" text="Client">
+      <Button layoutX="151.0" layoutY="217.0" mnemonicParsing="false" onAction="#clientSide" prefHeight="42.0" prefWidth="106.0" text="Client" textFill="#ca2828">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font></Button>
-      <Button layoutX="321.0" layoutY="219.0" mnemonicParsing="false" onAction="#expertSide" prefHeight="42.0" prefWidth="106.0" text="Expert">
+      <Button layoutX="342.0" layoutY="217.0" mnemonicParsing="false" onAction="#expertSide" prefHeight="42.0" prefWidth="106.0" text="Expert" textFill="#945916">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font></Button>
+      <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="469.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../asset/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
