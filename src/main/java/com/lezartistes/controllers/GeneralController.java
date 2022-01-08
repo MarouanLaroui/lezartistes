@@ -25,8 +25,11 @@ public abstract class GeneralController {
         App.setRoot("views/callForProposal/CallForProposalList");
     }
 
-
     @FXML protected void redirectToClientList() throws IOException {
         App.setRoot("views/client/ClientList");
+    }
+
+    @FXML protected void goToHistory() throws IOException{
+        App.setRoot("views/history/HistoryList");
     }
 }

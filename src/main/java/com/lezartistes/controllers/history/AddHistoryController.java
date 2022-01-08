@@ -1,6 +1,9 @@
 package com.lezartistes.controllers.history;
 
 import com.lezartistes.controllers.GeneralController;
+import com.lezartistes.exceptions.BuildingNotFoundException;
+import com.lezartistes.facades.BuildingFacade;
+import com.lezartistes.models.Building;
 import com.lezartistes.models.History;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +23,10 @@ import java.util.ResourceBundle;
 
 public class AddHistoryController extends HistoryController implements Initializable {
 
-    private List<String> buildings = new ArrayList<>();
+    private List<Building> buildings = new ArrayList<>();
+    private final BuildingFacade buildingFacade = BuildingFacade.getInstance();
     @FXML
-    private ComboBox<String> selectRelatedBuilding;
+    private ComboBox<Building> selectRelatedBuilding;
     @FXML
     private DatePicker date_history;
     @FXML
@@ -30,27 +34,32 @@ public class AddHistoryController extends HistoryController implements Initializ
     @FXML
     private Label error;
 
-    //TODO: Ajouter un requete vers building facade qui retourne les buildings
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.buildings.add("Maison de papa Michel"); //TODO : Supprimer
+        try {
+            this.buildings = this.buildingFacade.getAllBuilding();
+        } catch (BuildingNotFoundException ignored) {}
 
-        ObservableList<String> options = FXCollections.observableArrayList(buildings);
+        ObservableList<Building> options = FXCollections.observableArrayList(buildings);
         selectRelatedBuilding.getItems().addAll(options);
     }
 
     @FXML
     public void createHistory() throws IOException {
         //TODO: Prendre id building en fonction du form
-        if (date_history.getValue() == null || description_history.getText().equals("")) {
+        Building b = this.selectRelatedBuilding.getValue();
+        if (date_history.getValue() == null || description_history.getText().equals("") || b == null) {
             this.erreurCreation();
         } else {
-            History h = new History(1, new Date(date_history.getValue().toEpochDay()), description_history.getText().replaceAll("\n", System.getProperty("line.separator")));
+            History h = new History(b.getId(), new Date(date_history.getValue().toEpochDay()), description_history.getText().replaceAll("\n", System.getProperty("line.separator")));
             int ret = this.historyFacade.createHistory(h);
             if (ret != 0) this.redirectToHistoryList();
             else this.erreurCreation();
         }
+    }
+
+    public void historyByName (String name) {
+
     }
 
     public void erreurCreation () {

@@ -30,11 +30,11 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 rs.getString("region"),
                 rs.getDouble("budget"),
                 rs.getDate("construction_date"),
-                rs.getString("master_builder"),
+                rs.getString("master_building"),
                 rs.getString("design_office"),
                 rs.getInt("client")
         );
-        b.setId(rs.getInt("id"));
+        b.setId(rs.getInt("id_building"));
         return b;
     }
 

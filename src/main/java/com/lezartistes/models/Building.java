@@ -85,4 +85,9 @@ public class Building {
     public void setId(int id){
         this.id=id;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
