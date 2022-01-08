@@ -22,7 +22,7 @@ public abstract class GeneralController {
     }
 
     @FXML protected void redirectToCFPList() throws IOException {
-        App.setRoot("views/callForProposal/CallForProposalList");
+        App.setRoot("views/callForProposal/callForProposalList");
     }
 
     @FXML protected void redirectToClientList() throws IOException {
