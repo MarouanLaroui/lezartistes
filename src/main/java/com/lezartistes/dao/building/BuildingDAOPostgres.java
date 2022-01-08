@@ -36,7 +36,6 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 rs.getInt("client")
         );
         b.setId(rs.getInt("id_building"));
-
         return b;
     }
 
