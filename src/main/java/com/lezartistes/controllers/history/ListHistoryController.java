@@ -1,12 +1,8 @@
 package com.lezartistes.controllers.history;
 
 import com.lezartistes.App;
-import com.lezartistes.controllers.GeneralController;
-import com.lezartistes.controllers.report.ReadReportController;
 import com.lezartistes.controllers.user.UserInformation;
-import com.lezartistes.facades.HistoryFacade;
 import com.lezartistes.models.History;
-import com.lezartistes.models.Report;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -29,11 +25,11 @@ public class ListHistoryController extends HistoryController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ArrayList<History> hist = new ArrayList<>();
+        ArrayList<History> hist;
         if ( ! UserInformation.isServiceProvider()) {
             hist = new ArrayList<>(this.historyFacade.getHistoryByClientId(UserInformation.getUser().getMail()));
         } else {
-            hist = new ArrayList<>(this.historyFacade.getAllHistory());
+            hist = new ArrayList<>(this.historyFacade.getHistoryBySPMail(UserInformation.getUser().getMail()));
         }
         this.historyList.setItems(new FilteredList<>(FXCollections.observableList(hist)));
     }
@@ -47,8 +43,8 @@ public class ListHistoryController extends HistoryController implements Initiali
     protected void clickOnHistory(MouseEvent mouseEvent) throws IOException {
 
         Stage stage = new Stage();
-        stage.setHeight(280);
-        stage.setWidth(610);
+        stage.setHeight(600);
+        stage.setWidth(600);
 
         History selectedHisto = this.historyList.getSelectionModel().getSelectedItem();
         if (selectedHisto != null) {

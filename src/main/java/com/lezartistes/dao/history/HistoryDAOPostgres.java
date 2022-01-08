@@ -73,8 +73,33 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     @Override
-    public List<History> getHistoryBySPId(int idSP) {
-        return null;
+    public List<History> getHistoryBySPId(String mailSP) {
+        String sqlSelect = "" +
+                "SELECT H.date, H.description, H.idhistory " +
+                "FROM histories H " +
+                "JOIN buildings B ON B.id_building = H.relatedbuilding " +
+                "JOIN callforproposals C ON B.id_building = c.building " +
+                "JOIN quotations Q ON Q.callforproposal = C.idcfp " +
+                "JOIN companies c2 ON Q.idcompany = c2.idcompany " +
+                "JOIN serviceproviders sp ON sp.id_company = sp.id_company " +
+                "WHERE sp.username = ?;";
+        List<History> histories = new ArrayList<>();
+
+        try {
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setString(1, mailSP);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            System.out.println("-- ca commence --");
+            while (resultSet.next()) {
+                histories.add(this.resultSetToHistory(resultSet));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return histories;
     }
 
     @Override

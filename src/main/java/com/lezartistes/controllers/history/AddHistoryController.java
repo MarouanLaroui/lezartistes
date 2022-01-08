@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.history;
 
 import com.lezartistes.controllers.GeneralController;
+import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.BuildingNotFoundException;
 import com.lezartistes.facades.BuildingFacade;
 import com.lezartistes.models.Building;
@@ -36,17 +37,13 @@ public class AddHistoryController extends HistoryController implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            this.buildings = this.buildingFacade.getAllBuilding();
-        } catch (BuildingNotFoundException ignored) {}
-
+        this.buildings = this.buildingFacade.getBuildingByMailClient(UserInformation.getUser().getMail());
         ObservableList<Building> options = FXCollections.observableArrayList(buildings);
         selectRelatedBuilding.getItems().addAll(options);
     }
 
     @FXML
     public void createHistory() throws IOException {
-        //TODO: Prendre id building en fonction du form
         Building b = this.selectRelatedBuilding.getValue();
         if (date_history.getValue() == null || description_history.getText().equals("") || b == null) {
             this.erreurCreation();
@@ -56,10 +53,6 @@ public class AddHistoryController extends HistoryController implements Initializ
             if (ret != 0) this.redirectToHistoryList();
             else this.erreurCreation();
         }
-    }
-
-    public void historyByName (String name) {
-
     }
 
     public void erreurCreation () {

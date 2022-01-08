@@ -35,8 +35,8 @@ public class HistoryFacade {
         return this.dao.getHistoryByClientId(mailClient);
     }
 
-    public List<History> getHistoryBySPId (int idSP) {
-        return this.dao.getHistoryBySPId(idSP);
+    public List<History> getHistoryBySPMail (String mailSP) {
+        return this.dao.getHistoryBySPId(mailSP);
     }
 
     public int createHistory (History h) {
