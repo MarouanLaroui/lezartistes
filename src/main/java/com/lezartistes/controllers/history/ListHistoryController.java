@@ -3,6 +3,7 @@ package com.lezartistes.controllers.history;
 import com.lezartistes.App;
 import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.report.ReadReportController;
+import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.facades.HistoryFacade;
 import com.lezartistes.models.History;
 import com.lezartistes.models.Report;
@@ -28,7 +29,12 @@ public class ListHistoryController extends HistoryController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ArrayList<History> hist = new ArrayList<>(this.historyFacade.getAllHistory());
+        ArrayList<History> hist = new ArrayList<>();
+        if ( ! UserInformation.isServiceProvider()) {
+            hist = new ArrayList<>(this.historyFacade.getHistoryByClientId(UserInformation.getUser().getMail()));
+        } else {
+            hist = new ArrayList<>(this.historyFacade.getAllHistory());
+        }
         this.historyList.setItems(new FilteredList<>(FXCollections.observableList(hist)));
     }
 

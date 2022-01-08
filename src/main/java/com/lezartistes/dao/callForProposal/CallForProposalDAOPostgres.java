@@ -52,7 +52,6 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
                 rs.getString("title"),
                 rs.getString("general_description"),
                 rs.getBytes("imgsignature"),
-                rs.getInt("report"),
                 rs.getInt("author"),
                 rs.getInt("building")
         );
@@ -137,13 +136,15 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     }
 
     @Override
-    public List<CallForProposal> getCallForProposalByAuthor(int authorId) throws CallForProposalNotFoundException {
-        String sqlSelect = "SELECT * FROM callforproposals WHERE author=?";
+    public List<CallForProposal> getCallForProposalByAuthor(String authorMail) throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals " +
+                "JOIN clients ON callforproposals.author = clients.id_clients " +
+                "WHERE clients.username=?";
         List<CallForProposal> calls = new ArrayList<>();
 
         try{
             PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
-            pstatement.setInt(1, authorId);
+            pstatement.setString(1, authorMail.trim());
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/
@@ -156,7 +157,7 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
             throwables.printStackTrace();
         }
         if(calls.isEmpty()){
-            throw new CallForProposalNotFoundException(authorId);
+            throw new CallForProposalNotFoundException(authorMail);
         }
         return calls;
     }
@@ -230,17 +231,16 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     public int createCallForProposal(CallForProposal cfp) {
         //TODO: Remplacer par des autoincrémentales keys
         int affectRows = 0;
-        String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
-                "VALUES (?,?,?,?,?,?,?)";
+        String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, author, status, building) " +
+                "VALUES (?,?,?,?,?,?)";
         try{
             PreparedStatement pstmt = this.connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1,cfp.getTitle());
             pstmt.setString(2,cfp.getGeneral_description());
             pstmt.setBytes(3,cfp.getSignature());
-            pstmt.setInt(4,cfp.getIdReport());
-            pstmt.setInt(5,cfp.getIdClientAuthor());
-            pstmt.setString(6,cfp.getStatus());
-            pstmt.setInt(7,cfp.getBuilding());
+            pstmt.setInt(4,cfp.getIdClientAuthor());
+            pstmt.setString(5,cfp.getStatus());
+            pstmt.setInt(6,cfp.getBuilding());
 
             affectRows = pstmt.executeUpdate();
             pstmt.close();
@@ -258,7 +258,6 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
                 "title = ?, " +
                 "general_description = ? , " +
                 "imgsignature = ?, " +
-                "report = ?, " +
                 "author = ?, " +
                 "status = ?, " +
                 "building = ? " +
@@ -268,11 +267,10 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
             pstmt.setString(1,cfp.getTitle());
             pstmt.setString(2,cfp.getGeneral_description());
             pstmt.setBytes(3,cfp.getSignature());
-            pstmt.setInt(4,cfp.getIdReport());
-            pstmt.setInt(5,cfp.getIdClientAuthor());
-            pstmt.setString(6,cfp.getStatus());
-            pstmt.setInt(7,cfp.getBuilding());
-            pstmt.setInt(8,idCFP);
+            pstmt.setInt(4,cfp.getIdClientAuthor());
+            pstmt.setString(5,cfp.getStatus());
+            pstmt.setInt(6,cfp.getBuilding());
+            pstmt.setInt(7,idCFP);
 
             affectRows = pstmt.executeUpdate();
         }
@@ -286,20 +284,18 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     public int deleteCallForProposal(CallForProposal cfp) throws CallForProposalDeleteImpossibleException {
         int affectRows = 0;
 
-        //S'il y a des rapports associés à des call for proposal, la suppression est impossible
-        if (cfp.getIdReport() != -1)
-            throw new CallForProposalDeleteImpossibleException(cfp.getId());
-        else {
-            String sqlDelete = "DELETE FROM callforproposals WHERE idcfp=?";
-            try{
-                PreparedStatement pstmt = this.connection.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setInt(1, cfp.getId());
+        //todo: vérifier s'il y a des rapports associés à un CFP
 
-                affectRows = pstmt.executeUpdate();
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
+        //S'il y a des rapports associés à des call for proposal, la suppression est impossible
+        String sqlDelete = "DELETE FROM callforproposals WHERE idcfp=?";
+        try{
+            PreparedStatement pstmt = this.connection.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, cfp.getId());
+
+            affectRows = pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
         return affectRows;
     }

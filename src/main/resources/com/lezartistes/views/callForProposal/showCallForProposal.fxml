@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.lezartistes.controllers.company.CompanyListController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
     <top>
         <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <items>
@@ -22,7 +22,7 @@
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <ToolBar layoutX="32.0" layoutY="24.0">
+                        <ToolBar layoutX="5.0" layoutY="24.0">
                             <items>
                                 <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                                     <font>
@@ -38,7 +38,7 @@
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" text="Help ?">
+                                <Button mnemonicParsing="false" onAction="#redirectToCFPList" text="Call for proposal">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
@@ -51,17 +51,43 @@
     </top>
     <center>
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
             <children>
-                <Label layoutX="155.0" layoutY="14.0" text="List of companies">
+                <Label contentDisplay="CENTER" layoutX="162.0" layoutY="18.0" text="Call for proposal">
                     <font>
-                        <Font size="38.0" />
+                        <Font name="System" size="38.0" />
                     </font>
                 </Label>
-                <ListView fx:id="companiesList" layoutX="96.0" layoutY="132.0" onMouseClicked="#displayCompanyProfile" prefHeight="138.0" prefWidth="409.0" />
-                <Label layoutX="143.0" layoutY="69.0" text="choose one company to display all of the related feedbacks" />
-                <TextField fx:id="searchInput" layoutX="95.0" layoutY="99.0" onKeyTyped="#onType" prefHeight="25.0" prefWidth="409.0" promptText="Looking for a specific company ? Search for its name !" />
+
+                <ImageView fitHeight="94.0" fitWidth="85.0" layoutX="45.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../asset/cfp.png" />
+                    </image>
+                </ImageView>
+
+                <Pane layoutX="142.0" layoutY="46.0" prefHeight="250.0" prefWidth="442.0">
+                    <children>
+                        <Label id="general_description" fx:id="general_description" layoutX="15.0" layoutY="80.0" prefHeight="90.0" prefWidth="394.0"/>
+                        <Label wrapText="true" id="title" fx:id="title" contentDisplay="CENTER" layoutX="-72.0" layoutY="26.0" prefHeight="57.0" prefWidth="428.0">
+                         <font>
+                            <Font name="System Bold Italic" size="18.0" />
+                         </font></Label>
+
+                  <Label layoutX="121.0" layoutY="199.0" text="Status :">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="status" layoutX="181.0" layoutY="199.0" prefHeight="17.0" prefWidth="101.0" />
+                  <Label layoutX="120.0" layoutY="167.0" text="Author :">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="author" layoutX="181.0" layoutY="167.0" prefHeight="17.0" prefWidth="125.0" />
+                  <Button layoutX="172.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#closeStage" text="Back" />
+                    </children>
+                </Pane>
             </children>
         </Pane>
     </center>
-
 </BorderPane>

@@ -1,6 +1,5 @@
 package com.lezartistes.dao.history;
 
-import com.lezartistes.facades.HistoryFacade;
 import com.lezartistes.models.History;
 
 import java.sql.*;
@@ -45,6 +44,40 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     @Override
+    public List<History> getHistoryByClientId(String mailClient) {
+        String sqlSelect = "" +
+                "SELECT H.date, H.description, H.idhistory, C.username " +
+                "FROM histories H " +
+                "JOIN buildings B ON B.id_building = H.relatedbuilding " +
+                "JOIN clients C ON C.id_clients = B.client " +
+                "WHERE C.username = ?;";
+        List<History> histories = new ArrayList<>();
+
+        try {
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setString(1, mailClient);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            System.out.println("-- ca commence --");
+            while (resultSet.next()) {
+                System.out.println("On ajoute un building en plus de notre réponse");
+                System.out.println(resultSet.getString(4));
+                histories.add(this.resultSetToHistory(resultSet));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return histories;
+    }
+
+    @Override
+    public List<History> getHistoryBySPId(int idSP) {
+        return null;
+    }
+
+    @Override
     public List<History> getAllHistory() {
         String sqlSelect = "SELECT * FROM histories";
         List<History> histories = new ArrayList<>();
@@ -83,6 +116,6 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     private History resultSetToHistory (ResultSet rs) throws SQLException {
-        return new History(rs.getInt(4), rs.getDate(2), rs.getString(3));
+        return new History(rs.getInt(3), rs.getDate(1), rs.getString(2));
     }
 }

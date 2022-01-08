@@ -4,16 +4,12 @@ package com.lezartistes.models;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Locale;
 
 public class CallForProposal {
     private int idCFP;
     private String title;
     private String general_description;
     private byte[] signature;
-
-    //l'idReport vaut -1 s'il n'y a pas encore de rapport associé
-    private int idReport;
     private int idClientAuthor;
     private Status status;
     private int building;
@@ -23,15 +19,13 @@ public class CallForProposal {
      * @param title
      * @param general_description
      * @param imgSignature
-     * @param idReport
      * @param idClient
      */
-    public CallForProposal(String title, String general_description, byte[] imgSignature, int idReport, int idClient, int building){
+    public CallForProposal(String title, String general_description, byte[] imgSignature, int idClient, int building){
         this.title = title;
         this.general_description = general_description;
         this.signature = imgSignature;
         this.status = Status.DRAFT;
-        this.idReport = -1;
         this.idClientAuthor = idClient;
         this.building = building;
     }
@@ -39,7 +33,7 @@ public class CallForProposal {
     /*toString*/
     //todo: voir si on a besoin de rajouter des choses dans le toString
     public String toString(){
-        return this.title;
+        return this.title + " (" + this.status + ") ";
     }
 
     public static byte[] fileToBytes(File file) throws IOException {
@@ -93,14 +87,6 @@ public class CallForProposal {
 
     public void setSignature(byte[] signature) {
         this.signature = signature;
-    }
-
-    public int getIdReport() {
-        return idReport;
-    }
-
-    public void setIdReport(int idReport) {
-        this.idReport = idReport;
     }
 
     public int getIdClientAuthor() {

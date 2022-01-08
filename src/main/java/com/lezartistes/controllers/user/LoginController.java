@@ -41,8 +41,12 @@ public class LoginController {
             UserInformation.setUser(ourUser);
 
             System.out.println("Vous avez réussi à vous connecter");
-            App.setRoot("views/accueilClient");
-            App.setRoot("views/accueilExpert");
+            System.out.println("Votre user est il un SP ? " + UserInformation.isServiceProvider());
+            if ( ! UserInformation.isServiceProvider())
+                App.setRoot("views/accueilClient");
+            else
+                App.setRoot("views/accueilExpert");
+
         } catch (UserNotFoundException e) {
             System.out.println("L'utilisateur n'existe pas");
         } catch (IOException e) {

@@ -52,6 +52,11 @@ public class PostgresFactory implements AbstractFactory {
         return CompanyDAOPostgres.getInstance(connection);
     }
 
+    @Override
+    public CallForProposalDAO createCallForProposalDAO() {
+        return CallForProposalDAOPostgres.getInstance(connection);
+    }
+
     public ClientDAO createClientDAO(){ return ClientDAOPostgres.getInstance(connection);}
 
     public ReportDAO createReportDAO(){return ReportDAOPostgres.getInstance(connection);}
