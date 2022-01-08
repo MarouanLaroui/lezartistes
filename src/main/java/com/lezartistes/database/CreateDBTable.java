@@ -244,6 +244,21 @@ public class CreateDBTable {
         }
     }
 
+    public void alterTableCallForProposal(){
+
+        try {
+            Statement stmtFK = null;
+            stmtFK = connection.createStatement();
+            String sqlFK =
+                    "ALTER TABLE callforproposals " +
+                            "ADD FOREIGN KEY (author) REFERENCES clients(id_clients)";
+            stmtFK.execute(sqlFK);
+            System.out.println("FK in callforproposals on client added ");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void creteHistoryTable() {
         try{
             Statement stmt = connection.createStatement();
@@ -390,7 +405,8 @@ public class CreateDBTable {
         //cTable.createUserTable();
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
-        cTable.insertIntoCallForProposalTable();
+        //cTable.insertIntoCallForProposalTable();
+        cTable.alterTableCallForProposal();
 
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
