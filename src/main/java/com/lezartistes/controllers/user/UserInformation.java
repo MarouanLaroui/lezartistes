@@ -20,6 +20,10 @@ public class UserInformation {
         return user;
     }
 
+    public static boolean getIsSP() {
+        return isSP;
+    }
+
     public static boolean isServiceProvider () {
         return isSP;
     }

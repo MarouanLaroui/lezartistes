@@ -116,10 +116,10 @@ public class ClientListController implements Initializable {
         this.clientsList.setItems(new FilteredList<>(FXCollections.observableList(this.filterByName(this.clients,searchedName))));
     }
 
-    //TODO : rediriger vers bonne page
+    //TODO : rediriger vers bonne page en fonction du type
     public void redirectToHome(MouseEvent mouseEvent) {
         try {
-            App.setRoot("");
+            App.setRoot("views/accueilExpert");
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.callForProposal.CallForProposalListController">
+    <top>
+        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <items>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/logo.png" />
+                            </image></ImageView>
+                    </children>
+                </Pane>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ToolBar layoutX="32.0" layoutY="24.0">
+                            <items>
+                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font></Button>
+                                <Button mnemonicParsing="false" text="Account">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Help ?">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                            </items>
+                        </ToolBar>
+                    </children></Pane>
+            </items>
+        </SplitPane>
+    </top>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="101.0" layoutY="14.0" text="List of call for proposals">
+                    <font>
+                        <Font size="38.0" />
+                    </font>
+                </Label>
+                <Button fx:id="addButton" layoutX="281.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#addCallForProposal" text="Add" />
+                <Button fx:id="archiveButton" onMouseClicked="#archiveCallForProposal" cancelButton="true" layoutX="453.0" layoutY="270.0" mnemonicParsing="false" text="Archive" />
+                <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="243.0" prefHeight="24.0" prefWidth="435.0" textFill="RED" />
+                <Label fx:id="info" contentDisplay="CENTER" layoutX="121.0" layoutY="69.0" prefHeight="19.0" prefWidth="357.0" textFill="ORANGE" />
+            <TableView fx:id="cfpTable" layoutX="83.0" layoutY="87.0" prefHeight="156.0" prefWidth="434.0">
+              <columns>
+                <TableColumn fx:id="title" prefWidth="355.39998626708984" text="Title" />
+              <TableColumn fx:id="status" minWidth="0.0" prefWidth="71.79998779296875" text="Status" />
+              </columns>
+            </TableView>
+            <Button fx:id="details" onMouseClicked="#showDetails" layoutX="101.0" layoutY="270.0" mnemonicParsing="false" text="Show details" />
+            </children>
+        </Pane>
+    </center>
+
+</BorderPane>

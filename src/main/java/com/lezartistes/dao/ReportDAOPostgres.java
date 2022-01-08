@@ -88,7 +88,7 @@ public class ReportDAOPostgres extends ReportDAO{
             pstatement.setInt(1,id);
             ResultSet rs = pstatement.executeQuery();
 
-            /*Renvoie les rapport si trouvés, rempli le tableau*/
+            /*Renvoie les rapports si trouvés, rempli le tableau*/
             while (rs.next()){
                 reports.add(this.resultSetToReport(rs));
             }
