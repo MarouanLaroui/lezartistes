@@ -29,6 +29,9 @@ module com.lezartistes {
     opens com.lezartistes.controllers.feedback to javafx.fxml;
     exports com.lezartistes.controllers.feedback;
 
+    opens com.lezartistes.controllers.callForProposal to javafx.fxml;
+    exports com.lezartistes.controllers.callForProposal;
+
 
 
     opens com.lezartistes.controllers to javafx.fxml;

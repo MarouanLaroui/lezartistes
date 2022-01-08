@@ -5,14 +5,11 @@ import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.exceptions.FeedbackNotFoundException;
-import com.lezartistes.facades.CompanyFacade;
 import com.lezartistes.facades.FeedbackFacade;
 import com.lezartistes.models.Company;
 import com.lezartistes.models.Feedback;
-import com.lezartistes.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +23,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 

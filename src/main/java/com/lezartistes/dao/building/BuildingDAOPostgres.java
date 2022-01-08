@@ -40,7 +40,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public List<Building> getAllBuilding() throws BuildingNotFoundException{
         List<Building> buildings = new ArrayList<>();
-        String sqlSelect = "SELECT * FROM buidlings";
+        String sqlSelect = "SELECT * FROM buildings";
 
         try {
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
@@ -62,7 +62,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public Building getBuildingById(int id) throws BuildingNotFoundException{
         Building building = null;
-        String sqlSelect = "SELECT * FROM buildings WHERE idBuilding=?";
+        String sqlSelect = "SELECT * FROM buildings WHERE id_Building=?";
 
         try {
 
@@ -88,7 +88,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public Building getBuildingByClient(int idc) throws BuildingNotFoundException{
         Building building = null;
-        String sqlSelect = "SELECT * FROM buildings WHERE client=?";
+        String sqlSelect = "SELECT * FROM buildings WHERE clients=?";
 
         try {
 
@@ -115,7 +115,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
     public Building createBuilding(Building b){
         PreparedStatement ps = null;
         try {
-            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_builder,design_office) VALUES (?, ?, ?, ?, ?, ?)");
+            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_building,design_office) VALUES (?, ?, ?, ?, ?, ?)");
             ps.setString(1,b.getName());
             ps.setString(2,b.getRegion());
             ps.setDouble(3,b.getBudget());
@@ -134,19 +134,19 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return b;
     }
 
-    public int modifyBuilding(int id) throws BuildingNotFoundException{
+    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
         int affectRows = 0;
         String sqlUpdate = "UPDATE buildings SET " +
                 "name = ?, " +
                 "region = ? , " +
                 "budget = ? " +
-                "WHERE idfeedback = ?";
+                "WHERE id_building = ?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, fb.getRating());
-            pstmt.setString(2, fb.getComment());
-            pstmt.setInt(3, fb.getCompany());
-            pstmt.setInt(1, idFeedback);
+            pstmt.setString(1, b.getName());
+            pstmt.setString(2, b.getRegion());
+            pstmt.setDouble(3, b.getBudget());
+            pstmt.setInt(4, id);
 
             affectRows = pstmt.executeUpdate();
         }
@@ -158,7 +158,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{
         int affectRows = 0;
-        String sqlDelete = "DELETE FROM buildings WHERE idBuilding=?";
+        String sqlDelete = "DELETE FROM buildings WHERE id_building=?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, id);

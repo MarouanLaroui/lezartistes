@@ -111,7 +111,7 @@ public class ClientDAOPostgres extends ClientDAO{
             else
                 throw new UserNotFoundException(email);
         } catch (SQLException | UserNotFoundException e){
-            e.printStackTrace();
+            //e.printStackTrace();
             c = null;
         }
         return c;

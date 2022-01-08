@@ -80,9 +80,36 @@ public class CreateDBTable {
                     " master_building VARCHAR(50)," +
                     " construction_company VARCHAR(50),"+
                     " design_office VARCHAR(50), "+
-                    " client int)";
+                    " client int," +
+                    " FOREIGN KEY (client) REFERENCES clients(id_clients))";
             stmt.execute(sql);
             System.out.println("Table Building created ");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void alterTableBuilding(){
+        try{
+            /*Statement stmtColumn = connection.createStatement();
+
+            String sqlColumn =
+                    "ALTER TABLE buildings " +
+                    "ADD client int ";
+            stmtColumn.execute(sqlColumn);
+            System.out.println("Column client added ");*/
+
+
+            Statement stmtFK = connection.createStatement();
+
+            String sqlFK =
+                    "ALTER TABLE buildings " +
+                    "ADD FOREIGN KEY (client) REFERENCES clients(id_clients)";
+            stmtFK.execute(sqlFK);
+            System.out.println("FK in building on client added ");
+
+
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -116,7 +143,7 @@ public class CreateDBTable {
         try{
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS clients;" +
+            String sql = "DROP TABLE IF EXISTS clients CASCADE;" +
                     "CREATE TABLE clients " +
                     "(id_clients SERIAL PRIMARY KEY," +
                     " username VARCHAR(50), " +
@@ -249,12 +276,7 @@ public class CreateDBTable {
             stmt.executeUpdate(sqlInsert);
             sqlInsert = "INSERT INTO clients(username, password, name, surname, street, complement, city, postal_code, phone_number) VALUES ('marouanLaouri@gmail.com', '123456', 'Julien','laroui','6 rue de la palissade','Batiment A','Montpellier',34000,0658003255)";
             stmt.executeUpdate(sqlInsert);
-            /*
-            while(rs.next()){
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getString(3));
-            }
-             */
+
             System.out.println("finish");
             System.out.println(affectRows);
 
@@ -311,6 +333,52 @@ public class CreateDBTable {
         }
     }
 
+    public void insertIntoCallForProposalTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            String sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
+                    "VALUES ('Inspection de la maison de papa Michel', 'Il faut vraiment le regarder le boug, à la recherche de soucis techniques.', '../../resources/com.lezartistes/asset/signature.jpg',15, 1,'DRAFT',1)";
+            //int affectRows = stmt.executeUpdate(sqlInsert);
+
+            sqlInsert = "INSERT INTO callforproposals(title, general_description, imgsignature, report, author, status, building) " +
+                    "VALUES ('Inspection du Viaduc de Millau', '0 soucis à mona vis, le constructeur était un bon.', '../../resources/com.lezartistes/asset/signature.jpg',null, 1,'POSTED',1)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void insertIntoBuildingTable(){
+        try{
+
+            Statement stmt = this.connection.createStatement();
+            /*String sqlInsert = "INSERT INTO buildings(name, region, budget, construction_date, master_building, construction_company, design_office, client) " +
+                    "VALUES ('Maison papa michel','Sud',12546,'2015-01-16','Papa michel','Papa michel Building','Ouais ouais ouais', 1)";
+            int affectRows = stmt.executeUpdate(sqlInsert);*/
+
+            String sqlInsert = "INSERT INTO buildings(name, region, budget, construction_date, master_building, construction_company, design_office, client) " +
+                    "VALUES ('Viaduc de Millau','Sud',12546,'2015-01-16','Papa michel','Papa michel Building','Ouais ouais ouais', 1)";
+            int affectRows = stmt.executeUpdate(sqlInsert);
+
+
+            System.out.println("finish");
+            System.out.println(affectRows);
+
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) {
 
         CreateDBTable cTable = new CreateDBTable();
@@ -321,15 +389,17 @@ public class CreateDBTable {
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
-        cTable.createCallForProposalTable();
+        //cTable.createCallForProposalTable();
+        cTable.insertIntoCallForProposalTable();
 
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
+        //cTable.alterTableBuilding();
 
         //cTable.createServiceProvider();
         //cTable.creteHistoryTable();
 
-
+        //cTable.insertIntoBuildingTable();
     }
 }
