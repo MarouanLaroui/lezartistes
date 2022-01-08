@@ -16,7 +16,7 @@ public class ClientDAOPostgres extends ClientDAO{
     private final Connection coToDB;
 
     /*constructor*/
-    private ClientDAOPostgres(Connection connection){
+    public ClientDAOPostgres(Connection connection){
         this.coToDB = connection;
     }
 
@@ -111,7 +111,7 @@ public class ClientDAOPostgres extends ClientDAO{
             else
                 throw new UserNotFoundException(email);
         } catch (SQLException | UserNotFoundException e){
-            e.printStackTrace();
+            //e.printStackTrace();
             c = null;
         }
         return c;

@@ -40,10 +40,10 @@
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Help ?">
-                           <font>
-                              <Font name="Lucida Calligraphy Italic" size="14.0" />
-                           </font>
+                        <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="91.0" text="Call For Proposal" onAction="#redirectToCFPList">
+                            <font>
+                                <Font name="Lucida Calligraphy Italic" size="14.0" />
+                            </font>
                         </Button>
                     </items>
                   </ToolBar>

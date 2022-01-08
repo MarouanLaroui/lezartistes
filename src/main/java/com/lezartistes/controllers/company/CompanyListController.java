@@ -1,9 +1,13 @@
 package com.lezartistes.controllers.company;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
+import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.facades.CompanyFacade;
+import com.lezartistes.models.Client;
 import com.lezartistes.models.Company;
+import com.lezartistes.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -22,11 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CompanyListController implements Initializable {
+public class CompanyListController extends GeneralController implements Initializable {
     /*attributes*/
     CompanyFacade companyFacade;
     List<Company> companies;
     private Stage stage;
+    private User user;
 
     @FXML
     private ListView<Company> companiesList;
@@ -40,8 +45,12 @@ public class CompanyListController implements Initializable {
     /*methods*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO: retirer une fois les tests finis
+        /*User u = new User("ophelie@gmail.com", "mdp", true);
+        this.user = UserInformation.setUser(new Client(u));*/
+
         try {
-            this.companies = companyFacade.getAllCompanies();
+            this.companies = this.companyFacade.getAllCompanies();
             this.companiesList.setItems(new FilteredList<>(FXCollections.observableList(this.companies)));
         } catch (CompanyNotFoundException e) {
             e.printStackTrace();
