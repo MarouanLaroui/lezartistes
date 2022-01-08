@@ -29,7 +29,7 @@ public class App extends Application {
         //scene = new Scene(loadFXML("views/report/ReportForm"), 640, 480);
         //scene = new Scene(loadFXML("views/company/companyList"), 640, 480);
         //scene = new Scene(loadFXML("views/company/companyProfile"), 640, 480);
-
+        //scene = new Scene(loadFXML("views/building/listBuilding"), 640, 480);
         stage.setScene(scene);
         //stage.show();
 
