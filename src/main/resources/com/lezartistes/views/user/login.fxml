@@ -9,34 +9,34 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.LoginController">
 
     <children>
-        <ImageView fitHeight="214.0" fitWidth="216.0" layoutX="93.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="214.0" fitWidth="216.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../asset/logo.png" />
             </image>
         </ImageView>
-        <Label layoutX="94.0" layoutY="186.0" text="Welcome back !">
+        <Label layoutX="194.0" layoutY="158.0" text="Welcome back !" textAlignment="CENTER">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="26.0" />
             </font>
         </Label>
-        <TextField fx:id="username" layoutX="132.0" layoutY="286.0" prefHeight="26.0" prefWidth="149.0" />
-        <Label layoutX="129.0" layoutY="263.0" text="Username">
+        <TextField fx:id="username" layoutX="226.0" layoutY="232.0" prefHeight="26.0" prefWidth="149.0" />
+        <Label layoutX="223.0" layoutY="209.0" text="Username">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="131.0" layoutY="330.0" text="Password">
+        <Label layoutX="225.0" layoutY="276.0" text="Password">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="14.0" />
             </font>
         </Label>
-        <Button layoutX="129.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Login" textAlignment="CENTER">
+        <Button layoutX="223.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Login" textAlignment="CENTER">
             <font>
                 <Font name="Lucida Calligraphy Italic" size="14.0" />
             </font>
         </Button>
-        <PasswordField fx:id="password" layoutX="131.0" layoutY="353.0" prefHeight="26.0" prefWidth="150.0" />
-      <Button layoutX="213.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToSignIn" text="SignIn">
+        <PasswordField fx:id="password" layoutX="225.0" layoutY="299.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button layoutX="307.0" layoutY="338.0" mnemonicParsing="false" onAction="#switchToSignIn" text="SignIn">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font></Button>

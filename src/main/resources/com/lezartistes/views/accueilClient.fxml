@@ -11,7 +11,7 @@
         <items>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="152.0" fitWidth="142.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../asset/logo.png" />
                      </image></ImageView>
@@ -35,6 +35,7 @@
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font>
                         </Button>
+
                         <Button mnemonicParsing="false" onAction="#goToHistory" text="History">
                            <font>
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
@@ -54,7 +55,7 @@
    <center>
       <Label prefWidth="327.0" text="Bienvenue ! " BorderPane.alignment="CENTER">
          <font>
-            <Font name="Lucida Calligraphy Italic" size="50.0" />
+            <Font name="Lucida Calligraphy Italic" size="27.0" />
          </font>
       </Label>
    </center>

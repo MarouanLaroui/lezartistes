@@ -11,7 +11,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -49,6 +51,8 @@ public class SignInController {
     private TextField postal_code_client;
     @FXML
     private TextField phone_number_client;
+    @FXML
+    private Button back;
 
     @FXML protected void clientSide(ActionEvent event) throws Exception {
         App.setRoot("views/user/signInClient");
@@ -85,5 +89,10 @@ public class SignInController {
         if (ret == 1)
             App.setRoot("views/user/login");
         //TODO : Traiter l'erreur si la création de compte ne marche pas
+    }
+
+    @FXML
+    public void redirectToLogin(MouseEvent event) throws IOException {
+        App.setRoot("views/user/login");
     }
 }
