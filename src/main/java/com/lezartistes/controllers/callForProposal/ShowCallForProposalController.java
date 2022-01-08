@@ -1,7 +1,9 @@
 package com.lezartistes.controllers.callForProposal;
 
 import com.lezartistes.controllers.GeneralController;
+import com.lezartistes.exceptions.CFPIllegalChangeOfStateException;
 import com.lezartistes.exceptions.ClientNotFoundException;
+import com.lezartistes.facades.CallForProposalFacade;
 import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
@@ -37,7 +39,11 @@ public class ShowCallForProposalController extends GeneralController implements 
     @FXML
     private Button save;
 
+    @FXML
+    private Label error;
+
     private CallForProposal callForProposal;
+    private CallForProposalFacade callForProposalFacade;
     private Stage stage;
     private final ClientFacade clientFacade;
 
@@ -45,6 +51,7 @@ public class ShowCallForProposalController extends GeneralController implements 
         this.callForProposal = cfp;
         this.stage = stage;
         this.clientFacade = ClientFacade.getInstance();
+        this.callForProposalFacade = CallForProposalFacade.getInstance();
     }
 
 
@@ -73,9 +80,32 @@ public class ShowCallForProposalController extends GeneralController implements 
     @FXML
     public void showSaveButton(MouseEvent event){
         this.save.setVisible(true);
+    }
 
+    @FXML
+    public void saveNewStatus(MouseEvent event){
+        String selectedStatus = this.newStatus.getValue();
 
-
+        try {
+            switch (selectedStatus){
+                case "DRAFT":
+                    this.callForProposalFacade.setStatusToDraft(this.callForProposal);
+                    break;
+                case "POSTED":
+                    this.callForProposalFacade.setStatusToPosted(this.callForProposal);
+                    break;
+                case "OVER":
+                    this.callForProposalFacade.setStatusToOver(this.callForProposal);
+                    break;
+                case "ARCHIVED":
+                    this.callForProposalFacade.setStatusToArchived(this.callForProposal);
+                    break;
+            }
+        }
+        catch (CFPIllegalChangeOfStateException e) {
+            this.error.setText("You cannot change this call for proposal from "+this.callForProposal.getStatus()+" to "+ selectedStatus);
+            //e.printStackTrace();
+        }
 
     }
 

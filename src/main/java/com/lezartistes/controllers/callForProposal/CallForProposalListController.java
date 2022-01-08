@@ -185,8 +185,4 @@ public class CallForProposalListController extends GeneralController implements 
         }
 
     }
-
-
-    //updateCFP -> updateCallForProposal
-    //archiveCFP, postCFP, draftCFP, endCFP -> setStatusTo....
 }
