@@ -3,10 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="201.0" layoutX="97.0" layoutY="113.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="404.0" />
       <Label layoutX="98.0" layoutY="62.0" text="Create a new Expert account">
          <font>
             <Font name="Lucida Calligraphy Italic" size="26.0" />
@@ -34,5 +36,10 @@
             <Image url="@../../asset/logo.png" />
          </image>
       </ImageView>
+
+      <Button fx:id="back" layoutX="69.0" layoutY="329.0" mnemonicParsing="false" onMouseClicked="#redirectToLogin" text="Back to login">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>
