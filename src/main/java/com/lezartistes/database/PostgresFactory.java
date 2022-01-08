@@ -64,6 +64,9 @@ public class PostgresFactory implements AbstractFactory {
     public QuotationDAO createQuotationDAO(){return QuotationDAOPostgres.getInstance(connection);}
 
     @Override
+    public CallForProposalDAO createCallForProposalDAO(){return CallForProposalDAOPostgres.getInstance(connection);
+    }
+    @Override
     public ServiceProviderDAO createSPDAO() {
         return ServiceProviderDAOPostgres.getInstance(connection);
     }

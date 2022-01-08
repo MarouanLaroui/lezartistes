@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.building.ReadBuildingController">
+    <top>
+        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <items>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../asset/logo.png" />
+                            </image></ImageView>
+                    </children>
+                </Pane>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ToolBar layoutX="32.0" layoutY="24.0">
+                            <items>
+                                <Button mnemonicParsing="false" text="Home">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font></Button>
+                                <Button mnemonicParsing="false" text="Account">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="MessageBox">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Help ?">
+                                    <font>
+                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                                    </font>
+                                </Button>
+                            </items>
+                        </ToolBar>
+                    </children></Pane>
+            </items>
+        </SplitPane>
+    </top>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Label fx:id="name" layoutX="264.0" layoutY="7.0" text="Name">
+                <font>
+                    <Font name="System Bold" size="27.0" />
+                </font>
+            </Label>
+            <children>
+                <Label layoutX="60.0" layoutY="66.0" text="Region :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <Label layoutX="59.0" layoutY="101.0" text="Budget : ">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <Label layoutX="55.0" layoutY="195.0" text="Construction Date :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <Label layoutX="61.0" layoutY="165.0" text="Master Builder :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <Label layoutX="60.0" layoutY="134.0" text="Design Office :">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+
+                <Label fx:id="region" layoutX="208.0" layoutY="66.0" maxHeight="32.0" maxWidth="350.0" minHeight="16.0" minWidth="105.0" prefHeight="16.0" prefWidth="105.0" style="-fx-background-color: white;" text="to_fill_desc" />
+                <Label fx:id="budget" layoutX="208.0" layoutY="100.0" maxHeight="17.0" maxWidth="92.0" minHeight="17.0" minWidth="92.0" prefHeight="17.0" prefWidth="92.0" style="-fx-background-color: white;" text="to_fill_temp" />
+                <Label fx:id="construction_date" layoutX="208.0" layoutY="133.0" maxHeight="17.0" maxWidth="92.0" minHeight="17.0" minWidth="92.0" prefHeight="17.0" prefWidth="92.0" style="-fx-background-color: white;" text="to_fill_inspect" />
+                <Label fx:id="master_builder" layoutX="208.0" layoutY="164.0" maxHeight="17.0" maxWidth="92.0" minHeight="17.0" minWidth="92.0" prefWidth="92.0" style="-fx-background-color: white;" text="to_fill_nec_means" />
+                <Label fx:id="design_office" layoutX="208.0" layoutY="194.0" maxHeight="17.0" maxWidth="92.0" minHeight="17.0" minWidth="92.0" prefWidth="92.0" style="-fx-background-color: white;" text="to_fill_nec_means" />
+                <Button layoutX="170.0" layoutY="238.0" mnemonicParsing="false" text="View History" onAction="#goOnViewHistory" />
+            </children>
+        </Pane>
+    </center>
+</BorderPane>
