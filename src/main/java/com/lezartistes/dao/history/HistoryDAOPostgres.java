@@ -23,7 +23,6 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     public List<History> getAllHistoryByBuildingId(int idBuilding) {
-        System.out.println("id de notre building : " + idBuilding);
         String sqlSelect = "SELECT * FROM histories WHERE relatedBuilding = ?";
         List<History> histories = new ArrayList<>();
 
@@ -46,7 +45,7 @@ public class HistoryDAOPostgres extends HistoryDAO {
     @Override
     public List<History> getHistoryByClientId(String mailClient) {
         String sqlSelect = "" +
-                "SELECT H.date, H.description, H.idhistory, C.username " +
+                "SELECT H.date, H.description, H.idhistory " +
                 "FROM histories H " +
                 "JOIN buildings B ON B.id_building = H.relatedbuilding " +
                 "JOIN clients C ON C.id_clients = B.client " +
@@ -59,10 +58,7 @@ public class HistoryDAOPostgres extends HistoryDAO {
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/
-            System.out.println("-- ca commence --");
             while (resultSet.next()) {
-                System.out.println("On ajoute un building en plus de notre réponse");
-                System.out.println(resultSet.getString(4));
                 histories.add(this.resultSetToHistory(resultSet));
             }
         }

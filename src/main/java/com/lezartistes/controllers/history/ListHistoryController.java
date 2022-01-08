@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ public class ListHistoryController extends HistoryController implements Initiali
 
     @FXML
     private ListView<History> historyList;
+    @FXML
+    private Button addnewHistorybtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,6 +33,7 @@ public class ListHistoryController extends HistoryController implements Initiali
             hist = new ArrayList<>(this.historyFacade.getHistoryByClientId(UserInformation.getUser().getMail()));
         } else {
             hist = new ArrayList<>(this.historyFacade.getHistoryBySPMail(UserInformation.getUser().getMail()));
+            this.addnewHistorybtn.setVisible(false);
         }
         this.historyList.setItems(new FilteredList<>(FXCollections.observableList(hist)));
     }
