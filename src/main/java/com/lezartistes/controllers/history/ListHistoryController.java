@@ -1,17 +1,15 @@
 package com.lezartistes.controllers.history;
 
 import com.lezartistes.App;
-import com.lezartistes.controllers.GeneralController;
-import com.lezartistes.controllers.report.ReadReportController;
-import com.lezartistes.facades.HistoryFacade;
+import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.models.History;
-import com.lezartistes.models.Report;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -25,10 +23,18 @@ public class ListHistoryController extends HistoryController implements Initiali
 
     @FXML
     private ListView<History> historyList;
+    @FXML
+    private Button addnewHistorybtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ArrayList<History> hist = new ArrayList<>(this.historyFacade.getAllHistory());
+        ArrayList<History> hist;
+        if ( ! UserInformation.isServiceProvider()) {
+            hist = new ArrayList<>(this.historyFacade.getHistoryByClientId(UserInformation.getUser().getMail()));
+        } else {
+            hist = new ArrayList<>(this.historyFacade.getHistoryBySPMail(UserInformation.getUser().getMail()));
+            this.addnewHistorybtn.setVisible(false);
+        }
         this.historyList.setItems(new FilteredList<>(FXCollections.observableList(hist)));
     }
 
@@ -41,8 +47,8 @@ public class ListHistoryController extends HistoryController implements Initiali
     protected void clickOnHistory(MouseEvent mouseEvent) throws IOException {
 
         Stage stage = new Stage();
-        stage.setHeight(280);
-        stage.setWidth(610);
+        stage.setHeight(600);
+        stage.setWidth(600);
 
         History selectedHisto = this.historyList.getSelectionModel().getSelectedItem();
         if (selectedHisto != null) {

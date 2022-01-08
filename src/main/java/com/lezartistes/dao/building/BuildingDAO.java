@@ -1,14 +1,11 @@
 package com.lezartistes.dao.building;
 
 import com.lezartistes.exceptions.BuildingNotFoundException;
-import com.lezartistes.exceptions.ClientNotFoundException;
-import com.lezartistes.facades.BuildingFacade;
 import com.lezartistes.models.Building;
-import com.lezartistes.models.Client;
 
 import java.io.Serializable;
 import java.util.List;
-
+//TODO récupérer l'id du client qui créer le building
 public abstract class BuildingDAO implements Serializable {
 
     public BuildingDAO(){
@@ -22,6 +19,8 @@ public abstract class BuildingDAO implements Serializable {
     public abstract Building getBuildingByClient(int idc) throws BuildingNotFoundException;
 
     public abstract int getBuildingIdByName(String name) throws BuildingNotFoundException;
+
+    public abstract List<Building> getBuildingByMailClient(String mail);
 
     public abstract Building createBuilding(Building b);
 

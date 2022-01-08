@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.history.ListHistoryController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.building.ListBuildingController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" >
     <top>
         <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <items>
@@ -21,7 +21,7 @@
                     <children>
                         <ToolBar layoutX="32.0" layoutY="24.0">
                             <items>
-                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+                                <Button mnemonicParsing="false" text="Home">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font></Button>
@@ -30,7 +30,7 @@
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" onAction="#redirectToClientList" text="Clients">
+                                <Button mnemonicParsing="false" text="MessageBox">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
@@ -46,18 +46,19 @@
             </items>
         </SplitPane>
     </top>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView fx:id="historyList" layoutX="71.0" layoutY="100.0" onMouseClicked="#clickOnHistory" prefHeight="180.0" prefWidth="459.0" />
-            <ScrollBar layoutX="523.0" layoutY="101.0" orientation="VERTICAL" prefHeight="178.0" prefWidth="15.0" />
-            <Label layoutX="185.0" layoutY="14.0" text="List of History">
-               <font>
-                  <Font size="38.0" />
-               </font>
-            </Label>
-            <Button fx:id="addnewHistorybtn" layoutX="248.0" layoutY="69.0" mnemonicParsing="false" onAction="#addNewHistory" text="Add new History" />
-         </children>
-      </Pane>
-   </center>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ListView fx:id="buildingList" layoutX="71.0" layoutY="100.0" onMouseClicked="#clickOnBuilding" prefHeight="180.0" prefWidth="459.0" />
+                <ScrollBar layoutX="523.0" layoutY="101.0" orientation="VERTICAL" prefHeight="178.0" prefWidth="15.0" />
+                <Label layoutX="185.0" layoutY="14.0" text="List of Building">
+                    <font>
+                        <Font size="38.0" />
+                    </font>
+                </Label>
+                <Button layoutX="248.0" layoutY="69.0" mnemonicParsing="false" onAction="#addNewBuilding" text="Add new Building" />
+
+            </children>
+        </Pane>
+    </center>
 </BorderPane>

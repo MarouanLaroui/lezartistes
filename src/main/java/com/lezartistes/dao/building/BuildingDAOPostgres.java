@@ -7,8 +7,6 @@ import com.lezartistes.models.Building;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-//TODO modify, delete et voir pour ajouter history
 public class BuildingDAOPostgres extends BuildingDAO {
 
     private static BuildingDAOPostgres buildingDAOPostgres;
@@ -36,7 +34,6 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 rs.getInt("client")
         );
         b.setId(rs.getInt("id_building"));
-
         return b;
     }
 
@@ -138,6 +135,30 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return idBuilding;
     }
 
+    @Override
+    public List<Building> getBuildingByMailClient(String mail) {
+        List<Building> building = new ArrayList<>();
+        String sqlSelect = "SELECT * " +
+                "FROM buildings B " +
+                "JOIN clients C ON B.client = C.id_clients " +
+                "WHERE C.username = ?";
+
+        try {
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1, mail);
+            ResultSet rs = pstatement.executeQuery();
+
+            /*Renvoie le rapport si trouvé, exception sinon*/
+            if (rs.next()) {
+                building.add(this.resultSetToBuilding(rs));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return building;
+    }
+
     public Building createBuilding(Building b){
         PreparedStatement ps = null;
         try {
@@ -165,14 +186,22 @@ public class BuildingDAOPostgres extends BuildingDAO {
         String sqlUpdate = "UPDATE buildings SET " +
                 "name = ?, " +
                 "region = ? , " +
-                "budget = ? " +
-                "WHERE id_building = ?";
+                "budget = ? ," +
+                "construction_date = ? ,"+
+                "master_builder = ? ,"+
+                "design_office = ? , "+
+                "client = ? "+
+                "WHERE idBuilding = ?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, b.getName());
             pstmt.setString(2, b.getRegion());
             pstmt.setDouble(3, b.getBudget());
-            pstmt.setInt(4, id);
+            pstmt.setDate(4, new java.sql.Date(b.getConstruction_date().getTime()));
+            pstmt.setString(5, b.getMaster_builder());
+            pstmt.setString(6, b.getDesign_office());
+            pstmt.setInt(7, b.getClient());
+            pstmt.setInt(8, id);
 
             affectRows = pstmt.executeUpdate();
         }
