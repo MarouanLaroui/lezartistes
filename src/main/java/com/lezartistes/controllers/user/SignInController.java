@@ -2,28 +2,20 @@ package com.lezartistes.controllers.user;
 
 import com.lezartistes.App;
 import com.lezartistes.exceptions.CompanyNotFoundException;
-import com.lezartistes.exceptions.UserNotFoundException;
 import com.lezartistes.facades.*;
-import com.lezartistes.models.Building;
 import com.lezartistes.models.Client;
 import com.lezartistes.models.Company;
-import com.lezartistes.models.User;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class SignInController {
 
@@ -46,7 +38,7 @@ public class SignInController {
     @FXML
     private TextField surname_expert;
     @FXML
-    private ComboBox<Company> companySP;
+    private ComboBox<Company> companyExpert;
 
     @FXML
     private TextField username_client;
@@ -83,7 +75,7 @@ public class SignInController {
             companies = new ArrayList<>(this.companyFacade.getAllCompanies());
         } catch (CompanyNotFoundException ignored) {}
         ObservableList<Company> options = FXCollections.observableArrayList(companies);
-        this.companySP.getItems().addAll(options);
+        this.companyExpert.getItems().addAll(options);
     }
 
     @FXML protected void validateExpertCreation(ActionEvent e) throws IOException {
@@ -93,7 +85,7 @@ public class SignInController {
                 password_expert.getText(),
                 name_expert.getText(),
                 surname_expert.getText(),
-                this.companySP.getValue());
+                this.companyExpert.getValue());
         //ret = 1 -> utilisateur crée
         //ret = 0 -> utilisateur non crée
         System.out.println("Retour au départ et les news sont : " + ret);
