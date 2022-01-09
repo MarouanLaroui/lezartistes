@@ -12,5 +12,7 @@ import java.io.IOException;
 
 
 public class AccueilController extends GeneralController {
-
+    public void redirectToExpertList(ActionEvent event) throws IOException {
+        App.setRoot("views/expert/ExpertList");
+    }
 }

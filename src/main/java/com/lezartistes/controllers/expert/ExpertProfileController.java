@@ -1,11 +1,15 @@
 package com.lezartistes.controllers.expert;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.feedback.FeedbackListController;
 import com.lezartistes.facades.ExpertFacade;
 import com.lezartistes.models.Company;
 import com.lezartistes.models.Expert;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -69,4 +73,27 @@ public class ExpertProfileController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void showRating(javafx.scene.input.MouseEvent mouseEvent){
+        if(this.expert.getCompany() != null){
+            //Create new stage to show company information
+            Stage stage = new Stage();
+            stage.setHeight(480);
+            stage.setWidth(640);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/feedback/feedbackList.fxml"));
+
+            try{
+                FeedbackListController cpc = new FeedbackListController(this.expert.getCompany(), stage);
+                loader.setController(cpc);
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            stage.show();
+        }
+
+    }
+
 }

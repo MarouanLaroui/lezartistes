@@ -57,7 +57,7 @@ public class ExpertListController implements Initializable {
     }
 
     private List<Expert> filterByName(List<Expert> experts, String name){
-
+        this.errorMessage.setText("");
         if(name.equals("")){
             return experts;
         }
@@ -68,6 +68,9 @@ public class ExpertListController implements Initializable {
                 if(expert.getMail().contains(name)){
                     filteredExpertList.add(expert);
                 }
+            }
+            if(filteredExpertList.isEmpty()){
+                this.errorMessage.setText("No such expert found");
             }
             return filteredExpertList;
         }
