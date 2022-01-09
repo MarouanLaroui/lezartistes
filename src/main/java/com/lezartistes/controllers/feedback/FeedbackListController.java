@@ -52,7 +52,7 @@ public class FeedbackListController extends GeneralController implements Initial
         this.company = company;
         this.feedbackFacade = FeedbackFacade.getInstance();
         this.stage = stage;
-        this.isSP = UserInformation.getIsSP();
+        this.isSP = UserInformation.isServiceProvider();
     }
 
     @Override

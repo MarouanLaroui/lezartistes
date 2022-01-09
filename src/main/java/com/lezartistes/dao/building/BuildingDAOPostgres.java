@@ -186,6 +186,10 @@ public class BuildingDAOPostgres extends BuildingDAO {
         String sqlUpdate = "UPDATE buildings SET " +
                 "name = ?, " +
                 "region = ? , " +
+                "budget = ? " +
+                "WHERE idfeedback = ?";
+        /*
+=======
                 "budget = ? ," +
                 "construction_date = ? ,"+
                 "master_builder = ? ,"+
@@ -193,6 +197,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 "client = ? "+
                 "WHERE idBuilding = ?";
         try{
+
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, b.getName());
             pstmt.setString(2, b.getRegion());
@@ -209,6 +214,9 @@ public class BuildingDAOPostgres extends BuildingDAO {
             e.printStackTrace();
         }
         return affectRows;
+
+             */
+            return -1;
     }
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{

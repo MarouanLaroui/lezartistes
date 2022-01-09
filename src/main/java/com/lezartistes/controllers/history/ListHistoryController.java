@@ -32,7 +32,7 @@ public class ListHistoryController extends HistoryController implements Initiali
         if ( ! UserInformation.isServiceProvider()) {
             hist = new ArrayList<>(this.historyFacade.getHistoryByClientId(UserInformation.getUser().getMail()));
         } else {
-            hist = new ArrayList<>(this.historyFacade.getHistoryBySPMail(UserInformation.getUser().getMail()));
+            hist = new ArrayList<>(this.historyFacade.getHistoryByExpertPMail(UserInformation.getUser().getMail()));
             this.addnewHistorybtn.setVisible(false);
         }
         this.historyList.setItems(new FilteredList<>(FXCollections.observableList(hist)));

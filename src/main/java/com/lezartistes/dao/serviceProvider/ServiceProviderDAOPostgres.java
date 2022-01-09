@@ -67,7 +67,8 @@ public class ServiceProviderDAOPostgres extends ServiceProviderDAO {
     }
 
     private Expert resultSetToExpert(ResultSet rs) throws SQLException {
-        return new Expert(rs.getString("username"), rs.getString("password"), null, false);
+        return null;
+        //return new Expert(rs.getString("username"), rs.getString("password"), null, false);
         //TODO : On se dit qu'on ne l'appel que si les données viennent depuis la base de données donc pas d'encryptage de mot de passe
     }
 }
