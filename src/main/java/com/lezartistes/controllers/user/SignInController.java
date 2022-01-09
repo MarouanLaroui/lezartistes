@@ -69,7 +69,7 @@ public class SignInController {
         App.setRoot("views/user/signInExpert");
     }
 
-    @FXML protected void mouseMoveDetected() {
+    @FXML protected void getCompanies() {
         ArrayList<Company> companies = new ArrayList<>();
         try {
             companies = new ArrayList<>(this.companyFacade.getAllCompanies());
