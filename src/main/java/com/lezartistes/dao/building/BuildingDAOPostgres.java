@@ -1,7 +1,6 @@
 package com.lezartistes.dao.building;
 
 import com.lezartistes.exceptions.BuildingNotFoundException;
-import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.models.Building;
 
 import java.sql.*;
@@ -85,8 +84,8 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return building;
     }
 
-    public Building getBuildingByClient(int idc) throws BuildingNotFoundException{
-        Building building = null;
+    public List<Building> getBuildingByClient(int idc) throws BuildingNotFoundException{
+        List<Building> building = null;
         String sqlSelect = "SELECT * FROM buildings WHERE client=?";
 
         try {
@@ -96,8 +95,8 @@ public class BuildingDAOPostgres extends BuildingDAO {
             ResultSet rs = pstatement.executeQuery();
 
             /*Renvoie le rapport si trouvé, exception sinon*/
-            if(rs.next()){
-                building = this.resultSetToBuilding(rs);
+            while(rs.next()){
+                building.add(this.resultSetToBuilding(rs));
             }
         }
         catch (SQLException throwables) {
@@ -162,13 +161,14 @@ public class BuildingDAOPostgres extends BuildingDAO {
     public Building createBuilding(Building b){
         PreparedStatement ps = null;
         try {
-            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_building,design_office) VALUES (?, ?, ?, ?, ?, ?)");
+            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_building,design_office,client) VALUES (?, ?, ?, ?, ?, ?,?)");
             ps.setString(1,b.getName());
             ps.setString(2,b.getRegion());
             ps.setDouble(3,b.getBudget());
             ps.setDate(4,new java.sql.Date(b.getConstruction_date().getTime()));
             ps.setString(5,b.getMaster_builder());
             ps.setString(6,b.getDesign_office());
+            ps.setInt(7,b.getClient());
 
             int rows = ps.executeUpdate();
             ps.close();

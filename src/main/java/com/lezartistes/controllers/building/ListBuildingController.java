@@ -4,6 +4,7 @@ import com.lezartistes.App;
 import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.user.UserInformation;
 import com.lezartistes.exceptions.BuildingNotFoundException;
+import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.facades.BuildingFacade;
 import com.lezartistes.facades.ClientFacade;
 import com.lezartistes.models.Building;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ListBuildingController extends GeneralController implements Serializable {
+public class ListBuildingController extends GeneralController implements Initializable {
 
     @FXML
     private ListView<Building> buildingList;
@@ -38,9 +40,28 @@ public class ListBuildingController extends GeneralController implements Seriali
         this.connectedUser = UserInformation.getUser();
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle) throws BuildingNotFoundException {
-        ArrayList<Building> building = new ArrayList<>(this.buildingFacade.getAllBuilding());
-        this.buildingList.setItems(new FilteredList<>(FXCollections.observableList(building)));
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<Building> building = null;
+        if (!UserInformation.isServiceProvider()){
+            int idAuthor=-1;
+                User user = this.clientFacade.getClientByEmail(UserInformation.getUser().getMail());
+                try {
+                    idAuthor = this.clientFacade.getClientIdByMail(user.getMail());
+                } catch (ClientNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (idAuthor==-1){}
+                else{
+                    try {
+                        building = new ArrayList<>(this.buildingFacade.getBuildingByClient(idAuthor));
+                        this.buildingList.setItems(new FilteredList<>(FXCollections.observableList(building)));
+                    } catch (BuildingNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    this.buildingList.setItems(new FilteredList<>(FXCollections.observableList(building)));
+                }
+
+        }
     }
 
     @FXML
@@ -52,8 +73,8 @@ public class ListBuildingController extends GeneralController implements Seriali
     protected void clickOnBuilding(MouseEvent mouseEvent) throws IOException {
 
         Stage stage = new Stage();
-        stage.setHeight(280);
-        stage.setWidth(610);
+        stage.setHeight(600);
+        stage.setWidth(600);
 
         Building selectedBuild = this.buildingList.getSelectionModel().getSelectedItem();
         if (selectedBuild != null) {

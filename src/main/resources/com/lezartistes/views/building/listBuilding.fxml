@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.building.ListBuildingController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.building.ListBuildingController">
     <top>
         <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <items>
@@ -21,7 +21,7 @@
                     <children>
                         <ToolBar layoutX="32.0" layoutY="24.0">
                             <items>
-                                <Button mnemonicParsing="false" text="Home">
+                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font></Button>
@@ -30,7 +30,7 @@
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" text="MessageBox">
+                                <Button mnemonicParsing="false" onAction="#redirectToClientList" text="Clients">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>

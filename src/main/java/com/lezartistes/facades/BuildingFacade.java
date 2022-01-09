@@ -37,7 +37,7 @@ public class BuildingFacade {
         return this.buildingDAO.getBuildingById(id);
     }
 
-    public Building getBuildingByClient(int idc) throws BuildingNotFoundException{
+    public List<Building> getBuildingByClient(int idc) throws BuildingNotFoundException{
         return this.buildingDAO.getBuildingByClient(idc);
     }
 
