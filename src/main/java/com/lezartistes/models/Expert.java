@@ -18,6 +18,9 @@ public class Expert extends User {
         this.name = name;
         this.surname = surname;
     }
+    public String toString(){
+        return this.name + " " + this.surname + " ( " +this.company.getName()+" ) ";
+    }
 
     /**
      * Getter and setter
