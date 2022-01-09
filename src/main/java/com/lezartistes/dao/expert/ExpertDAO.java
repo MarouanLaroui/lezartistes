@@ -15,4 +15,6 @@ public abstract class ExpertDAO implements Serializable {
     public abstract Expert getExpertById(int id) throws ExpertNotFoundException;
 
     public abstract int createExpert(Expert expert);
+
+    public abstract Expert getExpertByEmail(String mail);
 }

@@ -15,6 +15,8 @@ public class Expert extends User {
     public Expert(String mail, String password, String name, String surname, Company company, boolean needEncrypt) {
         super(mail, password, needEncrypt);
         this.company = company;
+        this.name = name;
+        this.surname = surname;
     }
 
     /**
