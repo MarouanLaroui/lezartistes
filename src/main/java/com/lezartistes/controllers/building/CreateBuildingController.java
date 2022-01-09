@@ -1,5 +1,6 @@
 package com.lezartistes.controllers.building;
 
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.facades.BuildingFacade;
 import com.lezartistes.models.Building;
 import javafx.event.ActionEvent;
@@ -10,7 +11,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.Date;
 
-public class CreateBuildingController extends BuildingController{
+public class CreateBuildingController extends GeneralController {
     @FXML
     private TextField name;
 

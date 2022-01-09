@@ -1,10 +1,11 @@
 package com.lezartistes.controllers.building;
 
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.models.Building;
 
 import java.io.IOException;
 
-public class ReadBuildingController extends BuildingController{
+public class ReadBuildingController extends GeneralController {
 
     Building building;
     public ReadBuildingController(Building b){
@@ -13,6 +14,6 @@ public class ReadBuildingController extends BuildingController{
     }
 
     public void goOnViewHistory() throws IOException {
-        this.redirectToHistory();
+        this.goToHistory();
     }
 }

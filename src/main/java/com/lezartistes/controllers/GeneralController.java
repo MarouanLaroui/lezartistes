@@ -32,4 +32,9 @@ public abstract class GeneralController {
     @FXML protected void goToHistory() throws IOException{
         App.setRoot("views/history/HistoryList");
     }
+
+    @FXML protected void redirectToBuildingList () throws IOException {
+        App.setRoot("views/building/listBuilding");
+    }
+
 }
