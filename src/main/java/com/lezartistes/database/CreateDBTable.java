@@ -161,37 +161,14 @@ public class CreateDBTable {
         }
     }
 
-    public void createExpertTable(){
-        try{
-            Statement stmt = connection.createStatement();
-
-            String sql = "DROP TABLE IF EXISTS experts;" +
-                    "CREATE TABLE experts" +
-                    "(id_clients SERIAL PRIMARY KEY, " +
-                    " mail VARCHAR(50), " +
-                    " password VARCHAR(300)"+
-                    " )";
-            stmt.execute(sql);
-            System.out.println("Created table in given database...");
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void createExpert() {
+    public void createExpertTable() {
         try {
             Statement stmt = connection.createStatement();
 
             String sql = "DROP TABLE IF EXISTS experts;" +
-                    "CREATE TABLE experts" +
-                    "(id_sp SERIAL PRIMARY KEY, " +
-                    " username VARCHAR(50), " +
-                    " password VARCHAR(300)," +
-                    "name VARCHAR(50)," +
-                    "surname VARCHAR(50)," +
-                    "id_company INTEGER " +
-                    " constraint id_company foreign key(id_company) references companies(idCompany))";
+                    "CREATE TABLE experts " +
+                    "(id_sp SERIAL PRIMARY KEY, username VARCHAR(50), password VARCHAR(300), name VARCHAR(50), surname VARCHAR(50));" ;/* +
+                    " constraint id_company foreign key(id_company) references companies(idCompany))";*/
             stmt.execute(sql);
 
             sql = "ALTER TABLE experts ADD id_company INTEGER DEFAULT null; " +
@@ -429,7 +406,7 @@ public class CreateDBTable {
         //cTable.createFeedbackTable();
         cTable.createExpertTable();
         //cTable.createReportTable();
-        cTable.createUserTable();
+        //cTable.createUserTable();
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
         //cTable.insertIntoCallForProposalTable();

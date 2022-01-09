@@ -28,12 +28,4 @@ public class ServiceProviderFacade {
         return spFacade;
     }
 
-    public int createServiceProvider(String username, String passwd, Company c) {
-        //TODO : La Company dans les experts
-        return this.spDAO.createServiceProvider(new Expert(username, passwd, c, true));
-    }
-
-    public Expert getServiceProviderByEmail(String mail) {
-        return this.spDAO.getServiceProviderByEmail(mail);
-    }
 }
