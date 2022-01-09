@@ -2,6 +2,7 @@ package com.lezartistes.controllers.expert;
 
 import com.lezartistes.App;
 import com.lezartistes.facades.ExpertFacade;
+import com.lezartistes.models.Company;
 import com.lezartistes.models.Expert;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +23,16 @@ public class ExpertProfileController implements Initializable {
      */
     @FXML
     private Label name;
-
-
+    @FXML
+    private Label surname;
+    @FXML
+    private Label mail;
+    @FXML
+    private Label company_name;
+    @FXML
+    private Label city;
+    @FXML
+    private Label postal_code;
 
     private final ExpertFacade expertFacade;
     private Stage stage;
@@ -40,7 +49,13 @@ public class ExpertProfileController implements Initializable {
 
         /*Displaying the retrieved informations*/
 
-        name.setText(this.expert.getMail());
+        this.name.setText(this.expert.getMail());
+        this.surname.setText(this.expert.getSurname());
+        this.mail.setText(this.expert.getMail());
+        Company expertCompany = this.expert.getCompany();
+        this.city.setText(expertCompany.getCity());
+        this.company_name.setText(expertCompany.getName());
+        this.postal_code.setText(String.valueOf(expertCompany.getPostal_code()));
 
 
 

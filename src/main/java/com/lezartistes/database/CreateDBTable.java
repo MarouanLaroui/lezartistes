@@ -179,7 +179,7 @@ public class CreateDBTable {
         }
     }
 
-    public void createServiceProvider() {
+    public void createExpert() {
         try {
             Statement stmt = connection.createStatement();
 
@@ -188,6 +188,8 @@ public class CreateDBTable {
                     "(id_sp SERIAL PRIMARY KEY, " +
                     " username VARCHAR(50), " +
                     " password VARCHAR(300)," +
+                    "name VARCHAR(50)," +
+                    "surname VARCHAR(50)," +
                     "id_company INTEGER " +
                     " constraint id_company foreign key(id_company) references companies(idCompany))";
             stmt.execute(sql);
@@ -322,19 +324,7 @@ public class CreateDBTable {
 
     }
 
-    public int createExpert(Expert expert) {
-        int affectRow = 0;
-        try{
-            Statement stmt = this.connection.createStatement();
-            String sqlInsert = "INSERT INTO experts(mail,password) VALUES ('marouanLaouri@gmail.com', '123456')";
-            stmt.executeUpdate(sqlInsert);
 
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return affectRow;
-    }
 
     public void insertIntoCompanyTable(){
         try{
@@ -440,7 +430,6 @@ public class CreateDBTable {
         cTable.createExpertTable();
         //cTable.createReportTable();
         cTable.createUserTable();
-        cTable.createExpert(new Expert("marouan@gmail","cool",null,false));
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
         //cTable.insertIntoCallForProposalTable();

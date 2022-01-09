@@ -1,13 +1,11 @@
 package com.lezartistes.dao.expert;
 
-import com.lezartistes.dao.ClientDAOPostgres;
-import com.lezartistes.database.ConnectPostgresSQL;
-import com.lezartistes.exceptions.ClientNotFoundException;
+import com.lezartistes.dao.company.CompanyDAO;
+import com.lezartistes.dao.company.CompanyDAOPostgres;
+import com.lezartistes.exceptions.CompanyNotFoundException;
 import com.lezartistes.exceptions.ExpertNotFoundException;
-import com.lezartistes.models.Client;
 import com.lezartistes.models.Company;
 import com.lezartistes.models.Expert;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +30,23 @@ public class ExpertDAOPostgres extends ExpertDAO{
 
     private Expert resultSetToExpert(ResultSet rs) throws SQLException {
 
-        return new Expert(
-                rs.getString("mail"),
-                rs.getString("password"),
-                null,
-                false);
+        CompanyDAO companyDAO = CompanyDAOPostgres.getInstance(this.coToDB);
+        Expert expert = null;
+        try {
+            Company expertCompany = companyDAO.getCompanyById(rs.getInt("id_company"));
+            expert = new Expert(
+                    rs.getString("mail"),
+                    rs.getString("password"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    expertCompany,
+                    false);
+        }
+        catch (CompanyNotFoundException e) {
+            e.printStackTrace();
+        }
+        return expert;
+
     }
 
 
@@ -73,10 +83,13 @@ public class ExpertDAOPostgres extends ExpertDAO{
     public int createExpert(Expert expert) {
         int affectRow = 0;
         try{
-            String sqlInsert = "INSERT INTO clients(mail, password) VALUES (?,?)";
+            String sqlInsert = "INSERT INTO clients(mail, password,name,surname,id_company) VALUES (?,?,?,?,?)";
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlInsert);
             pstmt.setString(1,expert.getMail());
             pstmt.setString(2,expert.getPassword());
+            pstmt.setString(3,expert.getName());
+            pstmt.setString(4,expert.getSurname());
+            pstmt.setInt(5,expert.getCompanyId());
             int affectRows = pstmt.executeUpdate(sqlInsert);
             System.out.println(affectRows);
 
