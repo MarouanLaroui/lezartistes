@@ -1,9 +1,8 @@
 package com.lezartistes.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.lezartistes.models.Expert;
+
+import java.sql.*;
 
 public class CreateDBTable {
     /**
@@ -162,21 +161,41 @@ public class CreateDBTable {
         }
     }
 
-    public void createServiceProvider() {
+    public void createExpertTable(){
+        try{
+            Statement stmt = connection.createStatement();
+
+            String sql = "DROP TABLE IF EXISTS experts;" +
+                    "CREATE TABLE experts" +
+                    "(id_clients SERIAL PRIMARY KEY, " +
+                    " mail VARCHAR(50), " +
+                    " password VARCHAR(300)"+
+                    " )";
+            stmt.execute(sql);
+            System.out.println("Created table in given database...");
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createExpert() {
         try {
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS serviceProviders;" +
-                    "CREATE TABLE serviceProviders" +
+            String sql = "DROP TABLE IF EXISTS experts;" +
+                    "CREATE TABLE experts" +
                     "(id_sp SERIAL PRIMARY KEY, " +
                     " username VARCHAR(50), " +
                     " password VARCHAR(300)," +
+                    "name VARCHAR(50)," +
+                    "surname VARCHAR(50)," +
                     "id_company INTEGER " +
                     " constraint id_company foreign key(id_company) references companies(idCompany))";
             stmt.execute(sql);
 
-            sql = "ALTER TABLE serviceProviders ADD id_company INTEGER DEFAULT null; " +
-                    "ALTER TABLE serviceProviders ADD constraint id_company foreign key(id_company) references companies(idCompany);";
+            sql = "ALTER TABLE experts ADD id_company INTEGER DEFAULT null; " +
+                    "ALTER TABLE experts ADD constraint id_company foreign key(id_company) references companies(idCompany);";
             stmt.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -305,6 +324,8 @@ public class CreateDBTable {
 
     }
 
+
+
     public void insertIntoCompanyTable(){
         try{
 
@@ -403,8 +424,12 @@ public class CreateDBTable {
         //cTable.createCompanyTable();
         //cTable.insertIntoCompanyTable();
         //cTable.createFeedbackTable();
+        //cTable.insertIntoCompanyTable();
+        //cTable.createCompanyTable();
+        //cTable.createFeedbackTable();
+        cTable.createExpertTable();
         //cTable.createReportTable();
-        //cTable.createUserTable();
+        cTable.createUserTable();
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
         //cTable.insertIntoCallForProposalTable();
