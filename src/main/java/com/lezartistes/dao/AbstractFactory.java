@@ -2,6 +2,8 @@ package com.lezartistes.dao;
 
 import com.lezartistes.dao.callForProposal.CallForProposalDAO;
 import com.lezartistes.dao.building.BuildingDAO;
+import com.lezartistes.dao.expert.ExpertDAO;
+import com.lezartistes.dao.expert.ExpertDAOPostgres;
 import com.lezartistes.dao.history.HistoryDAO;
 import com.lezartistes.dao.company.CompanyDAO;
 import com.lezartistes.dao.quotation.QuotationDAO;
@@ -39,6 +41,8 @@ public interface AbstractFactory {
     ReportDAO createReportDAO();
 
     QuotationDAO createQuotationDAO();
+
+    ExpertDAO createExpertDAO();
 
     ServiceProviderDAO createSPDAO();
 
