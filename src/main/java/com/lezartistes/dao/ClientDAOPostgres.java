@@ -1,7 +1,9 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.exceptions.CallForProposalNotFoundException;
 import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.exceptions.UserNotFoundException;
+import com.lezartistes.models.CallForProposal;
 import com.lezartistes.models.Client;
 
 import javax.xml.transform.Result;
@@ -16,7 +18,7 @@ public class ClientDAOPostgres extends ClientDAO{
     private final Connection coToDB;
 
     /*constructor*/
-    private ClientDAOPostgres(Connection connection){
+    public ClientDAOPostgres(Connection connection){
         this.coToDB = connection;
     }
 
@@ -111,10 +113,35 @@ public class ClientDAOPostgres extends ClientDAO{
             else
                 throw new UserNotFoundException(email);
         } catch (SQLException | UserNotFoundException e){
-            e.printStackTrace();
+            //e.printStackTrace();
             c = null;
         }
         return c;
+    }
+
+    @Override
+    public int getClientIdByMail(String email) throws ClientNotFoundException {
+        String sqlSelect = "SELECT id_clients FROM clients" +
+                " WHERE username=?";
+        int idRetour = -1;
+
+        try{
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1, email.trim());
+            ResultSet resultSet = pstatement.executeQuery();
+
+            while(resultSet.next()){
+                idRetour = resultSet.getInt("id_clients");
+            }
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(idRetour == -1){
+            throw new ClientNotFoundException(email);
+        }
+        return idRetour;
     }
 
     //TODO : Remplacer par des autoincrémentales keys, et enlever le paramètre id

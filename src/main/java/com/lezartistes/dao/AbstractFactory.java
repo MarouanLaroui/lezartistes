@@ -1,5 +1,6 @@
 package com.lezartistes.dao;
 
+import com.lezartistes.dao.callForProposal.CallForProposalDAO;
 import com.lezartistes.dao.building.BuildingDAO;
 import com.lezartistes.dao.expert.ExpertDAO;
 import com.lezartistes.dao.expert.ExpertDAOPostgres;
@@ -25,9 +26,15 @@ public interface AbstractFactory {
 
     /**
      * Create and return a CompanyDAO
-     * @return
+     * @return a CompanyDAO
      */
     CompanyDAO createCompanyDAO();
+
+    /**
+     * Create and return a CallForProposalDAO
+     * @return a CallForProposalDAO
+     */
+    CallForProposalDAO createCallForProposalDAO();
 
     ClientDAO createClientDAO();
 

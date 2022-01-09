@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilExpertController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilExpertController">
    <top>
       <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
@@ -35,15 +30,20 @@
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font>
                         </Button>
-                        <Button onMouseClicked="#redirectToClientList" mnemonicParsing="false" text="Clients">
+                        <Button mnemonicParsing="false" onMouseClicked="#redirectToClientList" text="Clients">
                            <font>
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Help ?">
+                        <Button mnemonicParsing="false" onAction="#goToHistory" text="History">
                            <font>
                               <Font name="Lucida Calligraphy Italic" size="14.0" />
                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#redirectToCFPList" prefHeight="64.0" prefWidth="91.0" text="Call For Proposal">
+                            <font>
+                                <Font name="Lucida Calligraphy Italic" size="14.0" />
+                            </font>
                         </Button>
                     </items>
                   </ToolBar>
@@ -54,7 +54,7 @@
    <center>
       <Label text="Bienvenue ! " BorderPane.alignment="CENTER">
          <font>
-            <Font name="Lucida Calligraphy Italic" size="50.0" />
+            <Font name="Lucida Calligraphy Italic" size="27.0" />
          </font>
       </Label>
    </center>

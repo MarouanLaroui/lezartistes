@@ -1,6 +1,5 @@
 package com.lezartistes.dao.history;
 
-import com.lezartistes.facades.HistoryFacade;
 import com.lezartistes.models.History;
 
 import java.sql.*;
@@ -24,7 +23,6 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     public List<History> getAllHistoryByBuildingId(int idBuilding) {
-        System.out.println("id de notre building : " + idBuilding);
         String sqlSelect = "SELECT * FROM histories WHERE relatedBuilding = ?";
         List<History> histories = new ArrayList<>();
 
@@ -34,6 +32,62 @@ public class HistoryDAOPostgres extends HistoryDAO {
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/
+            while (resultSet.next()) {
+                histories.add(this.resultSetToHistory(resultSet));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return histories;
+    }
+
+    @Override
+    public List<History> getHistoryByClientId(String mailClient) {
+        String sqlSelect = "" +
+                "SELECT H.date, H.description, H.idhistory " +
+                "FROM histories H " +
+                "JOIN buildings B ON B.id_building = H.relatedbuilding " +
+                "JOIN clients C ON C.id_clients = B.client " +
+                "WHERE C.username = ?;";
+        List<History> histories = new ArrayList<>();
+
+        try {
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setString(1, mailClient);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while (resultSet.next()) {
+                histories.add(this.resultSetToHistory(resultSet));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return histories;
+    }
+
+    @Override
+    public List<History> getHistoryBySPId(String mailSP) {
+        String sqlSelect = "" +
+                "SELECT H.date, H.description, H.idhistory " +
+                "FROM histories H " +
+                "JOIN buildings B ON B.id_building = H.relatedbuilding " +
+                "JOIN callforproposals C ON B.id_building = c.building " +
+                "JOIN quotations Q ON Q.callforproposal = C.idcfp " +
+                "JOIN companies c2 ON Q.idcompany = c2.idcompany " +
+                "JOIN serviceproviders sp ON sp.id_company = sp.id_company " +
+                "WHERE sp.username = ?;";
+        List<History> histories = new ArrayList<>();
+
+        try {
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setString(1, mailSP);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            System.out.println("-- ca commence --");
             while (resultSet.next()) {
                 histories.add(this.resultSetToHistory(resultSet));
             }
@@ -83,6 +137,6 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     private History resultSetToHistory (ResultSet rs) throws SQLException {
-        return new History(rs.getInt(4), rs.getDate(2), rs.getString(3));
+        return new History(rs.getInt(3), rs.getDate(1), rs.getString(2));
     }
 }

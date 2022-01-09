@@ -31,13 +31,15 @@ public class HistoryFacade {
         return this.dao.getAllHistory();
     }
 
-    public int createHistory (History h) {
-        return this.dao.createHistory(h);
+    public List<History> getHistoryByClientId (String mailClient) {
+        return this.dao.getHistoryByClientId(mailClient);
     }
 
-    public static void main(String[] args) {
-        System.out.println("coucou");
-        HistoryFacade fa = HistoryFacade.getInstance();
-        //fa.getAllHistoryByBuildingId(1);
+    public List<History> getHistoryBySPMail (String mailSP) {
+        return this.dao.getHistoryBySPId(mailSP);
+    }
+
+    public int createHistory (History h) {
+        return this.dao.createHistory(h);
     }
 }

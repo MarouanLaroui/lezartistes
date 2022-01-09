@@ -16,5 +16,7 @@ public abstract class ClientDAO implements Serializable {
 
     public abstract Client getClientByEmail(String email);
 
+    public abstract int getClientIdByMail(String email) throws ClientNotFoundException;
+
     public abstract int createClient(Client c);
 }

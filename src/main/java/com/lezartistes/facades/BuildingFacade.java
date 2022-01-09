@@ -29,6 +29,10 @@ public class BuildingFacade {
         return this.buildingDAO.getAllBuilding();
     }
 
+    public int getBuildingIdByName(String name) throws BuildingNotFoundException {
+        return this.buildingDAO.getBuildingIdByName(name);
+    }
+
     public Building getBuildingById(int id) throws BuildingNotFoundException{
         return this.buildingDAO.getBuildingById(id);
     }
@@ -41,13 +45,15 @@ public class BuildingFacade {
         return this.buildingDAO.createBuilding(b);
     }
 
-    public int modifyBuilding(int id) throws BuildingNotFoundException{
-        return this.buildingDAO.modifyBuilding(id);
+    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
+        return this.buildingDAO.modifyBuilding(id, b);
     }
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{
         return this.buildingDAO.deleteBuilding(id);
     }
 
-
+    public List<Building> getBuildingByMailClient(String mail) {
+        return this.buildingDAO.getBuildingByMailClient(mail);
+    }
 }

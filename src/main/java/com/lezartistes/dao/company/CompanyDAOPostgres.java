@@ -16,7 +16,7 @@ public class CompanyDAOPostgres extends CompanyDAO {
     /**
      * Connection to the database
      */
-    Connection connection;
+    private final Connection connection;
 
     /**
      * Constructor : create a CompanyDAOPostgres
@@ -42,6 +42,7 @@ public class CompanyDAOPostgres extends CompanyDAO {
     /*methods*/
     public Company resultSetToCompany(ResultSet rs) throws SQLException {
         return new Company(
+                rs.getInt("idcompany"),
                 rs.getString("companyname"),
                 rs.getString("companydepartement"),
                 rs.getString("companycity"),

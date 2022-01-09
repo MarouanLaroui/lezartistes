@@ -1,13 +1,12 @@
 package com.lezartistes.dao.building;
 
 import com.lezartistes.exceptions.BuildingNotFoundException;
+import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.models.Building;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-//TODO modify, delete et voir pour ajouter history
 public class BuildingDAOPostgres extends BuildingDAO {
 
     private static BuildingDAOPostgres buildingDAOPostgres;
@@ -30,17 +29,17 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 rs.getString("region"),
                 rs.getDouble("budget"),
                 rs.getDate("construction_date"),
-                rs.getString("master_builder"),
+                rs.getString("master_building"),
                 rs.getString("design_office"),
                 rs.getInt("client")
         );
-        b.setId(rs.getInt("id"));
+        b.setId(rs.getInt("id_building"));
         return b;
     }
 
     public List<Building> getAllBuilding() throws BuildingNotFoundException{
         List<Building> buildings = new ArrayList<>();
-        String sqlSelect = "SELECT * FROM buidlings";
+        String sqlSelect = "SELECT * FROM buildings";
 
         try {
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
@@ -62,7 +61,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public Building getBuildingById(int id) throws BuildingNotFoundException{
         Building building = null;
-        String sqlSelect = "SELECT * FROM buildings WHERE idBuilding=?";
+        String sqlSelect = "SELECT * FROM buildings WHERE id_Building=?";
 
         try {
 
@@ -112,10 +111,58 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return building;
     }
 
+    @Override
+    public int getBuildingIdByName(String nameBuilding) throws BuildingNotFoundException {
+        int idBuilding = -1;
+        String sqlSelect = "SELECT id_building FROM buildings WHERE name=?";
+
+        try {
+
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1,nameBuilding.trim());
+            ResultSet rs = pstatement.executeQuery();
+            while(rs.next()){
+                idBuilding = rs.getInt("id_building");
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        if(idBuilding == -1){
+            throw new BuildingNotFoundException(nameBuilding);
+        }
+        return idBuilding;
+    }
+
+    @Override
+    public List<Building> getBuildingByMailClient(String mail) {
+        List<Building> building = new ArrayList<>();
+        String sqlSelect = "SELECT * " +
+                "FROM buildings B " +
+                "JOIN clients C ON B.client = C.id_clients " +
+                "WHERE C.username = ?";
+
+        try {
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setString(1, mail);
+            ResultSet rs = pstatement.executeQuery();
+
+            /*Renvoie le rapport si trouvé, exception sinon*/
+            if (rs.next()) {
+                building.add(this.resultSetToBuilding(rs));
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return building;
+    }
+
     public Building createBuilding(Building b){
         PreparedStatement ps = null;
         try {
-            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_builder,design_office) VALUES (?, ?, ?, ?, ?, ?)");
+            ps = this.coToDB.prepareStatement("INSERT INTO buildings(name,region,budget,construction_date,master_building,design_office) VALUES (?, ?, ?, ?, ?, ?)");
             ps.setString(1,b.getName());
             ps.setString(2,b.getRegion());
             ps.setDouble(3,b.getBudget());
@@ -134,7 +181,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return b;
     }
 
-    public int modifyBuilding(int id) throws BuildingNotFoundException{
+    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
         int affectRows = 0;
         String sqlUpdate = "UPDATE buildings SET " +
                 "name = ?, " +
@@ -142,13 +189,24 @@ public class BuildingDAOPostgres extends BuildingDAO {
                 "budget = ? " +
                 "WHERE idfeedback = ?";
         /*
+=======
+                "budget = ? ," +
+                "construction_date = ? ,"+
+                "master_builder = ? ,"+
+                "design_office = ? , "+
+                "client = ? "+
+                "WHERE idBuilding = ?";
         try{
 
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, fb.getRating());
-            pstmt.setString(2, fb.getComment());
-            pstmt.setInt(3, fb.getCompany());
-            pstmt.setInt(1, idFeedback);
+            pstmt.setString(1, b.getName());
+            pstmt.setString(2, b.getRegion());
+            pstmt.setDouble(3, b.getBudget());
+            pstmt.setDate(4, new java.sql.Date(b.getConstruction_date().getTime()));
+            pstmt.setString(5, b.getMaster_builder());
+            pstmt.setString(6, b.getDesign_office());
+            pstmt.setInt(7, b.getClient());
+            pstmt.setInt(8, id);
 
             affectRows = pstmt.executeUpdate();
         }
@@ -163,7 +221,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
 
     public int deleteBuilding(int id) throws BuildingNotFoundException{
         int affectRows = 0;
-        String sqlDelete = "DELETE FROM buildings WHERE idBuilding=?";
+        String sqlDelete = "DELETE FROM buildings WHERE id_building=?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, id);
