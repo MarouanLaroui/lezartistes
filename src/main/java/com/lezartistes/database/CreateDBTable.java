@@ -183,8 +183,8 @@ public class CreateDBTable {
         try {
             Statement stmt = connection.createStatement();
 
-            String sql = "DROP TABLE IF EXISTS serviceProviders;" +
-                    "CREATE TABLE serviceProviders" +
+            String sql = "DROP TABLE IF EXISTS experts;" +
+                    "CREATE TABLE experts" +
                     "(id_sp SERIAL PRIMARY KEY, " +
                     " username VARCHAR(50), " +
                     " password VARCHAR(300)," +
@@ -194,8 +194,8 @@ public class CreateDBTable {
                     " constraint id_company foreign key(id_company) references companies(idCompany))";
             stmt.execute(sql);
 
-            sql = "ALTER TABLE serviceProviders ADD id_company INTEGER DEFAULT null; " +
-                    "ALTER TABLE serviceProviders ADD constraint id_company foreign key(id_company) references companies(idCompany);";
+            sql = "ALTER TABLE experts ADD id_company INTEGER DEFAULT null; " +
+                    "ALTER TABLE experts ADD constraint id_company foreign key(id_company) references companies(idCompany);";
             stmt.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
