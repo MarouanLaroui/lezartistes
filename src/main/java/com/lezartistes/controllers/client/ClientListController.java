@@ -58,6 +58,8 @@ public class ClientListController implements Initializable {
 
     private List<Client> filterByName(List<Client> clients, String name){
 
+        this.errorMessage.setText("");
+
         if(name.equals("")){
             return clients;
         }
@@ -68,6 +70,9 @@ public class ClientListController implements Initializable {
                 if(client.getName().contains(name)){
                     filteredClientList.add(client);
                 }
+            }
+            if(filteredClientList.isEmpty()){
+                this.errorMessage.setText("No such client found");
             }
             return filteredClientList;
         }

@@ -10,7 +10,7 @@ public class UserFacade {
     /*attribute*/
 
     ClientFacade clientFacade = ClientFacade.getInstance();
-    ServiceProviderFacade spFacade = ServiceProviderFacade.getInstance();
+    ExpertFacade expertFacade = ExpertFacade.getInstance();
 
     /*constructor*/
     /*methods*/
@@ -31,7 +31,7 @@ public class UserFacade {
         User u = clientFacade.getClientByEmail(mail);
         if (u == null) { //On le chercher parmis les clients
             System.out.println("On ne le trouve pas parmis les clients");
-            u = spFacade.getServiceProviderByEmail(mail); //Sinon parmis les SP
+            u = expertFacade.getExpertByEmail(mail); //Sinon parmis les SP
         }
 
         /*Check if the user credentials are the same as in the db, returns Exceptions if not found, or not matching*/

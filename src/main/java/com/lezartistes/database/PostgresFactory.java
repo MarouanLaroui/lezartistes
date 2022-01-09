@@ -4,6 +4,8 @@ import com.lezartistes.dao.*;
 
 import com.lezartistes.dao.building.BuildingDAO;
 import com.lezartistes.dao.building.BuildingDAOPostgres;
+import com.lezartistes.dao.expert.ExpertDAO;
+import com.lezartistes.dao.expert.ExpertDAOPostgres;
 import com.lezartistes.dao.callForProposal.CallForProposalDAO;
 import com.lezartistes.dao.callForProposal.CallForProposalDAOPostgres;
 import com.lezartistes.dao.history.HistoryDAO;
@@ -58,6 +60,8 @@ public class PostgresFactory implements AbstractFactory {
     }
 
     public ClientDAO createClientDAO(){ return ClientDAOPostgres.getInstance(connection);}
+
+    public ExpertDAO createExpertDAO(){return ExpertDAOPostgres.getInstance(connection);}
 
     public ReportDAO createReportDAO(){return ReportDAOPostgres.getInstance(connection);}
 
