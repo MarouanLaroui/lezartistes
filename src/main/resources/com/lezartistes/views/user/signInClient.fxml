@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
+<AnchorPane prefHeight="400.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="251.0" layoutX="15.0" layoutY="112.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="592.0" />
       <Label layoutX="120.0" layoutY="62.0" text="Create a new Client account">
@@ -14,13 +14,14 @@
             <Font name="Lucida Calligraphy Italic" size="24.0" />
          </font></Label>
       <TextField fx:id="username_client" layoutX="132.0" layoutY="140.0" />
+      <PasswordField fx:id="password_client" layoutX="312.0" layoutY="138.0" />
       <TextField fx:id="name_client" layoutX="31.0" layoutY="193.0" />
       <TextField fx:id="surname_client" layoutX="223.0" layoutY="194.0" />
+      <TextField fx:id="phone_number_client" layoutX="409.0" layoutY="194.0" />
       <TextField fx:id="street_client" layoutX="15.0" layoutY="258.0" />
       <TextField fx:id="complement_client" layoutX="182.0" layoutY="257.0" />
       <TextField fx:id="city_client" layoutX="349.0" layoutY="255.0" />
       <TextField fx:id="postal_code_client" layoutX="511.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" />
-      <TextField fx:id="phone_number_client" layoutX="409.0" layoutY="194.0" />
       <Button layoutX="225.0" layoutY="327.0" mnemonicParsing="false" onAction="#validateClientCreation" prefHeight="26.0" prefWidth="149.0" text="Validate">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
@@ -30,7 +31,6 @@
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font></Label>
-      <PasswordField fx:id="password_client" layoutX="312.0" layoutY="138.0" />
       <Label layoutX="311.0" layoutY="116.0" text="Password">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />

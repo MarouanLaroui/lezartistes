@@ -69,7 +69,7 @@ public class HistoryDAOPostgres extends HistoryDAO {
     }
 
     @Override
-    public List<History> getHistoryBySPId(String mailSP) {
+    public List<History> getHistoryByExpertPMail(String mailSP) {
         String sqlSelect = "" +
                 "SELECT H.date, H.description, H.idhistory " +
                 "FROM histories H " +
@@ -77,8 +77,8 @@ public class HistoryDAOPostgres extends HistoryDAO {
                 "JOIN callforproposals C ON B.id_building = c.building " +
                 "JOIN quotations Q ON Q.callforproposal = C.idcfp " +
                 "JOIN companies c2 ON Q.idcompany = c2.idcompany " +
-                "JOIN serviceproviders sp ON sp.id_company = sp.id_company " +
-                "WHERE sp.username = ?;";
+                "JOIN experts e ON e.id_company = c2.idcompany " +
+                "WHERE e.username = ?;";
         List<History> histories = new ArrayList<>();
 
         try {

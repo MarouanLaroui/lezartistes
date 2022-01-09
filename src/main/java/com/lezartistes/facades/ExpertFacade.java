@@ -6,6 +6,7 @@ import com.lezartistes.dao.expert.ExpertDAO;
 import com.lezartistes.database.PostgresFactory;
 import com.lezartistes.exceptions.ClientNotFoundException;
 import com.lezartistes.exceptions.ExpertNotFoundException;
+import com.lezartistes.models.Company;
 import com.lezartistes.models.Expert;
 
 import java.util.List;
@@ -35,5 +36,13 @@ public class ExpertFacade {
 
     public Expert getExpert(int id) throws ExpertNotFoundException{
         return this.expertDAO.getExpertById(id);
+    }
+
+    public int createExpert(String username, String passwd, String name, String surname , Company c) {
+        return this.expertDAO.createExpert(new Expert(username, passwd, name, surname, c, true));
+    }
+
+    public Expert getExpertByEmail(String mail) {
+        return this.expertDAO.getExpertByEmail(mail);
     }
 }
