@@ -75,7 +75,7 @@ public class ShowCallForProposalController extends GeneralController implements 
             this.newStatus.getItems().add("OVER");
             this.newStatus.getItems().add("ARCHIVED");
             //si c'est un client
-            if (!UserInformation.getIsSP()){
+            if (!UserInformation.isServiceProvider()){
                 this.labelNewStatus.setVisible(true);
                 this.newStatus.setVisible(true);
             }
