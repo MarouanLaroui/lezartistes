@@ -23,6 +23,10 @@ public class Expert extends User {
         return company;
     }
 
+    public int getCompanyId() {
+        return this.company.getId_company();
+    }
+
     public void setCompany(Company company) {
         this.company = company;
     }

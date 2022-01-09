@@ -110,14 +110,15 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     }
 
     @Override
-    public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException {
-        String sqlSelect = "SELECT * FROM callforproposals WHERE status=?";
+    public List<CallForProposal> getAllPostedAndOverCallForProposal() throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals WHERE status=? OR status=?";
         List<CallForProposal> calls = new ArrayList<>();
 
         try{
             PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
             //todo: tester si ça fonctionne en upper case ou passer en lower case
             pstatement.setString(1,Status.POSTED.name());
+            pstatement.setString(2,Status.OVER.name());
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/

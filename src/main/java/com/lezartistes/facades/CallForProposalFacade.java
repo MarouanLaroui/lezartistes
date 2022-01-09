@@ -37,8 +37,8 @@ public class CallForProposalFacade {
         return this.callForProposalDAO.getAllCallForProposal();
     }
 
-    public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException{
-        return this.callForProposalDAO.getAllPostedCallForProposal();
+    public List<CallForProposal> getAllPostedAndOverCallForProposal() throws CallForProposalNotFoundException{
+        return this.callForProposalDAO.getAllPostedAndOverCallForProposal();
     }
 
     public List<CallForProposal> getCallForProposalByAuthor(String authorMail) throws CallForProposalNotFoundException{

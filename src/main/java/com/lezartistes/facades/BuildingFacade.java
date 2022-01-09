@@ -53,5 +53,7 @@ public class BuildingFacade {
         return this.buildingDAO.deleteBuilding(id);
     }
 
-
+    public List<Building> getBuildingByMailClient(String mail) {
+        return this.buildingDAO.getBuildingByMailClient(mail);
+    }
 }

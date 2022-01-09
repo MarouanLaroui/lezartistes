@@ -14,7 +14,7 @@ public abstract class CallForProposalDAO {
     //methods
     public abstract CallForProposal getCallForProposalById(int id);
     public abstract List<CallForProposal> getAllCallForProposal() throws CallForProposalNotFoundException;
-    public abstract List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException;
+    public abstract List<CallForProposal> getAllPostedAndOverCallForProposal() throws CallForProposalNotFoundException;
     public abstract List<CallForProposal> getCallForProposalByAuthor(String authorMail) throws CallForProposalNotFoundException;
 
     public abstract int updateStatusOfCallForProposal(CallForProposal cfp, String newStatus) throws CFPIllegalChangeOfStateException;

@@ -56,7 +56,7 @@
                   <Font size="38.0" />
                </font>
             </Label>
-            <Button layoutX="248.0" layoutY="69.0" mnemonicParsing="false" onAction="#addNewHistory" text="Add new History" />
+            <Button fx:id="addnewHistorybtn" layoutX="248.0" layoutY="69.0" mnemonicParsing="false" onAction="#addNewHistory" text="Add new History" />
          </children>
       </Pane>
    </center>

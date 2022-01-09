@@ -170,9 +170,13 @@ public class CreateDBTable {
                     "CREATE TABLE serviceProviders" +
                     "(id_sp SERIAL PRIMARY KEY, " +
                     " username VARCHAR(50), " +
-                    " password VARCHAR(300) " +
-                    " )";
+                    " password VARCHAR(300)," +
+                    "id_company INTEGER " +
+                    " constraint id_company foreign key(id_company) references companies(idCompany))";
+            stmt.execute(sql);
 
+            sql = "ALTER TABLE serviceProviders ADD id_company INTEGER DEFAULT null; " +
+                    "ALTER TABLE serviceProviders ADD constraint id_company foreign key(id_company) references companies(idCompany);";
             stmt.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -403,9 +407,9 @@ public class CreateDBTable {
         //cTable.createUserTable();
         //cTable.createClientTable();
         //cTable.createCallForProposalTable();
-        cTable.insertIntoCallForProposalTable();
+        //cTable.insertIntoCallForProposalTable();
         //cTable.alterTableCallForProposal();
-
+        //cTable.createQuotationTable();
         //cTable.insertIntoClientTable();
         //cTable.createQuotationTable();
         //cTable.createBuildingTable();
