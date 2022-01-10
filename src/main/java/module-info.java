@@ -4,6 +4,7 @@ module com.lezartistes {
     requires java.sql;
     requires junit;
     requires org.junit.jupiter.api;
+    requires java.desktop;
 
     opens com.lezartistes to javafx.fxml;
     exports com.lezartistes;

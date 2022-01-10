@@ -24,4 +24,6 @@ public abstract class QuotationDAO implements Serializable {
 
     public abstract List<Quotation> getQuotationByCompany(int idc) throws QuotationNotFoundException;
 
+    public abstract int setStatusQuotation(Quotation quotation, String status);
+
 }

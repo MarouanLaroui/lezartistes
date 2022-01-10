@@ -22,5 +22,6 @@ public abstract class CallForProposalDAO {
     public abstract int updateCallForProposal(int idCFP, CallForProposal cfp) throws CFPIllegalChangeOfStateException;
     public abstract int deleteCallForProposal(CallForProposal cfp) throws CallForProposalDeleteImpossibleException;
 
+    public abstract int getCallForProposalIdByTitle(String title);
 
 }
