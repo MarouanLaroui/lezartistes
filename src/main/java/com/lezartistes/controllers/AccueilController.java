@@ -17,4 +17,14 @@ public class AccueilController extends GeneralController {
     public void redirectToExpertList() throws IOException {
         App.setRoot("views/expert/ExpertList");
     }
+
+
+    public void redirectToBuilding() throws IOException {
+        App.setRoot("views/building/listBuilding");
+
+    }
+
+    public void redirectToAccount(){
+
+    }
 }

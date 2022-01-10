@@ -45,4 +45,8 @@ public class ExpertFacade {
     public Expert getExpertByEmail(String mail) {
         return this.expertDAO.getExpertByEmail(mail);
     }
+
+    public int deleteExpertByMail(String mail){
+        return this.expertDAO.deleteExpertByMail(mail);
+    }
 }

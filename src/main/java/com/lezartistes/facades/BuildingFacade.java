@@ -45,12 +45,12 @@ public class BuildingFacade {
         return this.buildingDAO.createBuilding(b);
     }
 
-    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
-        return this.buildingDAO.modifyBuilding(id, b);
-    }
-
     public int deleteBuilding(int id) throws BuildingNotFoundException{
         return this.buildingDAO.deleteBuilding(id);
+    }
+
+    public int deleteBuildingByName(String name) throws BuildingNotFoundException{
+        return this.buildingDAO.deleteBuildingByName(name);
     }
 
     public List<Building> getBuildingByMailClient(String mail) {

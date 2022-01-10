@@ -75,8 +75,24 @@ public class ExpertDAOPostgres extends ExpertDAO{
     }
 
     @Override
-    public Expert getExpertById(int id) {
-        return null;
+    public Expert getExpertById(int id) throws ExpertNotFoundException {
+        String sqlSelect = "SELECT * FROM experts WHERE id=?";
+        List<Expert> experts = new ArrayList<>();
+        Expert expert = null;
+        try{
+            PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
+            pstatement.setInt(1,id);
+            ResultSet rs = pstatement.executeQuery();
+
+            expert = this.resultSetToExpert(rs);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(expert == null){
+            throw new ExpertNotFoundException();
+        }
+        return expert;
     }
 
     @Override
@@ -122,6 +138,22 @@ public class ExpertDAOPostgres extends ExpertDAO{
             expert = null;
         }
         return expert;
+    }
+
+    @Override
+    public int deleteExpertByMail(String mail) {
+        int affectRows = 0;
+        String sqlDelete = "DELETE FROM experts WHERE username=?";
+        try{
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, mail);
+
+            affectRows = pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
     }
 
 }
