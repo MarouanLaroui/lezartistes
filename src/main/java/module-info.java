@@ -4,6 +4,7 @@ module com.lezartistes {
     requires java.sql;
     requires junit;
     requires org.junit.jupiter.api;
+    requires java.desktop;
 
     opens com.lezartistes to javafx.fxml;
     exports com.lezartistes;
@@ -41,6 +42,8 @@ module com.lezartistes {
     opens com.lezartistes.controllers.callForProposal to javafx.fxml;
     exports com.lezartistes.controllers.callForProposal;
 
+    opens com.lezartistes.controllers.building to javafx.fxml;
+    exports com.lezartistes.controllers.building;
 
     opens com.lezartistes.controllers to javafx.fxml;
     exports com.lezartistes.controllers;
@@ -68,4 +71,5 @@ module com.lezartistes {
 
      exports com.lezartistes.tests;
      opens com.lezartistes.tests to javafx.fxml;
+
 }

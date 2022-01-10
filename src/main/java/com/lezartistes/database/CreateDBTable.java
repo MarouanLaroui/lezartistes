@@ -123,12 +123,15 @@ public class CreateDBTable {
             String sql = "CREATE TABLE quotations "+
                     "(idQuotation serial primary key, "+
                     "idCompany int, "+
+                    "expert varchar(50),"+
+                    "title varchar(50),"+
                     "capital float,"+
                     "siret_number varchar(50),"+
                     "number_business_register varchar(50), "+
                     "NAF varchar(50),"+
                     "total_price_ttc float, "+
-                    "callforproposal int,"+
+                    "callforproposal int," +
+                    "statusQuotation varchar(50),"+
                     "constraint idCompany foreign key(idCompany) references companies(idCompany))";
             stmt.execute(sql);
             System.out.println("Table Quotation created");

@@ -83,6 +83,7 @@ public class CallForProposalFacade {
     }
 
 
-
-
+    public int getCallForProposalIdByTitle(String cfpChosen) {
+        return this.callForProposalDAO.getCallForProposalIdByTitle(cfpChosen);
+    }
 }

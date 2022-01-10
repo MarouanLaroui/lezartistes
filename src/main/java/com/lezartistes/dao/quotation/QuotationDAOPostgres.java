@@ -5,10 +5,7 @@ import com.lezartistes.exceptions.QuotationNotFoundException;
 import com.lezartistes.facades.CompanyFacade;
 import com.lezartistes.models.Quotation;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +31,9 @@ public class QuotationDAOPostgres extends QuotationDAO{
     private final CompanyFacade companyFacade = CompanyFacade.getInstance();
     private Quotation resultSetToQuotation(ResultSet rs) throws SQLException {
         Quotation q = new Quotation(
-                rs.getInt("company"),
+                rs.getInt("idcompany"),
                 rs.getString("title"),
-                rs.getInt("expert"),
+                rs.getString("expert"),
                 rs.getDouble("capital"),
                 rs.getInt("siret_number"),
                 rs.getInt("number_business_register"),
@@ -44,7 +41,8 @@ public class QuotationDAOPostgres extends QuotationDAO{
                 rs.getDouble("total_price_TTC"),
                 rs.getInt("callforproposal")
         );
-        q.setId(rs.getInt("id"));
+        q.setId(rs.getInt("idquotation"));
+        q.setStatusQuotation(rs.getString("statusquotation").toUpperCase().trim());
         return q;
 
     }
@@ -57,7 +55,6 @@ public class QuotationDAOPostgres extends QuotationDAO{
             PreparedStatement pstatement = this.coToDB.prepareStatement(sqlSelect);
             ResultSet rs = pstatement.executeQuery();
 
-            /*Renvoie le client si trouvé, rempli le tableau*/
             while (rs.next()){
                 quotations.add(this.resultSetToQuotation(rs));
             }
@@ -103,16 +100,17 @@ public class QuotationDAOPostgres extends QuotationDAO{
         ArrayList<byte[]> files = new ArrayList<>();
         PreparedStatement ps = null;
         try {
-            ps = this.coToDB.prepareStatement("INSERT INTO quotation VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)");
+            ps = this.coToDB.prepareStatement("INSERT INTO quotations(idcompany,title,expert,capital,siret_number,number_business_register,NAF,total_price_ttc,callforproposal,statusquotation) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)");
             ps.setInt(1,quotation.getCompany());
             ps.setString(2,quotation.getTitle());
-            ps.setInt(3,quotation.getExpert());
+            ps.setString(3,quotation.getExpert());
             ps.setDouble(4,quotation.getCapital());
             ps.setInt(5,quotation.getSiret_number());
             ps.setInt(6,quotation.getNumber_business_register());
             ps.setInt(7,quotation.getNAF());
             ps.setDouble(8,quotation.getTotal_price_TTC());
             ps.setInt(9,quotation.getcallforproposal());
+            ps.setString(10,quotation.getStatusQuotation());
             int rows = ps.executeUpdate();
             ps.close();
             System.out.println(rows);
@@ -153,7 +151,6 @@ public class QuotationDAOPostgres extends QuotationDAO{
             pstatement.setInt(1, idcap);
             ResultSet resultSet = pstatement.executeQuery();
 
-            /*Transforme toutes les lignes en feedback*/
             while(resultSet.next()){
                 Quotation q = resultSetToQuotation(resultSet);
                 quotations.add(q);
@@ -174,7 +171,7 @@ public class QuotationDAOPostgres extends QuotationDAO{
         /**
          * Récupération des quotations associés à la company
          */
-        String sqlSelect = "SELECT * FROM quotations WHERE company=?";
+        String sqlSelect = "SELECT * FROM quotations WHERE idcompany=?";
         List<Quotation> quotations = new ArrayList<>();
 
         try{
@@ -182,7 +179,6 @@ public class QuotationDAOPostgres extends QuotationDAO{
             pstatement.setInt(1, idc);
             ResultSet resultSet = pstatement.executeQuery();
 
-            /*Transforme toutes les lignes en feedback*/
             while(resultSet.next()){
                 Quotation q = resultSetToQuotation(resultSet);
                 quotations.add(q);
@@ -196,4 +192,24 @@ public class QuotationDAOPostgres extends QuotationDAO{
         }
         return quotations;
     }
+
+    public int setStatusQuotation(Quotation quotation, String status){
+        int affectRows = 0;
+        String sqlInsert = "UPDATE quotations " +
+                "SET statusquotation=? " +
+                "WHERE idquotation=?";
+        try{
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,status.toUpperCase().trim());
+            pstmt.setInt(2,quotation.getId());
+
+            affectRows = pstmt.executeUpdate();
+            pstmt.close();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
+    };
 }
