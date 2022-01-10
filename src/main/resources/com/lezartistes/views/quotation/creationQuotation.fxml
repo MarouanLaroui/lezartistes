@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ComboBox?>
 <BorderPane fx:controller="com.lezartistes.controllers.quotation.CreationQuotationController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
     <top>
         <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -28,17 +29,16 @@
                     <children>
                         <ToolBar layoutX="32.0" layoutY="24.0">
                             <items>
-                                <!--
                                 <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font></Button>-->
+                                    </font></Button>
                                 <Button mnemonicParsing="false" text="Account">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" text="MessageBox">
+                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
@@ -98,6 +98,12 @@
                  <font>
                      <Font name="System Bold" size="12.0" />
                  </font></Label>
+             <ComboBox fx:id="cfp" layoutX="78.0" layoutY="270.0" prefWidth="150.0" />
+             <Label layoutX="78.0" layoutY="290.0" text="Related Call for Proposal">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font>
+             </Label>
             <Button layoutX="306.0" layoutY="276.0" mnemonicParsing="false" text="Validate" textAlignment="CENTER" />
             <Button layoutX="233.0" layoutY="276.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="67.0" text="Back" textAlignment="CENTER" />
             <Text layoutX="160.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quotation Creation" textAlignment="CENTER">

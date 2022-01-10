@@ -4,15 +4,16 @@ public class Quotation {
     private int id;
     private int company;
     private String title;
-    private int expert;
+    private String expert;
     private double capital;
     private int siret_number;
     private int number_business_register;
     private int NAF;
     private double total_price_TTC;
     private int callforproposal;
+    private StatusQuotation statusQuotation;
 
-    public Quotation(int company, String title, int expert, double capital, int siret_number, int number_business_register, int NAF, double total_price_TTC, int callforproposal) {
+    public Quotation(int company, String title, String expert, double capital, int siret_number, int number_business_register, int NAF, double total_price_TTC, int callforproposal) {
         this.company = company;
         this.title = title;
         this.expert = expert;
@@ -22,6 +23,7 @@ public class Quotation {
         this.NAF = NAF;
         this.total_price_TTC = total_price_TTC;
         this.callforproposal=callforproposal;
+        this.statusQuotation=StatusQuotation.PROPOSE;
     }
 
     public int getCompany() {
@@ -48,11 +50,11 @@ public class Quotation {
         this.title = title;
     }
 
-    public int getExpert() {
+    public String getExpert() {
         return expert;
     }
 
-    public void setExpert(int expert) {
+    public void setExpert(String expert) {
         this.expert = expert;
     }
 
@@ -102,4 +104,8 @@ public class Quotation {
     public void setId(int id){
         this.id = id;
     }
+
+    public String getStatusQuotation(){return this.statusQuotation.name();}
+    public void setStatusQuotation(String status){this.statusQuotation = StatusQuotation.valueOf(status.toUpperCase().trim());}
+
 }

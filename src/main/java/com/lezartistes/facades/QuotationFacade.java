@@ -48,4 +48,8 @@ public class QuotationFacade {
     public Quotation deleteQuotation(int id) throws QuotationNotFoundException {
         return this.quotationDAO.deleteQuotation(id);
     }
+
+    public int setStatusQuotation(Quotation quotation, String status){
+        return this.quotationDAO.setStatusQuotation(quotation,status);
+    };
 }
