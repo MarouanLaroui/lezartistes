@@ -3,111 +3,86 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
-
-    <top>
-        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <items>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../asset/logo.png" />
-                            </image></ImageView>
-                    </children>
-                </Pane>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ToolBar layoutX="32.0" layoutY="24.0">
-                            <items>
-                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font></Button>
-                                <Button mnemonicParsing="false" text="Account">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" text="Help ?">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                            </items>
-                        </ToolBar>
-                    </children></Pane>
-            </items>
-        </SplitPane>
-    </top>
-    <center>
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane prefHeight="78.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #D3D3D3;">
+            <children>
+                <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../asset/logo.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="522.0" layoutY="26.0" mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+    <children>
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 
         <children>
-            <Label contentDisplay="CENTER" layoutX="161.0" layoutY="18.0" text="Company profile">
-                <font>
-                    <Font name="System" size="38.0" />
-                </font>
-            </Label>
 
-            <ImageView fitHeight="94.0" fitWidth="85.0" layoutX="65.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="94.0" fitWidth="85.0" layoutX="65.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../asset/company.png" />
                 </image>
             </ImageView>
 
-            <Pane layoutX="150.0" layoutY="45.0" prefHeight="250.0" prefWidth="300.0">
+            <Pane layoutX="150.0" layoutY="124.0" prefHeight="250.0" prefWidth="300.0">
                 <children>
-                    <Label layoutX="54.0" layoutY="62.0" text="Departement :">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d2c5c5" height="170.0" layoutX="26.0" layoutY="40.0" opacity="0.11" stroke="WHITE" strokeType="INSIDE" width="248.0" />
+                    <Label layoutX="59.0" layoutY="72.0" text="Departement :">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Label>
-                    <Label layoutX="95.0" layoutY="38.0" text="Name :">
+                    <Label layoutX="100.0" layoutY="48.0" text="Name :">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Label>
-                    <Label layoutX="94.0" layoutY="89.0" text="Street :">
+                    <Label layoutX="99.0" layoutY="99.0" text="Street :">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Label>
-                    <Label alignment="CENTER_RIGHT" layoutX="55.0" layoutY="173.0" prefHeight="17.0" prefWidth="81.0" text="Complement :">
+                    <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="183.0" prefHeight="17.0" prefWidth="81.0" text="Complement :">
                         <font>
                             <Font name="System Italic" size="12.0" />
                         </font>
                     </Label>
-                    <Label layoutX="106.0" layoutY="118.0" text="City :">
+                    <Label layoutX="111.0" layoutY="128.0" text="City :">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Label>
-                    <Label alignment="CENTER_RIGHT" layoutX="55.0" layoutY="146.0" prefHeight="17.0" prefWidth="81.0" text="Postal code :">
+                    <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="156.0" prefHeight="17.0" prefWidth="81.0" text="Postal code :">
                         <font>
                             <Font name="System Bold" size="12.0" />
                         </font>
                     </Label>
-                    <Button layoutX="84.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#displayFeedback" text="See related feedbacks" />
-                    <Label id="name" fx:id="name" layoutX="143.0" layoutY="38.0" prefHeight="17.0" prefWidth="80.0" />
-                    <Label id="departement" fx:id="departement" layoutX="143.0" layoutY="62.0" prefHeight="17.0" prefWidth="80.0" />
-                    <Label id="street" fx:id="street" layoutX="145.0" layoutY="89.0" prefHeight="17.0" prefWidth="80.0" />
-                    <Label id="city" fx:id="city" layoutX="145.0" layoutY="118.0" prefHeight="17.0" prefWidth="80.0" />
-                    <Label id="postalCode" fx:id="postalCode" layoutX="145.0" layoutY="146.0" prefHeight="17.0" prefWidth="80.0" />
-                    <Label id="complement" fx:id="complement" layoutX="143.0" layoutY="173.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="name" fx:id="name" layoutX="148.0" layoutY="48.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="departement" fx:id="departement" layoutX="148.0" layoutY="72.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="street" fx:id="street" layoutX="150.0" layoutY="99.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="city" fx:id="city" layoutX="150.0" layoutY="128.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="postalCode" fx:id="postalCode" layoutX="150.0" layoutY="156.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Label id="complement" fx:id="complement" layoutX="148.0" layoutY="183.0" prefHeight="17.0" prefWidth="80.0" />
+                    <Button layoutX="82.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#displayFeedback" text="See related feedbacks" />
                 </children>
             </Pane>
         </children>
         </Pane>
-    </center>
+      <Label contentDisplay="CENTER" layoutX="163.0" layoutY="87.0" text="Company profile">
+          <font>
+              <Font name="System" size="38.0" />
+          </font>
+      </Label>
+    </children>
 
-</BorderPane>
+</Pane>
