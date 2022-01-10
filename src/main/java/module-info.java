@@ -62,4 +62,7 @@ module com.lezartistes {
 
     exports com.lezartistes.controllers.history;
     opens com.lezartistes.controllers.history to javafx.fxml;
+
+    exports com.lezartistes.tests;
+    opens com.lezartistes.tests to javafx.fxml;
 }
