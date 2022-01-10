@@ -12,12 +12,8 @@ public class TestClient {
     @Test
     public void add() throws ClientNotFoundException {
         ClientFacade clientFacade = ClientFacade.getInstance();
-
         Client c = new Client("mail","pswd",true);
-        clientFacade.createClient(c);
-
-        Assertions.assertTrue(clientFacade.getAllClients().contains(c));
-
+        Assertions.assertEquals(1, clientFacade.createClient(c));
     }
 
 }
