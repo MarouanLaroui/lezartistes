@@ -142,6 +142,26 @@ public class QuotationDAOPostgres extends QuotationDAO{
         return null;
     }
 
+    public int deleteQuotationByTitle(String title) throws QuotationNotFoundException{
+        int affectedRows = 0;
+
+        String sqlDelete = "DELETE FROM quotations WHERE title=?";
+        try {
+
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,title);
+
+            affectedRows = pstmt.executeUpdate();
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return affectedRows;
+    }
+
+
     public List<Quotation> getQuotationByCAP(int idcap) throws QuotationNotFoundException{
         String sqlSelect = "SELECT * FROM quotations WHERE callforproposal=?";
         List<Quotation> quotations = new ArrayList<>();

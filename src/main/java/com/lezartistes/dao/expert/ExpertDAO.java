@@ -17,4 +17,6 @@ public abstract class ExpertDAO implements Serializable {
     public abstract int createExpert(Expert expert);
 
     public abstract Expert getExpertByEmail(String mail);
+
+    public abstract int deleteExpertByMail(String mail);
 }
