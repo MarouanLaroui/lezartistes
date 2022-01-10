@@ -18,3 +18,4 @@ Run the app class
 JUNIT TEST
 
 In the src directory, you'll find a tests directory containing the different classes. One for each use case, that tests the validity of the code.
+Each test need to be run individually by clicking the run button next to it.
