@@ -18,7 +18,7 @@ public class CallForProposalFacadeTest {
         CallForProposalFacade cfp = CallForProposalFacade.getInstance();
         int sizeBefore = cfp.getAllCallForProposal().size();
         UserInformation.setUser(new Expert("", "", "", "", null, false));
-        CallForProposal callForProposal = new CallForProposal("Title", "general", new byte[1], 0, 0);
+        CallForProposal callForProposal = new CallForProposal("Title", "general", new byte[1], 1, 1);
         cfp.createCallForProposal(callForProposal);
 
         Assertions.assertTrue(sizeBefore < cfp.getAllCallForProposal().size());
