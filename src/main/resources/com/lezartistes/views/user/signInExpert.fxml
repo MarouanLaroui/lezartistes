@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onMouseMoved="#mouseMoveDetected" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.user.SignInController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="235.0" layoutX="97.0" layoutY="113.0" opacity="0.41" stroke="WHITE" strokeType="INSIDE" width="404.0" />
       <Label layoutX="98.0" layoutY="62.0" text="Create a new Expert account">
@@ -41,7 +41,7 @@
          <font>
             <Font name="Lucida Calligraphy Italic" size="12.0" />
          </font></Button>
-      <ComboBox fx:id="companyExpert" layoutX="224.0" layoutY="262.0" prefWidth="150.0" />
+      <ComboBox fx:id="companyExpert" onMouseClicked="#getCompanies" layoutX="224.0" layoutY="262.0" prefWidth="150.0" />
       <Label layoutX="224.0" layoutY="238.0" text="Choose a company">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />

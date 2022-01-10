@@ -85,7 +85,7 @@ public class CallForProposalListController extends GeneralController implements 
         }
         catch (CallForProposalNotFoundException c){
             this.info.setText("No call for proposal has been posted yet.");
-            c.printStackTrace();
+            //c.printStackTrace();
         }
     }
 
