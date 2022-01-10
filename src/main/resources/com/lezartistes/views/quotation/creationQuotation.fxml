@@ -29,17 +29,16 @@
                     <children>
                         <ToolBar layoutX="32.0" layoutY="24.0">
                             <items>
-                                <!--
                                 <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font></Button>-->
+                                    </font></Button>
                                 <Button mnemonicParsing="false" text="Account">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" text="MessageBox">
+                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
