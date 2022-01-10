@@ -30,7 +30,7 @@
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button mnemonicParsing="false" onAction="#redirectToClientList" text="Clients">
+                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
                                     <font>
                                         <Font name="Lucida Calligraphy Italic" size="14.0" />
                                     </font>
