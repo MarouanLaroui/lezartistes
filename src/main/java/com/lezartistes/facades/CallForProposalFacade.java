@@ -33,8 +33,16 @@ public class CallForProposalFacade {
         return this.callForProposalDAO.getCallForProposalById(id);
     }
 
+    public CallForProposal getCallForProposalByTitle(String title) throws CallForProposalNotFoundException {
+        return this.callForProposalDAO.getCallForProposalByTitle(title);
+    }
+
     public List<CallForProposal> getAllCallForProposal() throws CallForProposalNotFoundException{
         return this.callForProposalDAO.getAllCallForProposal();
+    }
+
+    public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException{
+        return this.callForProposalDAO.getAllPostedCallForProposal();
     }
 
     public List<CallForProposal> getAllPostedAndOverCallForProposal() throws CallForProposalNotFoundException{
