@@ -86,12 +86,62 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
     }
 
     @Override
+    public CallForProposal getCallForProposalByTitle(String title) throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals WHERE title=?";
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            //todo: tester si ça fonctionne en upper case ou passer en lower case
+            pstatement.setString(1,title);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            if(resultSet.next()){
+                return this.resultSetToCallForProposal(resultSet);
+            }
+            else{
+                throw new CallForProposalNotFoundException(title);
+            }
+        }
+        catch(SQLException | CallForProposalNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public List<CallForProposal> getAllCallForProposal() throws CallForProposalNotFoundException {
         String sqlSelect = "SELECT * FROM callforproposals";
         List<CallForProposal> calls = new ArrayList<>();
 
         try{
             PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            /*Transforme toutes les lignes en feedback*/
+            while(resultSet.next()){
+                CallForProposal cfp = resultSetToCallForProposal(resultSet);
+                calls.add(cfp);
+            }
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(calls.isEmpty()){
+            throw new CallForProposalNotFoundException();
+        }
+        return calls;
+    }
+
+    @Override
+    public List<CallForProposal> getAllPostedCallForProposal() throws CallForProposalNotFoundException {
+        String sqlSelect = "SELECT * FROM callforproposals WHERE status=?";
+        List<CallForProposal> calls = new ArrayList<>();
+
+        try{
+            PreparedStatement pstatement = this.connection.prepareStatement(sqlSelect);
+            //todo: tester si ça fonctionne en upper case ou passer en lower case
+            pstatement.setString(1,Status.POSTED.name());
             ResultSet resultSet = pstatement.executeQuery();
 
             /*Transforme toutes les lignes en feedback*/
