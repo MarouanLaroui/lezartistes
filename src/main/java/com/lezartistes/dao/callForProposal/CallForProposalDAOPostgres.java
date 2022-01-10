@@ -46,6 +46,29 @@ public class CallForProposalDAOPostgres extends CallForProposalDAO{
         return callForProposalDAOPostgres;
     }
 
+    public int getCallForProposalIdByTitle(String title){
+        String sqlSelect = "SELECT * FROM callforproposals WHERE title=?";
+
+        PreparedStatement pstatement = null;
+
+        try{
+            pstatement = this.connection.prepareStatement(sqlSelect);
+            pstatement.setString(1,title);
+            ResultSet resultSet = pstatement.executeQuery();
+
+            if(resultSet.next()){
+                return this.resultSetToCallForProposal(resultSet).getId();
+            }
+            else{
+                throw new CallForProposalNotFoundException();
+            }
+        }
+        catch(SQLException | CallForProposalNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return 0;
+    };
     /*methods*/
     public CallForProposal resultSetToCallForProposal(ResultSet rs) throws SQLException{
         CallForProposal cfp = new CallForProposal(
