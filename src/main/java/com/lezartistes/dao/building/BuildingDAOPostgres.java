@@ -85,7 +85,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
     }
 
     public List<Building> getBuildingByClient(int idc) throws BuildingNotFoundException{
-        List<Building> building = null;
+        List<Building> building = new ArrayList<Building>();
         String sqlSelect = "SELECT * FROM buildings WHERE client=?";
 
         try {
