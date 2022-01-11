@@ -120,13 +120,13 @@ public class ExpertListController extends GeneralController implements Initializ
         this.expertsList.setItems(new FilteredList<Expert>(FXCollections.observableList(this.filterByName(this.experts,searchedName))));
     }
 
-    //TODO : rediriger vers bonne page en fonction du type
-   /* public void redirectToHome(MouseEvent mouseEvent) {
+
+    public void redirectToHome(MouseEvent mouseEvent) {
         try {
             App.setRoot("views/accueilClient");
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
