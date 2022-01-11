@@ -7,11 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.lezartistes.controllers.AccueilController"
->
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilController">
    <children>
-      <Button layoutX="108.0" layoutY="183.0" mnemonicParsing="false" text="Account">
+      <Button layoutX="108.0" layoutY="183.0" mnemonicParsing="false" text="Quotation" onMouseClicked="redirectToQuotationList">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font>
