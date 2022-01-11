@@ -23,4 +23,5 @@ public class AccueilController extends GeneralController {
         App.setRoot("views/building/listBuilding");
 
     }
+
 }
