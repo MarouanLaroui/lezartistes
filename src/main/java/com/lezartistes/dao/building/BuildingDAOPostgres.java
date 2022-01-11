@@ -85,7 +85,7 @@ public class BuildingDAOPostgres extends BuildingDAO {
     }
 
     public List<Building> getBuildingByClient(int idc) throws BuildingNotFoundException{
-        List<Building> building = null;
+        List<Building> building = new ArrayList<Building>();
         String sqlSelect = "SELECT * FROM buildings WHERE client=?";
 
         try {
@@ -181,32 +181,12 @@ public class BuildingDAOPostgres extends BuildingDAO {
         return b;
     }
 
-    public int modifyBuilding(int id, Building b) throws BuildingNotFoundException{
+    public int deleteBuilding(int id) throws BuildingNotFoundException{
         int affectRows = 0;
-        String sqlUpdate = "UPDATE buildings SET " +
-                "name = ?, " +
-                "region = ? , " +
-                "budget = ? " +
-                "WHERE idfeedback = ?";
-        /*
-=======
-                "budget = ? ," +
-                "construction_date = ? ,"+
-                "master_builder = ? ,"+
-                "design_office = ? , "+
-                "client = ? "+
-                "WHERE idBuilding = ?";
+        String sqlDelete = "DELETE FROM buildings WHERE id_building=?";
         try{
-
-            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlUpdate, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, b.getName());
-            pstmt.setString(2, b.getRegion());
-            pstmt.setDouble(3, b.getBudget());
-            pstmt.setDate(4, new java.sql.Date(b.getConstruction_date().getTime()));
-            pstmt.setString(5, b.getMaster_builder());
-            pstmt.setString(6, b.getDesign_office());
-            pstmt.setInt(7, b.getClient());
-            pstmt.setInt(8, id);
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, id);
 
             affectRows = pstmt.executeUpdate();
         }
@@ -214,17 +194,15 @@ public class BuildingDAOPostgres extends BuildingDAO {
             e.printStackTrace();
         }
         return affectRows;
-
-             */
-            return -1;
     }
 
-    public int deleteBuilding(int id) throws BuildingNotFoundException{
+    @Override
+    public int deleteBuildingByName(String name) throws BuildingNotFoundException {
         int affectRows = 0;
-        String sqlDelete = "DELETE FROM buildings WHERE id_building=?";
+        String sqlDelete = "DELETE FROM buildings WHERE name=?";
         try{
             PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, id);
+            pstmt.setString(1, name);
 
             affectRows = pstmt.executeUpdate();
         }

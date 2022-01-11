@@ -24,7 +24,4 @@ public class AccueilController extends GeneralController {
 
     }
 
-    public void redirectToAccount(){
-
-    }
 }

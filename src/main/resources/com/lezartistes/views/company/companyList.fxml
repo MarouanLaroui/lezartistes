@@ -1,67 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.lezartistes.controllers.company.CompanyListController">
-    <top>
-        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <items>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../asset/logo.png" />
-                            </image></ImageView>
-                    </children>
-                </Pane>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ToolBar layoutX="32.0" layoutY="24.0">
-                            <items>
-                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font></Button>
-                                <Button mnemonicParsing="false" text="Account">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" onAction="#redirectToCompanyList" text="Company">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" text="Help ?">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                            </items>
-                        </ToolBar>
-                    </children></Pane>
-            </items>
-        </SplitPane>
-    </top>
-    <center>
-        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.company.CompanyListController">
+    <children>
+        <Pane prefHeight="78.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #D3D3D3;">
             <children>
-                <Label layoutX="155.0" layoutY="14.0" text="List of companies">
+                <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../asset/logo.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="522.0" layoutY="26.0" mnemonicParsing="false" onAction="#redirectToHome" text="Home">
                     <font>
-                        <Font size="38.0" />
+                        <Font name="Lucida Calligraphy Italic" size="14.0" />
                     </font>
-                </Label>
-                <ListView fx:id="companiesList" layoutX="96.0" layoutY="132.0" onMouseClicked="#displayCompanyProfile" prefHeight="138.0" prefWidth="409.0" />
-                <Label layoutX="143.0" layoutY="69.0" text="choose one company to display all of the related feedbacks" />
-                <TextField fx:id="searchInput" layoutX="95.0" layoutY="99.0" onKeyTyped="#onType" prefHeight="25.0" prefWidth="409.0" promptText="Looking for a specific company ? Search for its name !" />
+                </Button>
             </children>
         </Pane>
-    </center>
+    </children>
+    <children>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+          <Label layoutX="155.0" layoutY="72.0" text="List of companies">
+              <font>
+                  <Font size="38.0" />
+              </font>
+          </Label>
+          <ListView fx:id="companiesList" layoutX="96.0" layoutY="190.0" onMouseClicked="#displayCompanyProfile" prefHeight="138.0" prefWidth="409.0" />
+          <Label layoutX="143.0" layoutY="127.0" text="choose one company to display all of the related feedbacks" />
+          <TextField fx:id="searchInput" layoutX="95.0" layoutY="157.0" onKeyTyped="#onType" prefHeight="25.0" prefWidth="409.0" promptText="Looking for a specific company ? Search for its name !" />
+    </children>
 
-</BorderPane>
+</Pane>

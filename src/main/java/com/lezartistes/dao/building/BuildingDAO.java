@@ -24,7 +24,7 @@ public abstract class BuildingDAO implements Serializable {
 
     public abstract Building createBuilding(Building b);
 
-    public abstract int modifyBuilding(int id, Building b) throws BuildingNotFoundException;
-
     public abstract int deleteBuilding(int id) throws BuildingNotFoundException;
+
+    public abstract int deleteBuildingByName(String name) throws BuildingNotFoundException;
 }

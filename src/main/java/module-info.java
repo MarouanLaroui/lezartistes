@@ -44,6 +44,8 @@ module com.lezartistes {
 
     opens com.lezartistes.controllers to javafx.fxml;
     exports com.lezartistes.controllers;
+    opens com.lezartistes.controllers.quotation to javafx.fxml;
+    exports com.lezartistes.controllers.quotation;
 
     opens com.lezartistes.database to javafx.fxml;
     exports com.lezartistes.database;
@@ -66,7 +68,6 @@ module com.lezartistes {
     exports com.lezartistes.controllers.history;
     opens com.lezartistes.controllers.history to javafx.fxml;
 
-     exports com.lezartistes.tests;
-     opens com.lezartistes.tests to javafx.fxml;
-
+    exports com.lezartistes.tests;
+    opens com.lezartistes.tests to javafx.fxml;
 }

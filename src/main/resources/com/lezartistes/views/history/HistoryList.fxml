@@ -1,63 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.history.ListHistoryController">
-    <top>
-        <SplitPane dividerPositions="0.2993311036789298" prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <items>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../asset/logo.png" />
-                            </image></ImageView>
-                    </children>
-                </Pane>
-                <Pane prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                        <ToolBar layoutX="32.0" layoutY="24.0">
-                            <items>
-                                <Button mnemonicParsing="false" onAction="#redirectToHome" text="Home">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font></Button>
-                                <Button mnemonicParsing="false" text="Account">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" onAction="#redirectToClientList" text="Clients">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button mnemonicParsing="false" text="Help ?">
-                                    <font>
-                                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                                    </font>
-                                </Button>
-                            </items>
-                        </ToolBar>
-                    </children></Pane>
-            </items>
-        </SplitPane>
-    </top>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView fx:id="historyList" layoutX="71.0" layoutY="100.0" onMouseClicked="#clickOnHistory" prefHeight="180.0" prefWidth="459.0" />
-            <ScrollBar layoutX="523.0" layoutY="101.0" orientation="VERTICAL" prefHeight="178.0" prefWidth="15.0" />
-            <Label layoutX="185.0" layoutY="14.0" text="List of History">
-               <font>
-                  <Font size="38.0" />
-               </font>
-            </Label>
-            <Button fx:id="addnewHistorybtn" layoutX="248.0" layoutY="69.0" mnemonicParsing="false" onAction="#addNewHistory" text="Add new History" />
-         </children>
-      </Pane>
-   </center>
-</BorderPane>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.history.ListHistoryController">
+    <children>
+        <Pane prefHeight="78.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #D3D3D3;">
+            <children>
+                <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../asset/logo.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="522.0" layoutY="26.0" mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="historyList" layoutX="71.0" layoutY="174.0" onMouseClicked="#clickOnHistory" prefHeight="180.0" prefWidth="459.0" />
+      <Label layoutX="185.0" layoutY="88.0" text="List of History">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <Button fx:id="addnewHistorybtn" layoutX="248.0" layoutY="143.0" mnemonicParsing="false" onAction="#addNewHistory" text="Add new History" />
+      <ScrollBar layoutX="523.0" layoutY="175.0" orientation="VERTICAL" prefHeight="178.0" prefWidth="15.0" />
+   </children>
+</Pane>

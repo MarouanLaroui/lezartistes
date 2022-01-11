@@ -138,21 +138,20 @@ public class ReportDAOPostgres extends ReportDAO{
         ArrayList<byte[]> files = new ArrayList<>();
             PreparedStatement ps = null;
             try {
-                ps = this.coToDB.prepareStatement("INSERT INTO reports VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                ps.setInt(1,15);
-                ps.setString(2,report.getTitle());
-                ps.setString(3,report.getGeneral_description());
-                ps.setBoolean(4,report.isPosted());
-                ps.setDate(5,new java.sql.Date(report.getVisit_date().getTime()));
-                ps.setString(6,report.getInspection_team());
-                ps.setString(7,report.getNecessary_means());
-                ps.setString(8,report.getMeteo());
-                ps.setDouble(9,report.getAmbient_temperature());
-                ps.setString(10,report.getLocation());
-                ps.setString(11,report.getObservation());
-                ps.setBytes(12,report.getImg1());
-                ps.setBytes(13,report.getImg2());
-                ps.setBytes(14,report.getImg3());
+                ps = this.coToDB.prepareStatement("INSERT INTO reports(title, general_description, is_posted, visit_date, inspection_team, necessary_means, meteo, ambient_temperature, location, observation, file1, file2, file3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                ps.setString(1,report.getTitle());
+                ps.setString(2,report.getGeneral_description());
+                ps.setBoolean(3,report.isPosted());
+                ps.setDate(4, new java.sql.Date(report.getVisit_date().getTime()));
+                ps.setString(5,report.getInspection_team());
+                ps.setString(6,report.getNecessary_means());
+                ps.setString(7,report.getMeteo());
+                ps.setDouble(8,report.getAmbient_temperature());
+                ps.setString(9,report.getLocation());
+                ps.setString(10,report.getObservation());
+                ps.setBytes(11,report.getImg1());
+                ps.setBytes(12,report.getImg2());
+                ps.setBytes(13,report.getImg3());
                 int rows = ps.executeUpdate();
                 ps.close();
                 System.out.println(rows);
@@ -250,7 +249,7 @@ public class ReportDAOPostgres extends ReportDAO{
         try {
             pstatement = this.coToDB.prepareStatement(sqlSelect);
             pstatement.setInt(1,id);
-            int affectedRows = pstatement.executeUpdate(sqlSelect);
+            int affectedRows = pstatement.executeUpdate();
             if(affectedRows == 0){
                 throw new ReportNotFoundException(id);
             }

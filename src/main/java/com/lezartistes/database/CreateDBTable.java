@@ -120,7 +120,8 @@ public class CreateDBTable {
             Statement stmt = connection.createStatement();
 
 
-            String sql = "CREATE TABLE quotations "+
+            String sql = "DROP TABLE IF EXISTS quotations;" +
+                    "CREATE TABLE quotations "+
                     "(idQuotation serial primary key, "+
                     "idCompany int, "+
                     "expert varchar(50),"+
@@ -407,7 +408,7 @@ public class CreateDBTable {
         //cTable.insertIntoCompanyTable();
         //cTable.createCompanyTable();
         //cTable.createFeedbackTable();
-        cTable.createExpertTable();
+        //cTable.createExpertTable();
         //cTable.createReportTable();
         //cTable.createUserTable();
         //cTable.createClientTable();
@@ -420,6 +421,7 @@ public class CreateDBTable {
         //cTable.createBuildingTable();
         //cTable.alterTableBuilding();
 
+        cTable.createQuotationTable();
         //cTable.createServiceProvider();
         //cTable.creteHistoryTable();
 

@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilExpertController">
    <children>
-      <Button layoutX="108.0" layoutY="183.0" mnemonicParsing="false" text="Quotation" onMouseClicked="redirectToQuotationList">
+      <Button layoutX="108.0" layoutY="183.0" mnemonicParsing="false" onMouseClicked="#redirectToQuotationList" text="Quotation">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font>
@@ -29,17 +29,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="228.0" layoutY="183.0" mnemonicParsing="false" onMouseClicked="#redirectToCompanyList" text="Company">
+      <Button layoutX="225.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#redirectToCompanyList" text="Company">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="338.0" layoutY="183.0" mnemonicParsing="false" onMouseClicked="#redirectToCFPList" text="Call For Proposal">
+      <Button layoutX="343.0" layoutY="185.0" mnemonicParsing="false" onMouseClicked="#redirectToCFPList" text="Call For Proposal">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="343.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToBuilding" prefHeight="32.0" prefWidth="147.0" text="Building">
+      <Button layoutX="343.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToBuildingList" prefHeight="32.0" prefWidth="147.0" text="Building">
          <font>
             <Font name="Lucida Calligraphy Italic" size="14.0" />
          </font>

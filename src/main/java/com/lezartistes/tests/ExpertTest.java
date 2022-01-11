@@ -8,6 +8,7 @@ import com.lezartistes.exceptions.ExpertNotFoundException;
 import com.lezartistes.facades.ExpertFacade;
 import com.lezartistes.facades.HistoryFacade;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,17 +28,6 @@ public class ExpertTest {
     @Test
     public void throwsExpertNotFoundException(){
         ExpertFacade facade = ExpertFacade.getInstance();
-        Exception ex = null;
-        try {
-            facade.getExpert(-17);
-        }
-        catch (ExpertNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("error");
-            ex = e;
-        }
-        finally {
-            assert(ex!=null);
-        }
+        Assertions.assertThrows(ExpertNotFoundException.class, () -> facade.getExpert(-17));
     }
 }

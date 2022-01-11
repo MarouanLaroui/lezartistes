@@ -20,6 +20,8 @@ public abstract class QuotationDAO implements Serializable {
 
     public abstract Quotation deleteQuotation(int id) throws QuotationNotFoundException;
 
+    public abstract int deleteQuotationByTitle(String title) throws QuotationNotFoundException;
+
     public abstract List<Quotation> getQuotationByCAP(int idcap) throws QuotationNotFoundException;
 
     public abstract List<Quotation> getQuotationByCompany(int idc) throws QuotationNotFoundException;

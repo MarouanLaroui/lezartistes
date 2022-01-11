@@ -49,6 +49,10 @@ public class QuotationFacade {
         return this.quotationDAO.deleteQuotation(id);
     }
 
+    public int deleteQuotationByTitle(String title) throws QuotationNotFoundException {
+        return this.quotationDAO.deleteQuotationByTitle(title);
+    }
+
     public int setStatusQuotation(Quotation quotation, String status){
         return this.quotationDAO.setStatusQuotation(quotation,status);
     };

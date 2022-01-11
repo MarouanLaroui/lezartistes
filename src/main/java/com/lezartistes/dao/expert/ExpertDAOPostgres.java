@@ -140,4 +140,20 @@ public class ExpertDAOPostgres extends ExpertDAO{
         return expert;
     }
 
+    @Override
+    public int deleteExpertByMail(String mail) {
+        int affectRows = 0;
+        String sqlDelete = "DELETE FROM experts WHERE username=?";
+        try{
+            PreparedStatement pstmt = this.coToDB.prepareStatement(sqlDelete, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, mail);
+
+            affectRows = pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return affectRows;
+    }
+
 }
