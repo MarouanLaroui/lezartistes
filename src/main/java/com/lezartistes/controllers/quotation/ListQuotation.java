@@ -63,7 +63,7 @@ public class ListQuotation extends GeneralController implements Initializable {
 
     @FXML
     protected void addNewQuotation () throws IOException {
-        App.setRoot("views/quotation/createQuotation");
+        App.setRoot("views/quotation/creationQuotation");
     }
 
     @FXML
