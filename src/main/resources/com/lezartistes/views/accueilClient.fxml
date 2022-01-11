@@ -5,51 +5,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilController">
-    <children>
-        <Button layoutX="109.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToExpertList" prefHeight="32.0" prefWidth="81.0" text="Expert">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="14.0" />
-            </font>
-        </Button>
-        <Button layoutX="229.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#goToHistory" prefHeight="32.0" prefWidth="81.0" text="History">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="14.0" />
-            </font>
-        </Button>
-        <Label layoutX="46.0" layoutY="128.0" text="APP PAGES :">
-            <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
-        <Button layoutX="170.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#redirectToCompanyList" text="Company">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="14.0" />
-            </font>
-        </Button>
-        <Button layoutX="280.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#redirectToCFPList" text="Call For Proposal">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="14.0" />
-            </font>
-        </Button>
-        <Button layoutX="344.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToBuilding" prefHeight="32.0" prefWidth="147.0" text="Building">
-            <font>
-                <Font name="Lucida Calligraphy Italic" size="14.0" />
-            </font>
-        </Button>
-        <Pane prefHeight="78.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #D3D3D3;">
-            <children>
-                <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../asset/logo.png" />
-                    </image>
-                </ImageView>
-                <Button layoutX="522.0" layoutY="26.0" mnemonicParsing="false" onAction="#redirectToHome" text="Home">
-                    <font>
-                        <Font name="Lucida Calligraphy Italic" size="14.0" />
-                    </font>
-                </Button>
-            </children>
-        </Pane>
-    </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lezartistes.controllers.AccueilController">
+   <children>
+      <Button layoutX="108.0" layoutY="183.0" mnemonicParsing="false"  onMouseClicked="#redirectToQuotationList" text="Quotation">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="108.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToExpertList" prefHeight="32.0" prefWidth="81.0" text="Expert">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="228.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#goToHistory" prefHeight="32.0" prefWidth="81.0" text="History">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="46.0" layoutY="128.0" text="APP PAGES :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="228.0" layoutY="183.0" mnemonicParsing="false" onMouseClicked="#redirectToCompanyList" text="Company">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="338.0" layoutY="183.0" mnemonicParsing="false" onMouseClicked="#redirectToCFPList" text="Call For Proposal">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="343.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#redirectToBuildingList" prefHeight="32.0" prefWidth="147.0" text="Building">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="14.0" />
+         </font>
+      </Button>
+      <Pane prefHeight="78.0" prefWidth="600.0" scaleShape="false" style="-fx-background-color: #D3D3D3;">
+         <children>
+            <ImageView fitHeight="152.0" fitWidth="157.0" layoutX="12.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asset/logo.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="522.0" layoutY="26.0" mnemonicParsing="false" onAction="#redirectToHome" text="Home">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
 </Pane>

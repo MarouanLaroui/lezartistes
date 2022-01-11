@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.expert;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.exceptions.ExpertNotFoundException;
 import com.lezartistes.facades.ExpertFacade;
 import com.lezartistes.models.Expert;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ExpertListController implements Initializable {
+public class ExpertListController extends GeneralController implements Initializable {
     @FXML
     private Label errorMessage;
     @FXML
@@ -120,12 +121,12 @@ public class ExpertListController implements Initializable {
     }
 
     //TODO : rediriger vers bonne page en fonction du type
-    public void redirectToHome(MouseEvent mouseEvent) {
+   /* public void redirectToHome(MouseEvent mouseEvent) {
         try {
             App.setRoot("views/accueilClient");
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.lezartistes.controllers.expert;
 
 import com.lezartistes.App;
+import com.lezartistes.controllers.GeneralController;
 import com.lezartistes.controllers.feedback.FeedbackListController;
 import com.lezartistes.facades.ExpertFacade;
 import com.lezartistes.models.Company;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ExpertProfileController implements Initializable {
+public class ExpertProfileController extends GeneralController implements Initializable {
 
     private Expert expert;
 
