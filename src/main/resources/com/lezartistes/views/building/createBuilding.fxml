@@ -58,6 +58,7 @@
                 <Button layoutX="306.0" layoutY="276.0" mnemonicParsing="false" text="Validate" textAlignment="CENTER" onAction="#createBuilding" />
                 <Button layoutX="233.0" layoutY="276.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="67.0" text="Back" textAlignment="CENTER" onAction="#redirectToBuildingList" />
                 <Text layoutX="160.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Creation" textAlignment="CENTER">
+
                     <font>
                         <Font size="26.0" />
                     </font>

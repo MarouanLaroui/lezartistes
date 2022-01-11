@@ -52,12 +52,9 @@ public class ListBuildingController extends GeneralController implements Initial
                 }
                 if (idAuthor==-1){}
                 else{
-                    try {
-                        building = new ArrayList<>(this.buildingFacade.getBuildingByClient(idAuthor));
+                        building = new ArrayList<>(this.buildingFacade.getBuildingByMailClient(user.getMail()));
                         this.buildingList.setItems(new FilteredList<>(FXCollections.observableList(building)));
-                    } catch (BuildingNotFoundException e) {
-                        e.printStackTrace();
-                    }
+
                     this.buildingList.setItems(new FilteredList<>(FXCollections.observableList(building)));
                 }
 
