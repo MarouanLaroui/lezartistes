@@ -50,11 +50,12 @@ public class CreateBuildingController extends GeneralController {
         User user = this.clientFacade.getClientByEmail(UserInformation.getUser().getMail());
         int idAuthor = this.clientFacade.getClientIdByMail(user.getMail());
 
-        if (construction_date.getValue() == null || name.getText().equals("")) {
+        if ( name.getText().equals("")) {
             this.erreurCreation();
         }
+        System.out.println("o");
         Building newBuilding = new Building(name.getText(),region.getText(),Double.valueOf(budget.getText()), new Date(construction_date.getValue().toEpochDay()), master_builder.getText(), design_office.getText(),idAuthor);
-
+        System.out.println(newBuilding);
             this.buildingFacade.createBuilding(newBuilding);
     }
     public void erreurCreation () {
